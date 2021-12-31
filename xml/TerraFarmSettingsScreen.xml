@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="dynamicFadedBitmap" profile="uiFullBlurBG" />
+    <GuiElement type="bitmap" profile="bgVignette" />
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="bitmap" profile="uiInGameMenuHeader" id="header">
+        <GuiElement type="multiTextOption" profile="uiInGameMenuHeaderSelector" onClick="onClickPageSelection" id="pageSelector" soundDisabled="true">
+            <GuiElement type="button" profile="uiInGameMenuPagingButtonLeft" id="pagingButtonLeft" />
+            <GuiElement type="button" profile="uiInGameMenuPagingButtonRight" id="pagingButtonRight" />
+        </GuiElement>
+
+        <GuiElement type="list" profile="uiInGameMenuPagingTabList" id="pagingTabList" handleFocus="false" onSelectionChanged="onTabMenuSelectionChanged" onScroll="onTabMenuScroll">
+            <GuiElement type="listItem" id="pagingTabTemplate" profile="uiTabbedMenuPageTab" handleFocus="false">
+                <GuiElement type="button" name="tabButton" profile="uiTabbedMenuPageTabButton" handleFocus="false" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="empty" profile="uiElementContainerFullScreenSpanning">
+        <GuiElement type="paging" profile="uiInGameMenuPaging" onPageChange="onPageChange" onPageUpdate="onPageUpdate" id="pagingElement">
+            <GuiElement type="frameReference" ref="terraFarmMain" name="terraFarmMain" id="terraFarmMainSettings" />
+            <GuiElement type="frameReference" ref="terraFarmMachine" name="terraFarmMachine" id="terraFarmMachineSettings" />
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="buttonBoxDockedOnScreenWithTabBar" id="buttonsPanel">
+        <GuiElement type="button" profile="buttonBack" onClick="onClickBack" id="menuButton[1]" />
+    </GuiElement>
+</GUI>
