@@ -193,6 +193,7 @@ function MachineConfiguration:loadSettings(xmlFile)
     self.terraformSmoothRadius = getXMLFloat(xmlFile, 'configuration.setttings.terraformSmoothRadius')
     self.terraformFlattenStrength = getXMLFloat(xmlFile, 'configuration.setttings.terraformFlattenStrength')
     self.terraformFlattenRadius = getXMLFloat(xmlFile, 'configuration.setttings.terraformFlattenRadius')
+    self.volumeFillRatio = getXMLFloat(xmlFile, 'configuration.setttings.volumeFillRatio')
 
     local i = 0
     while true do

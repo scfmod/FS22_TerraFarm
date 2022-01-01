@@ -81,8 +81,7 @@ function TerraFarm.new()
     local self = setmetatable({}, TerraFarm_mt)
 
     self.isLoaded = false
-    self.configFile = g_modSettingsDirectory .. 'TerraFarm/settings.xml'
-    self.config = TerraFarmConfig.newDefault()
+    self.config = TerraFarmConfig.load()
 
     self.isDedicatedServer = not not g_dedicatedServer
     self.isClient = g_client ~= nil
@@ -92,6 +91,12 @@ function TerraFarm.new()
     self.objectToMachine = {}
 
     return self
+end
+
+function TerraFarm:saveConfig()
+    if self.config then
+        self.config:save()
+    end
 end
 
 function TerraFarm:onReady()

@@ -35,6 +35,14 @@ end
 function TerraFarmMod:loadMap()
     g_terraFarm:updateFillTypeData()
     self:setupGui()
+
+    GameSettings.saveToXMLFile = Utils.appendedFunction(GameSettings.saveToXMLFile,
+        function(xmlFile)
+            if xmlFile and g_terraFarm then
+                g_terraFarm:saveConfig()
+            end
+        end
+    )
 end
 
 function TerraFarmMod:setupGui()
@@ -47,12 +55,6 @@ function TerraFarmMod:setupGui()
 
     -- Load screen last
     g_gui:loadGui(modFolder .. 'xml/TerraFarmSettingsScreen.xml', 'TerraFarmSettingsScreen', g_terraFarmSettingsScreen)
-end
-
-function TerraFarmMod:keyEvent(unicode, sym, modifier, isDown)
-    if isDown and sym == 280 then -- PgUp
-        g_terraFarm:openMenu()
-    end
 end
 
 addModEventListener(TerraFarmMod)
