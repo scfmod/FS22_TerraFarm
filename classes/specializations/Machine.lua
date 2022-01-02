@@ -28,7 +28,7 @@ local function addSpecialization(vehicle, machineTypeName, name, filePath)
     table.insert(vehicle.eventListeners.onDelete, spec)
 
     if spec.type == TerraFarmShovel.machineType then
-        -- vehicle.getIsDischargeNodeActive = Utils.overwrittenFunction(vehicle.getIsDischargeNodeActive, Machine.getIsDischargeNodeActive)
+        vehicle.getIsDischargeNodeActive = Utils.overwrittenFunction(vehicle.getIsDischargeNodeActive, Machine.getIsDischargeNodeActive)
         vehicle.handleDischarge = Utils.overwrittenFunction(vehicle.handleDischarge, Machine.handleDischarge)
         vehicle.handleDischargeRaycast = Utils.overwrittenFunction(vehicle.handleDischargeRaycast, Machine.handleDischargeRaycast)
     elseif spec.type == TerraFarmTractor.machineType then
@@ -151,6 +151,17 @@ function Machine:onLeaveVehicle(wasEntered)
     end
 end
 
+function Machine:getIsDischargeNodeActive(func, ...)
+    local machine = g_terraFarm.objectToMachine[self]
+    if g_terraFarm:getIsEnabled() and machine then
+        if machine:isTouchingTerrain() then
+            return false
+        end
+    end
+
+    return func(self, ...)
+end
+
 function Machine:handleDischarge(func, ...)
     local dischargeNode = unpack({...})
     local machine = g_terraFarm.objectToMachine[self]
@@ -172,9 +183,13 @@ function Machine:handleDischargeRaycast(func, ...)
     local machine = g_terraFarm.objectToMachine[self]
 
     if g_terraFarm:getIsEnabled() and machine then
-        if machine:getIsEnabled() and machine.dischargeMode ~= TerraFarm.MODE.NORMAL and machine:isCorrectFillType() then
-            machine:onDischarge()
-            return
+        if machine:getIsEnabled() then
+            if machine.dischargeMode ~= TerraFarm.MODE.NORMAL and machine:isCorrectFillType() then
+                machine:onDischarge()
+                return
+            elseif machine:isTouchingTerrain() then
+                return
+            end
         elseif g_terraFarm.config.disableDischarge == true then
             local dischargeNode = unpack({...})
 
