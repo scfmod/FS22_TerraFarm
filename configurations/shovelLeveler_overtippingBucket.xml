@@ -7,7 +7,7 @@
             <node x="0.388" y="0" z="0" />
             <node x="1.35" y="0" z="0" />
         </terraformNodes>
-        <collisionNodes x="0" y="0" z="0.15">
+        <collisionNodes x="0" y="0" z="0.25">
             <node x="-1.35" y="-0.1" z="-1.2" />
             <node x="0" y="-0.1" z="-1.2" />
             <node x="1.35" y="-0.1" z="-1.2" />
