@@ -118,18 +118,18 @@ function MachineHUDExtension:drawDischargeMode(leftPosX, rightPosX, posY)
     local modeText = TERRAFORM_MODE_STATUS_TEXT[machine.dischargeMode]
     if not modeText then
         self:setOverlayIcon(self.dischargeModeOverlay)
-        renderText(leftPosX, posY + self.uiTextSize, self.uiTextSize, 'Invalid discharge mode')
+        renderText(leftPosX, posY + self.uiTextSize * 1.5, self.uiTextSize, 'Invalid discharge mode')
         return
     end
 
     self:setOverlayIcon(self.dischargeModeOverlay, machine.dischargeMode)
 
     setTextBold(true)
-    renderText(leftPosX, posY + self.uiTextSize, self.uiTextSize, 'Discharge mode: ')
+    renderText(leftPosX, posY + self.uiTextSize * 1.5, self.uiTextSize, 'Discharge mode: ')
     local offsetX = getTextWidth(self.uiTextSize, 'Discharge mode:   ')
 
     setTextBold(false)
-    renderText(leftPosX + offsetX, posY + self.uiTextSize, self.uiTextSize, modeText)
+    renderText(leftPosX + offsetX, posY + self.uiTextSize * 1.5, self.uiTextSize, modeText)
 
     self.dischargeModeOverlay:setInvertX(false)
     self.dischargeModeOverlay:setPosition(rightPosX - self.statusOverlay.width + 0.006, posY)
@@ -153,11 +153,11 @@ function MachineHUDExtension:drawMode(leftPosX, rightPosX, posY)
     self:setOverlayIcon(self.statusOverlay, machine.mode)
 
     setTextBold(true)
-    renderText(leftPosX, posY + self.uiTextSize, self.uiTextSize, 'Mode: ')
+    renderText(leftPosX, posY + self.uiTextSize * 1.5, self.uiTextSize, 'Mode: ')
     local offsetX = getTextWidth(self.uiTextSize, 'Mode:   ')
 
     setTextBold(false)
-    renderText(leftPosX + offsetX, posY + self.uiTextSize, self.uiTextSize, modeText)
+    renderText(leftPosX + offsetX, posY + self.uiTextSize * 1.5, self.uiTextSize, modeText)
 
     self.statusOverlay:setInvertX(false)
     self.statusOverlay:setPosition(rightPosX - self.statusOverlay.width + 0.006, posY)
