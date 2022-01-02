@@ -20,7 +20,7 @@ IT TO LEARN, FORK AND SPREAD THE KNOWLEDGE.
 ## Note
 Bugs can and will probably happen, so please keep that in mind when using this mod.
 
-Mod is still a work in progress.
+Mod is still a work in progress. Updated configurations for buckets and a guide will be provided when I get the time. If you encounter bugs or have suggestions/ideas please use the Issues section here on GitHub.
 
 ## Multiplayer
 Multiplayer is supported, but is not guaranteed to work 100%.
@@ -43,6 +43,10 @@ Mods
 - Volvo EC750 buckets
 - Volvo L-350H bucket
 
+## Guide / documentation
+
+In progress..
+
 ## Screenshots
 
-[[image placeholder]]
+Coming soon..
