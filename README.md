@@ -43,6 +43,23 @@ Mods
 - Volvo EC750 buckets
 - Volvo L-350H bucket
 
+## Fill types
+Mod now also supports several fill types which you can change in the settings GUI.
+By default STONE and DIRT (will be added if not already exisiting).
+You can also choose from additional fill types if added by 3rd. party mod/map:
+- ASPHALT
+- COAL
+- TAILINGS
+- CONCRETE
+- LIMESTONE
+- GRAVEL
+- SAND
+- IRON
+- PAYDIRT
+- RIVERSAND
+- STONEPOWDER
+- CLAY
+
 ## Guide / documentation
 
 In progress..
