@@ -1,3 +1,5 @@
+local modFolder = g_currentModDirectory
+
 ---@class TerraFarm
 ---@field isLoaded boolean
 ---@field configFile string
@@ -100,6 +102,7 @@ function TerraFarm:saveConfig()
 end
 
 function TerraFarm:onReady()
+    self:registerCustomFillType()
     self:updateFillTypeData()
 end
 
@@ -142,6 +145,62 @@ function TerraFarm:updateFillTypeData()
     self.config.fillTypeMassPerLiter = fillType.massPerLiter * 1000 * 1000
 
     return true
+end
+
+function TerraFarm:registerCustomFillType()
+    local name = 'DIRT'
+
+    if g_fillTypeManager.nameToFillType[name] ~= nil then
+        Logging.info('TerraFarm.registerCustomFillType: FillType DIRT already registered, skipping.')
+        return
+    end
+
+    local title = 'Dirt'
+    local showOnPriceTable = true
+    local unitShort = '$l10n_unit_literShort'
+    local massPerLiter = 1.0 / 1000
+    local maxPhysicalSurfaceAngle = 35
+    local pricePerLiter = 0.05
+    local fillPlaneColors = "1.0 1.0 1.0"
+    local hudFileName = 'dirt_hud_icon.png'
+    local diffuseMapFilename = 'dirt_diffuse.png'
+    local normalMapFilename = 'dirt_normal.png'
+    local specularMapFilename = 'dirt_specular.png'
+    local distanceFilename = 'dirtDistance_diffuse.png'
+    local baseDirectory = modFolder .. 'textures/fillTypes/'
+    local economicCurve = {}
+    local prioritizedEffectType = 'ShaderPlaneEffect'
+    local isBaseType = false
+    local customEnv = ''
+
+    local result = g_fillTypeManager:addFillType(
+        name, title, showOnPriceTable, pricePerLiter, massPerLiter, maxPhysicalSurfaceAngle,
+        hudFileName, baseDirectory, customEnv, fillPlaneColors, unitShort, nil, economicCurve,
+        diffuseMapFilename, normalMapFilename, specularMapFilename, distanceFilename,
+        prioritizedEffectType, nil, nil, nil, isBaseType
+    )
+
+    if result then
+        Logging.info('TerraFarm: Successfully registered custom fillType - ' .. name)
+        DebugUtil.printTableRecursively(result, '   ', 0, 0)
+
+        if g_fillTypeManager:addFillTypeToCategory(result.index, g_fillTypeManager.nameToCategoryIndex['BULK']) ~= true then
+            Logging.error('Failed to add fillType to BULK category')
+        -- else
+        --     Logging.info('Added fill type to BULK category')
+        end
+
+        if g_fillTypeManager:addFillTypeToCategory(result.index, g_fillTypeManager.nameToCategoryIndex['SHOVEL']) ~= true then
+            Logging.error('Failed to add fillType to SHOVEL category')
+        -- else
+        --     Logging.info('Added fill type to SHOVEL category')
+        end
+
+        g_currentMission.hud.fillLevelsDisplay:refreshFillTypes(g_fillTypeManager)
+        g_fillTypeManager:constructFillTypeTextureArrays()
+    else
+        Logging.error('TerraFarm: Registering custom fillType failed')
+    end
 end
 
 function TerraFarm:isActive()

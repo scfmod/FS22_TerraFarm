@@ -33,7 +33,7 @@ function TerraFarmMod:update(dt)
 end
 
 function TerraFarmMod:loadMap()
-    g_terraFarm:updateFillTypeData()
+    g_terraFarm:onReady()
     self:setupGui()
 
     GameSettings.saveToXMLFile = Utils.appendedFunction(GameSettings.saveToXMLFile,
