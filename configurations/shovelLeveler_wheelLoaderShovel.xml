@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <configuration>
-    <i3d rootNodePath="0>" x="0" y="0" z="1">
+    <i3d rootNodePath="0>0|1" x="0" y="-0.12" z="0.6">
         <terraformNodes x="0" y="0" z="0">
             <node x="-1.35" y="0" z="0" />
             <node x="-0.388" y="0" z="0" />
             <node x="0.388" y="0" z="0" />
             <node x="1.35" y="0" z="0" />
         </terraformNodes>
-        <collisionNodes x="0" y="0.2" z="0">
+        <collisionNodes x="0" y="-0.1" z="0">
             <node x="-1.35" y="-0.1" z="-1.2" />
             <node x="0" y="-0.1" z="-1.2" />
             <node x="1.35" y="-0.1" z="-1.2" />
