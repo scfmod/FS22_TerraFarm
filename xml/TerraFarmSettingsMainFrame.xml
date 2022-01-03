@@ -46,6 +46,17 @@
                 
                 <GuiElement type="text" profile="settingsMenuSubtitle" text=" " />
 
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickFillType" onCreate="onCreateFillType" id="fillType" >
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="Fill type"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTooltip" text="Set fill type for TerrFarm machines" />
+                </GuiElement>
+
+                <GuiElement type="text" profile="settingsMenuSubtitle" text=" " />
+
                 <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onDisablePaintCheckClick" id="disablePaint">
                     <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
                     <GuiElement type="button" profile="multiTextOptionSettingsRight" />

@@ -104,6 +104,8 @@ end
 function TerraFarm:onReady()
     self:registerCustomFillType()
     self:updateFillTypeData()
+
+    TerraFarmFillTypes:init()
 end
 
 function TerraFarm:setPaintLayer(name, textIndex)
@@ -111,6 +113,28 @@ function TerraFarm:setPaintLayer(name, textIndex)
         self.config.terraformPaintLayer = name
     elseif textIndex then
         self:setPaintLayer(TerraFarm.TEXT_TO_PAINT_LAYER[TerraFarm.PAINT_LAYER_TEXTS[textIndex]])
+    end
+end
+
+function TerraFarm:setFillType(name, typeIndex)
+    if name then
+        local fillType = g_fillTypeManager.nameToFillType[name]
+        if not fillType then
+            Logging.error('TerraFarm.setFillType: Failed to get fillType data - ' .. tostring(name))
+            if name ~= TerraFarmConfig.DEFAULT.fillTypeName then
+                -- Revert back to default value just in case ..
+                Logging.info('Reverting to default')
+                return self:setFillType(TerraFarmConfig.DEFAULT.fillTypeName)
+            end
+            return
+        end
+        self.config.fillTypeName = name
+        self.config.fillTypeIndex = g_fillTypeManager.nameToIndex[self.config.fillTypeName]
+        self.config.fillTypeMassPerLiter = fillType.massPerLiter * 1000 * 1000
+
+        return true
+    elseif typeIndex then
+        self:setFillType(TerraFarmFillTypes.TITLE_TO_NAME[TerraFarmFillTypes.TYPES_LIST[typeIndex]])
     end
 end
 
@@ -135,16 +159,7 @@ function TerraFarm:setEnabled(enabled)
 end
 
 function TerraFarm:updateFillTypeData()
-    local fillType = g_fillTypeManager.nameToFillType[self.config.fillTypeName]
-    if fillType == nil then
-        Logging.error('TerraFarm.updateFillTypeData: Failed to get fillType data')
-        return false
-    end
-
-    self.config.fillTypeIndex = g_fillTypeManager.nameToIndex[self.config.fillTypeName]
-    self.config.fillTypeMassPerLiter = fillType.massPerLiter * 1000 * 1000
-
-    return true
+    self:setFillType(self.config.fillTypeName)
 end
 
 function TerraFarm:registerCustomFillType()
@@ -182,7 +197,6 @@ function TerraFarm:registerCustomFillType()
 
     if result then
         Logging.info('TerraFarm: Successfully registered custom fillType - ' .. name)
-        DebugUtil.printTableRecursively(result, '   ', 0, 0)
 
         if g_fillTypeManager:addFillTypeToCategory(result.index, g_fillTypeManager.nameToCategoryIndex['BULK']) ~= true then
             Logging.error('Failed to add fillType to BULK category')

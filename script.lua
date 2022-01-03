@@ -4,6 +4,8 @@ source(modFolder .. 'classes/TerraFarmConfig.lua')
 source(modFolder .. 'classes/TerraFarm.lua')
 source(modFolder .. 'classes/debug/TerraFarmDebug.lua')
 
+source(modFolder .. 'classes/TerraFarmFillTypes.lua')
+
 source(modFolder .. 'classes/TerraFarmLandscaping.lua')
 source(modFolder .. 'classes/events/TerraFarmLandscapingEvent.lua')
 
