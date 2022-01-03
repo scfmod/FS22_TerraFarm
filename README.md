@@ -67,3 +67,11 @@ In progress..
 ## Screenshots
 
 Coming soon..
+
+## Additional information
+
+#### - **Console support?**
+This mod is 99.9% script, so no sorry :-)
+
+#### - **Translations?**
+Will be added in a later version after some more bugs gets squished.
