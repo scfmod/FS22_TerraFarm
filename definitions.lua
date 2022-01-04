@@ -16,3 +16,9 @@ Position = {
 ---@field actionEvents table
 ---@field machine TerraFarmMachine
 MachineSpec = {}
+
+---@class GroundTypeItem
+---@field index number
+---@field name string
+---@field layerId number
+GroundTypeItem = {}

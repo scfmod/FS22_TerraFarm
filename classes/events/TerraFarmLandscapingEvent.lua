@@ -44,7 +44,7 @@ function TerraFarmLandscapingEvent.new(machineType, mode, object, operation, pos
     self.isDischarging = isDischarging or false
 
     if type(paintLayer) == 'string' then
-        self.paintLayer = g_groundTypeManager:getTerrainLayerByType(paintLayer)
+        self.paintLayer = TerraFarmGroundTypes:getLayerByName(paintLayer)
     end
 
     return self

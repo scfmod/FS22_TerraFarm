@@ -57,8 +57,8 @@ function TerraFarmSettingsMainFrame:updateSettings()
     self.enableDebug:setIsChecked(g_terraFarm.config.debug)
     self.disableDischarge:setIsChecked(g_terraFarm.config.disableDischarge)
     self.disablePaint:setIsChecked(g_terraFarm.config.terraformDisablePaint)
-    self.paintLayer:setState(TerraFarm.PAINT_LAYERS[g_terraFarm.config.terraformPaintLayer])
-    self.dischargePaintLayer:setState(TerraFarm.PAINT_LAYERS[g_terraFarm.config.dischargePaintLayer])
+    self.paintLayer:setState(TerraFarmGroundTypes:getIndexByName(g_terraFarm.config.terraformPaintLayer))
+    self.dischargePaintLayer:setState(TerraFarmGroundTypes:getIndexByName(g_terraFarm.config.dischargePaintLayer))
     self.fillType:setState(TerraFarmFillTypes.NAME_TO_INDEX[g_terraFarm.config.fillTypeName])
 end
 
@@ -92,7 +92,7 @@ end
 
 ---@param element MultiTextOptionElement
 function TerraFarmSettingsMainFrame:onCreateDischargePaintLayer(element)
-    element:setTexts(TerraFarm.PAINT_LAYER_TEXTS)
+    element:setTexts(TerraFarmGroundTypes.TYPES_LIST)
 end
 
 ---@param state number
@@ -103,7 +103,7 @@ end
 
 ---@param element MultiTextOptionElement
 function TerraFarmSettingsMainFrame:onCreatePaintLayer(element)
-    element:setTexts(TerraFarm.PAINT_LAYER_TEXTS)
+    element:setTexts(TerraFarmGroundTypes.TYPES_LIST)
 end
 
 ---@param state number

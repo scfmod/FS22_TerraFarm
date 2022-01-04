@@ -34,48 +34,6 @@ TerraFarm.NAME_TO_MODE = {
     ['FLATTEN'] = TerraFarm.MODE.FLATTEN,
     ['PAINT'] = TerraFarm.MODE.PAINT
 }
-TerraFarm.PAINT_LAYERS = {
-    ['dirt'] = 1,
-    ['gravel'] = 2,
-    ['concrete'] = 3,
-    ['asphalt'] = 4,
-    ['grass'] = 5,
-    ['sand'] = 6,
-    ['animalMud'] = 7,
-    ['plates'] = 8,
-    ['cobblestones'] = 9,
-    ['flagstones'] = 10,
-    ['forestGround'] = 11,
-    ['rock'] = 12
-}
-TerraFarm.PAINT_LAYER_TEXTS = {
-    'Dirt',
-    'Gravel',
-    'Concrete',
-    'Asphalt',
-    'Grass',
-    'Sand',
-    'Animal mud',
-    'Plates',
-    'Cobblestones',
-    'Flagstones',
-    'Forest ground',
-    'Rock'
-}
-TerraFarm.TEXT_TO_PAINT_LAYER = {
-    ['Dirt'] = 'dirt',
-    ['Gravel'] = 'gravel',
-    ['Concrete'] = 'concrete',
-    ['Asphalt'] = 'asphalt',
-    ['Grass'] = 'grass',
-    ['Sand'] = 'sand',
-    ['Animal mud'] = 'animalMud',
-    ['Plates'] = 'plates',
-    ['Cobblestones'] = 'cobblestones',
-    ['Flagstones'] = 'flagstones',
-    ['Forest ground'] = 'forestGround',
-    ['Rock'] = 'rock'
-}
 
 ---@return TerraFarm
 function TerraFarm.new()
@@ -112,7 +70,7 @@ function TerraFarm:setPaintLayer(name, textIndex)
     if name then
         self.config.terraformPaintLayer = name
     elseif textIndex then
-        self:setPaintLayer(TerraFarm.TEXT_TO_PAINT_LAYER[TerraFarm.PAINT_LAYER_TEXTS[textIndex]])
+        self:setPaintLayer(TerraFarmGroundTypes:getNameByIndex(textIndex))
     end
 end
 
@@ -142,7 +100,7 @@ function TerraFarm:setDischargePaintLayer(name, textIndex)
     if name then
         self.config.dischargePaintLayer = name
     elseif textIndex then
-        self:setDischargePaintLayer(TerraFarm.TEXT_TO_PAINT_LAYER[TerraFarm.PAINT_LAYER_TEXTS[textIndex]])
+        self:setDischargePaintLayer(TerraFarmGroundTypes:getNameByIndex(textIndex))
     end
 end
 
@@ -160,6 +118,11 @@ end
 
 function TerraFarm:updateFillTypeData()
     self:setFillType(self.config.fillTypeName)
+end
+
+function TerraFarm:updatePaintLayerData()
+    self:setPaintLayer(nil, TerraFarmGroundTypes:getIndexByName(self.config.terraformPaintLayer))
+    self:setDischargePaintLayer(nil, TerraFarmGroundTypes:getIndexByName(self.config.dischargePaintLayer))
 end
 
 function TerraFarm:registerCustomFillType()
