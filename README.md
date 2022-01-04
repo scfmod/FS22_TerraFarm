@@ -17,6 +17,11 @@ THIS CODE IS AVAILABLE TO ANYONE FOR FREE AND YOU CAN USE
 IT TO LEARN, FORK AND SPREAD THE KNOWLEDGE.
 ```
 
+## Downloading the mod
+
+There seems to be a bit confusion on how you download the mod correctly.
+Do not download a copy of the repository, please go to the [Releases page](https://github.com/scfmod/FS22_TerraFarm/releases) and download the latest version there :-)
+
 ## Note
 Bugs can and will probably happen, so please keep that in mind when using this mod.
 
