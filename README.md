@@ -17,6 +17,8 @@ THIS CODE IS AVAILABLE TO ANYONE FOR FREE AND YOU CAN USE
 IT TO LEARN, FORK AND SPREAD THE KNOWLEDGE.
 ```
 
+> Official URL for easy sharing: [terrafarm.dev](https://terrafarm.dev)
+
 ## Downloading the mod
 
 There seems to be a bit confusion on how you download the mod correctly.
