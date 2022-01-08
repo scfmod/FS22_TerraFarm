@@ -19,6 +19,10 @@
 ---@field terraformFlattenRadius number
 ---@field terraformDisablePaint boolean
 ---@field dischargePaintLayer string
+---@field raiseDisplacementVolumeRatio number
+---@field lowerDisplacementVolumeRatio number
+---@field flattenDisplacementVolumeRatio number
+---@field flattenDischargeDisplacementVolumeRatio number
 TerraFarmConfig = {}
 local TerraFarmConfig_mt = Class(TerraFarmConfig)
 
@@ -39,7 +43,12 @@ TerraFarmConfig.DEFAULT = {
     terraformFlattenStrength = 50.0,
     terraformFlattenRadius = 2.0,
     terraformDisablePaint = false,
-    dischargePaintLayer = 'dirt'
+    dischargePaintLayer = 'dirt',
+
+    raiseDisplacementVolumeRatio = 1.0,
+    lowerDisplacementVolumeRatio = 1.618,
+    flattenDisplacementVolumeRatio = 1.0,
+    flattenDischargeDisplacementVolumeRatio = 0.5
 }
 
 TerraFarmConfig.RADIUS_MIN = 0.1
@@ -139,6 +148,13 @@ function TerraFarmConfig.loadXML()
     self.terraformFlattenStrength = getConfigFloat(xmlFile, 'terraFarm.defaults', 'terraformFlattenStrength')
     self.terraformFlattenRadius = getConfigFloat(xmlFile, 'terraFarm.defaults', 'terraformFlattenRadius')
 
+    -- VOLUME DISPLACEMENT RATIOS
+
+    self.raiseDisplacementVolumeRatio = getConfigFloat(xmlFile, 'terraFarm.settings', 'raiseDisplacementVolumeRatio')
+    self.lowerDisplacementVolumeRatio = getConfigFloat(xmlFile, 'terraFarm.settings', 'lowerDisplacementVolumeRatio')
+    self.flattenDisplacementVolumeRatio = getConfigFloat(xmlFile, 'terraFarm.settings', 'flattenDisplacementVolumeRatio')
+    self.flattenDischargeDisplacementVolumeRatio = getConfigFloat(xmlFile, 'terraFarm.settings', 'flattenDischargeDisplacementVolumeRatio')
+
     delete(xmlFile)
 
     if g_terraFarm and g_terraFarm:updateFillTypeData() ~= true then
@@ -183,6 +199,14 @@ function TerraFarmConfig:save()
 
     setXMLFloat(xmlFile, 'terraFarm.defaults.terraformFlattenStrength', self.terraformFlattenStrength)
     setXMLFloat(xmlFile, 'terraFarm.defaults.terraformFlattenRadius', self.terraformFlattenRadius)
+
+
+     -- VOLUME DISPLACEMENT RATIOS
+
+     setXMLFloat(xmlFile, 'terraFarm.settings.raiseDisplacementVolumeRatio', self.raiseDisplacementVolumeRatio)
+     setXMLFloat(xmlFile, 'terraFarm.settings.lowerDisplacementVolumeRatio', self.lowerDisplacementVolumeRatio)
+     setXMLFloat(xmlFile, 'terraFarm.settings.flattenDisplacementVolumeRatio', self.flattenDisplacementVolumeRatio)
+     setXMLFloat(xmlFile, 'terraFarm.settings.flattenDischargeDisplacementVolumeRatio', self.flattenDischargeDisplacementVolumeRatio)
 
     saveXMLFile(xmlFile)
     delete(xmlFile)

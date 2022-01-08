@@ -243,14 +243,18 @@ function TerraFarmLandscaping:onSculptingApplied(errorCode, displacedVolumeOrAre
 
         if machine ~= nil and machine.onVolumeDisplacement ~= nil then
             if self.operation == TerraFarmLandscaping.OPERATION.RAISE then
-                machine:onVolumeDisplacement(-displacedVolumeOrArea)
+                -- machine:onVolumeDisplacement(-displacedVolumeOrArea)
+                machine:onVolumeDisplacement(-displacedVolumeOrArea * g_terraFarm.config.raiseDisplacementVolumeRatio)
             elseif self.operation == TerraFarmLandscaping.OPERATION.LOWER then
-                machine:onVolumeDisplacement(displacedVolumeOrArea * 1.618)
+                -- machine:onVolumeDisplacement(displacedVolumeOrArea * 1.618)
+                machine:onVolumeDisplacement(displacedVolumeOrArea * g_terraFarm.config.lowerDisplacementVolumeRatio)
             elseif self.operation == TerraFarmLandscaping.OPERATION.FLATTEN then
                 if self.isDischarging then
-                    machine:onVolumeDisplacement(displacedVolumeOrArea * -0.5)
+                    -- machine:onVolumeDisplacement(displacedVolumeOrArea * -0.5)
+                    machine:onVolumeDisplacement(displacedVolumeOrArea * g_terraFarm.config.flattenDischargeDisplacementVolumeRatio * -1.0)
                 else
-                    machine:onVolumeDisplacement(displacedVolumeOrArea)
+                    -- machine:onVolumeDisplacement(displacedVolumeOrArea)
+                    machine:onVolumeDisplacement(displacedVolumeOrArea * g_terraFarm.config.flattenDisplacementVolumeRatio)
                 end
             end
         else
