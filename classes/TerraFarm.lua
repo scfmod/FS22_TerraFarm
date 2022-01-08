@@ -87,13 +87,16 @@ function TerraFarm:setFillType(name, typeIndex)
             return
         end
 
+        local previousFillType = self.config.fillTypeName
+        local previousFillTypeIndex = self.config.fillTypeIndex
+
         self.config.fillTypeName = name
         self.config.fillTypeIndex = g_fillTypeManager.nameToIndex[self.config.fillTypeName]
         self.config.fillTypeMassPerLiter = fillType.massPerLiter * 1000 * 1000
 
         for machine, _ in pairs(self.machineToObject) do
             if machine.updateFillType ~= nil then
-                machine:updateFillType()
+                machine:updateFillType(previousFillType, previousFillTypeIndex)
             end
         end
 
