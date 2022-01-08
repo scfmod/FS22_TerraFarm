@@ -86,9 +86,16 @@ function TerraFarm:setFillType(name, typeIndex)
             end
             return
         end
+
         self.config.fillTypeName = name
         self.config.fillTypeIndex = g_fillTypeManager.nameToIndex[self.config.fillTypeName]
         self.config.fillTypeMassPerLiter = fillType.massPerLiter * 1000 * 1000
+
+        for machine, _ in pairs(self.machineToObject) do
+            if machine.updateFillType ~= nil then
+                machine:updateFillType()
+            end
+        end
 
         return true
     elseif typeIndex then

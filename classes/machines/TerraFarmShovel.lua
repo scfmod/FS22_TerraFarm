@@ -13,6 +13,8 @@ function TerraFarmShovel.new(manager, object, config)
     self.fillUnit = object.spec_fillUnit.fillUnits[self.config.fillUnitIndex]
     self.dischargeMode = self.config.availableDischargeModes[1]
 
+    self:updateFillType()
+
     return self
 end
 
@@ -188,6 +190,22 @@ end
 
 function TerraFarmShovel:getCurrentFillType()
     return self.object:getFillUnitFillType(self.config.fillUnitIndex)
+end
+
+function TerraFarmShovel:updateFillType(oldFillType, oldFillTypeIndex)
+    local fillUnit = self.fillUnit
+    if fillUnit then
+        if oldFillType and oldFillTypeIndex then
+            local fillTypeIndex = self:getCurrentFillType()
+            if fillTypeIndex == oldFillTypeIndex then
+                self.object:setFillUnitFillType(self.config.fillUnitIndex, self.manager.config.fillTypeIndex)
+                self:addFillUnits(0)
+            end
+        else
+            self.object:setFillUnitFillType(self.config.fillUnitIndex, self.manager.config.fillTypeIndex)
+            self:addFillUnits(0)
+        end
+    end
 end
 
 function TerraFarmShovel:isCorrectFillType()
