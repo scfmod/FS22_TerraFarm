@@ -67,7 +67,9 @@ You can also choose from additional fill types if added by 3rd. party mod/map:
 - STONEPOWDER
 - CLAY
 
-**When changing fill type make sure you empty the bucket first. Some types won't discharge as normal to the ground because of map setup. This will be fixed in next update!**
+~~When changing fill type make sure you empty the bucket first. Some types won't discharge as normal to the ground because of map setup. This will be fixed in next update!~~
+
+NOTE: using other fillTypes than STONE in multiplayer won't work correctly. This issue will be fixed along with new network sync code in 0.4.0.0
 
 ## Guide / documentation
 
