@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<configuration>
+    <i3d rootNodePath="0>" x="0" y="0" z="-2">
+        <terraformNodes x="0" y="0" z="0">
+            <node x="1" y="0" z="0" />
+            <node x="0.609" y="0" z="0" />
+            <node x="0" y="0" z="0" />
+            <node x="-0.609" y="0" z="0" />
+            <node x="-1" y="0" z="0" />
+        </terraformNodes>
+        <collisionNodes x="0" y="0" z="-0.12">
+            <node x="1" y="-0.15" z="0" />
+            <node x="1" y="-0.225" z="1.7" />
+            <node x="-1" y="-0.225" z="1.7" />
+            <node x="-1" y="-0.15" z="0" />
+        </collisionNodes>
+        <paintNodes>
+            <node />
+        </paintNodes>
+    </i3d>
+    <settings>
+        <availableModes>
+            <mode>LOWER</mode>
+            <mode>FLATTEN</mode>
+            <mode>SMOOTH</mode>
+        </availableModes>
+        <availableDischargeModes>
+            <mode>NORMAL</mode>
+            <mode>RAISE</mode>
+            <mode>FLATTEN</mode>
+            <mode>SMOOTH</mode>
+            <mode>PAINT</mode>
+        </availableDischargeModes>
+    </settings>
+</configuration>

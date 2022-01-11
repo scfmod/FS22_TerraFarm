@@ -70,6 +70,7 @@ local typeMappingToTypeName = {
     ['kouppaCX250D_LR'] = 'shovel', -- CASE Longreach buckets
     ['bucket990H'] = 'shovel', -- CAT 990H bucket
     ['kouppaEC750'] = 'shovel', -- Volvo EC750 buckets
+    ['EC950Ebucket'] = 'shovel', -- Volvo E950 bucket
 }
 
 ---@param vehicle Vehicle
