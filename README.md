@@ -19,6 +19,10 @@ IT TO LEARN, FORK AND SPREAD THE KNOWLEDGE.
 
 > Official URL for easy sharing: [terrafarm.dev](https://terrafarm.dev)
 
+## Update 17.08.2022
+
+Project is still alive, [read more here](https://github.com/scfmod/FS22_TerraFarm/issues/65).
+
 ## Downloading the mod
 
 There seems to be a bit confusion on how you download the mod correctly.
