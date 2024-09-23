@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="tfSelectDialog_dialogFullScreenBg" />
+    <GuiElement type="bitmap" profile="bgVignette" />
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="bitmap" profile="tfMachineDialog_uiInGameMenuHeader" id="header">
+        <GuiElement type="multiTextOption" profile="uiInGameMenuHeaderSelector" onClick="onClickPageSelection" id="pageSelector" soundDisabled="true">
+            <GuiElement type="button" profile="uiInGameMenuPagingButtonLeft" id="pagingButtonLeft" />
+            <GuiElement type="button" profile="uiInGameMenuPagingButtonRight" id="pagingButtonRight" />
+        </GuiElement>
+
+        <GuiElement type="bitmap" profile="tfMachineDialog_uiInGameMenuPagingTabListBg" />
+
+        <GuiElement type="list" profile="tfMachineDialog_uiInGameMenuPagingTabList" id="pagingTabList" handleFocus="false" onSelectionChanged="onTabMenuSelectionChanged" onScroll="onTabMenuScroll">
+            <GuiElement type="listItem" id="pagingTabTemplate" profile="uiTabbedMenuPageTab" handleFocus="false">
+                <GuiElement type="button" name="tabButton" profile="tfMachineDialog_uiTabbedMenuPageTabButton" handleFocus="false" />
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="bitmap" profile="tfMachineDialiog_tabListShadow" />
+        <GuiElement type="bitmap" profile="tfMachineDialiog_tabListShadowBottom" />
+    </GuiElement>
+
+    <GuiElement type="empty" profile="tfMachineDialog_infoBoxWrapper">
+        <GuiElement type="bitmap" profile="tfMachineDialog_infoBox">
+            <GuiElement type="bitmap" profile="tfMachineDialog_infoBoxImageWrapper">
+                <GuiElement type="bitmap" profile="tfMachineDialog_infoBoxImage" id="vehicleImage" />
+            </GuiElement>
+            <GuiElement type="text" profile="tfMachineDialog_infoBoxName" id="vehicleName" />
+            <GuiElement type="text" profile="tfMachineDialog_infoBoxBrand" id="vehicleBrandName" />
+            <GuiElement type="text" profile="tfMachineDialog_infoBoxTypeName" id="machineTypeName" />
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="empty" profile="uiElementContainerFullScreenSpanning">
+        <GuiElement type="paging" profile="uiInGameMenuPaging" onPageChange="onPageChange" onPageUpdate="onPageUpdate" id="pagingElement">
+            <GuiElement type="frameReference" ref="machineSettings" name="machineSettings" id="settingsFrame" />
+            <GuiElement type="frameReference" ref="machineSettingsLandscaping" name="machineSettingsLandscaping" id="landscapingSettingsFrame" />
+            <GuiElement type="frameReference" ref="machineSettingsAdvanced" name="machineSettingsAdvanced" id="advancedSettingsFrame" />
+            <GuiElement type="frameReference" ref="machineSettingsCalibration" name="machineSettingsCalibration" id="calibrationSettingsFrame" />
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="tfMachineDialog_buttonBox" id="buttonsPanel">
+        <GuiElement type="button" profile="buttonBack" onClick="onClickBack" id="menuButton[1]" />
+        <GuiElement type="button" profile="tfSelectDialog_actionButtonSettings" onClick="onClickGlobalSettings" id="globalSettingsButton" text="$l10n_ui_globalSettings" />
+    </GuiElement>
+</GUI>

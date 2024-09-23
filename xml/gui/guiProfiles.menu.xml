@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUIProfiles>
+    <Profile name="tfMenuMachines_listHeader" extends="emptyPanel" with="anchorTopLeft">
+        <Value name="size" value="756px 64px" />
+        <Value name="imageColor" value="$preset_colorListHeaderBackground" />
+    </Profile>
+    <Profile name="tfMenuMachines_listHeaderVehicleText" extends="textDefault" with="anchorMiddleLeft">
+        <Value name="size" value="128px 20px" />
+        <Value name="position" value="12px 0" />
+        <Value name="textSize" value="14px" />
+        <Value name="textUpperCase" value="true" />
+    </Profile>
+    <Profile name="tfMenuMachines_listHeaderTypeText" extends="textDefault" with="anchorMiddleRight">
+        <Value name="size" value="128px 20px" />
+        <Value name="position" value="-136px 0" />
+
+        <Value name="textAlignment" value="right" />
+        <Value name="textSize" value="14px" />
+        <Value name="textUpperCase" value="true" />
+    </Profile>
+    <Profile name="tfMenuMachines_listHeaderStatusText" extends="textDefault" with="anchorMiddleRight">
+        <Value name="size" value="120px 20px" />
+
+        <Value name="textSize" value="14px" />
+        <Value name="textUpperCase" value="true" />
+    </Profile>
+    <Profile name="tfMenuMachines_layout" extends="emptyPanel" with="anchorTopLeft">
+        <Value name="size" value="756px 692px" />
+        <Value name="position" value="0 -64px" />
+    </Profile>
+    <Profile name="tfMenuMachines_list" extends="emptyPanel" with="anchorTopLeft">
+        <Value name="size" value="756px 692px" />
+
+        <Value name="isHorizontalList" value="false" />
+        <Value name="selectedWithoutFocus" value="false" />
+    </Profile>
+    <Profile name="tfMenuMachines_listItem" extends="listItem" with="tfGui_alternating">
+        <Value name="size" value="756px 64px" />
+
+        <Value name="imageColor" value="$preset_colorListRowBackground" />
+        <Value name="imageFocusedColor" value="$preset_colorMainUI_80" />
+        <Value name="imageSelectedColor" value="$preset_colorMainUI_80" />
+    </Profile>
+    <Profile name="tfMenuMachines_listItemText" extends="textDefault" with="anchorMiddleLeft">
+        <Value name="position" value="0 0" />
+        <Value name="size" value="128px 32px" />
+
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+    <Profile name="tfMenuMachines_listItemName" extends="tfMenuMachines_listItemText">
+        <Value name="position" value="12px 8px" />
+
+        <Value name="textMaxWidth" value="280px" />
+    </Profile>
+    <Profile name="tfMenuMachines_listItemBrand" extends="tfMenuMachines_listItemText">
+        <Value name="position" value="12px -10px" />
+
+        <Value name="textSize" value="14px" />
+        <Value name="textMaxWidth" value="280px" />
+        <Value name="textColor" value="$preset_colorDisabled" />
+    </Profile>
+    <Profile name="tfMenuMachines_listItemPlayer" extends="tfMenuMachines_listItemText">
+        <Value name="position" value="300px 8px" />
+
+        <Value name="textDisabledColor" value="0 0 0 0" />
+    </Profile>
+
+    <Profile name="tfMenuMachines_listItemFarm" extends="tfMenuMachines_listItemText">
+        <Value name="position" value="300px -10px" />
+
+        <Value name="textSize" value="14px" />
+        <Value name="textColor" value="$preset_colorDisabled" />
+    </Profile>
+    <Profile name="tfMenuMachines_listItemTypeName" extends="tfMenuMachines_listItemText" with="anchorMiddleRight">
+        <Value name="position" value="-136px 0" />
+
+        <Value name="textAlignment" value="right" />
+        <Value name="textSize" value="14px" />
+    </Profile>
+    <Profile name="tfMenuMachines_listItemStatus" extends="tfMenuMachines_listItemText" with="anchorMiddleRight">
+        <Value name="size" value="120px 32px" />
+
+        <Value name="textAutoWidth" value="false" />
+        <Value name="textSize" value="14px" />
+        <Value name="textColor" value="$preset_tfGui_colorTextGreen" />
+        <Value name="textHighlightedColor" value="0.342 0.991 0.27 1" />
+        <Value name="textSelectedColor" value="0.342 0.991 0.27 1" />
+        <Value name="textDisabledColor" value="$preset_tfGui_colorTextRed" />
+    </Profile>
+
+    <Profile name="tfMenuMachines_listVerticalSlider" extends="verticalListSliderRightDocked">
+        <Value name="size" value="12px 692px" />
+        <Value name="position" value="16px 0" />
+    </Profile>
+    <Profile name="tfMenuMachines_listVerticalSliderBar" extends="verticalListSliderBar">
+        <Value name="size" value="6px 684px" />
+    </Profile>
+
+    <Profile name="tfMenuMachines_infoBox" extends="emptyPanel" with="anchorTopRight">
+        <Value name="position" value="0 0" />
+        <Value name="size" value="512px 756px" />
+
+        <Value name="autoValidateLayout" value="true" />
+    </Profile>
+
+    <Profile name="tfMenuMachines_infoBoxSectionVehicle" extends="emptyPanel">
+        <Value name="size" value="512px 256px" />
+        <Value name="margin" value="0 0 0 24px" />
+
+        <Value name="imageColor" value="$preset_colorListHeaderBackground" />
+    </Profile>
+    <Profile name="tfMenuMachines_infoBoxVehicleImage" with="anchorTopCenter">
+        <Value name="size" value="160px 160px" />
+        <Value name="position" value="0 -16px" />
+
+        <Value name="imageColor" value="1 1 1 1" />
+        <Value name="imageUVs" value="0 0 1 1" />
+    </Profile>
+    <Profile name="tfMenuMachines_infoBoxVehicleName" extends="textDefault" with="anchorBottomCenter">
+        <Value name="size" value="512px 24px" />
+        <Value name="position" value="0 32px" />
+
+        <Value name="textSize" value="18px" />
+        <Value name="textBold" value="true" />
+        <Value name="textAlignment" value="center" />
+    </Profile>
+    <Profile name="tfMenuMachines_infoBoxVehicleBrand" extends="textDefault" with="anchorBottomCenter">
+        <Value name="size" value="512px 24px" />
+        <Value name="position" value="0 16px" />
+
+        <Value name="textSize" value="16px" />
+        <Value name="textAlignment" value="center" />
+    </Profile>
+
+    <Profile name="tfMenuMachines_infoBoxSection" extends="emptyPanel">
+        <Value name="size" value="512px 64px" />
+        <Value name="margin" value="0 4px 0 4px" />
+
+        <Value name="imageColor" value="$preset_colorListRowBackground" />
+    </Profile>
+    <Profile name="tfMenuMachines_infoBoxSectionTitle" extends="textDefault" with="anchorTopLeft">
+        <Value name="size" value="480px 32px" />
+        <Value name="position" value="16px -4px" />
+
+        <Value name="textSize" value="16px" />
+    </Profile>
+    <Profile name="tfMenuMachines_infoBoxSectionText" extends="textDefault" with="anchorBottomLeft">
+        <Value name="size" value="480px 32px" />
+        <Value name="position" value="16px 4px" />
+
+        <Value name="textSize" value="16px" />
+        <Value name="textColor" value="$preset_colorMainUI" />
+    </Profile>
+    <Profile name="tfMenuMachines_infoBoxSectionImage" with="anchorMiddleRight">
+        <Value name="size" value="48px 48px" />
+        <Value name="position" value="-8px 0" />
+
+        <Value name="imageColor" value="1 1 1 1" />
+        <Value name="imageUVs" value="0 0 1 1" />
+    </Profile>
+</GUIProfiles>

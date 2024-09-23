@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUIProfiles>
+    <Presets>
+        <!-- <Preset name="machineHud_itemBg" value="0 0 0 0.92" /> -->
+        <Preset name="machineHud_itemBg" value="0 0 0 0.8" />
+        <!-- <Preset name="machineHud_itemBgDisabled" value="0.011 0.159 0.25 0.35" /> -->
+        <Preset name="machineHud_itemBgDisabled" value="0 0 0 0.35" />
+        <Preset name="machineHud_modeIcon" value="1 1 1 1" />
+        <Preset name="machineHud_modeIconDisabled" value="0.4 0.4 0.4 0.75" />
+        <Preset name="machineHud_textDisabledColor" value="0.7 0.7 0.7 0.8" />
+    </Presets>
+
+
+    <Profile name="machineHud_text" extends="textDefault">
+        <Value name="textBold" value="false" />
+        <Value name="textColor" value="1 1 1 1" />
+        <!-- <Value name="textColor" value="$preset_colorMainUI" /> -->
+        <Value name="textDisabledColor" value="$preset_machineHud_textDisabledColor" />
+        <Value name="text2Color" value="0 0 0 1" />
+    </Profile>
+
+    <Profile name="machineHud_boxLayout" extends="baseReference" with="anchorTopRight">
+        <Value name="size" value="200px 320px" />
+        <Value name="position" value="0 -0.2" />
+
+        <Value name="imageColor" value="0 0 0 0" />
+        <!-- <Value name="imageColor" value="0 0 0 0.8" /> -->
+        <!-- <Value name="imageDisabledColor" value="0 0 0 0.25" /> -->
+    </Profile>
+
+    <Profile name="machineHud_item" extends="baseReference" with="anchorTopLeft">
+        <Value name="size" value="200px 48px" />
+        <Value name="margin" value="0 4px 0 0" />
+
+        <Value name="imageColor" value="$preset_machineHud_itemBg" />
+        <Value name="imageDisabledColor" value="$preset_machineHud_itemBgDisabled" />
+    </Profile>
+
+    <Profile name="machineHud_itemBar" with="anchorMiddleLeft">
+        <Value name="size" value="6px 32px" />
+        <Value name="position" value="8px 0" />
+
+        <Value name="imageUVs" value="0 992px 200px 32px" />
+        <Value name="imageFilename" value="g_machineUIFilename" />
+        <Value name="imageUVRotation" value="90" />
+        <Value name="imageColor" value="$preset_colorMainUI" />
+        <!-- <Value name="imageDisabledColor" value="$preset_machineHud_textDisabledColor" /> -->
+        <Value name="imageDisabledColor" value="0.7 0.7 0.7 0.4" />
+    </Profile>
+
+    <Profile name="machineHud_itemImage" extends="baseReference" with="anchorMiddleLeft">
+        <Value name="size" value="32px 32px" />
+        <Value name="position" value="24px 0" />
+
+        <Value name="imageColor" value="1 1 1 1" />
+        <Value name="imageDisabledColor" value="1 1 1 0.7" />
+        <Value name="imageUVs" value="0 0 1 1" />
+    </Profile>
+    <Profile name="machineHud_itemImageMode" extends="machineHud_itemImage">
+        <Value name="imageColor" value="$preset_colorMainUI" />
+        <Value name="imageDisabledColor" value="$preset_colorMainUI_70" />
+    </Profile>
+
+    <Profile name="machineHud_itemText" extends="machineHud_text" with="anchorMiddleLeft">
+        <Value name="size" value="1656px 20px" />
+        <Value name="position" value="64px 0" />
+
+        <Value name="textSize" value="12px" />
+        <Value name="textMaxWidth" value="140px" />
+    </Profile>
+
+    <Profile name="machineHud_itemTitle" extends="machineHud_itemText">
+        <Value name="position" value="64px 7px" />
+    </Profile>
+
+    <Profile name="machineHud_itemDescription" extends="machineHud_itemText">
+        <Value name="position" value="64px -7px" />
+    </Profile>
+</GUIProfiles>

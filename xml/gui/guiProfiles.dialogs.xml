@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUIProfiles>
+    <Profile name="tfSelectDialog_dialog" extends="infoDialogBg">
+        <Value name="size" value="600px 720px" />
+
+        <Value name="imageColor" value="$preset_tfGui_colorDialogBackground" />
+        <Value name="imageFocusedColor" value="$preset_tfGui_colorDialogBackground" />
+        <Value name="imageSelectedColor" value="$preset_tfGui_colorDialogBackground" />
+    </Profile>
+    <Profile name="tfSelectDialog_dialogHeader" extends="dialogHeaderDocked"></Profile>
+    <Profile name="tfSelectDialog_dialogHeaderTitle" extends="dialogHeaderText"></Profile>
+    <Profile name="tfSelectDialog_topScrollClipper" extends="topScrollClipper"></Profile>
+    <Profile name="tfSelectDialog_bottomScrollClipper" extends="tfSelectDialog_topScrollClipper">
+        <Value name="anchors" value="0 1 0 0" />
+        <Value name="position" value="0 -2dp" />
+    </Profile>
+
+    <Profile name="tfSelectDialog_listEmptyText" extends="textDefault" with="anchorMiddleCenter">
+        <Value name="size" value="200px 24px" />
+
+        <Value name="textColor" value="1 1 1 0.75" />
+        <Value name="textAlignment" value="center" />
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+
+    <Profile name="tfSelectDialog_listWrapper" extends="emptyPanel" with="anchorMiddleCenter">
+        <Value name="size" value="600px 656px" />
+    </Profile>
+
+    <Profile name="tfSelectDialog_list" extends="emptyPanel" with="anchorMiddleCenter">
+        <Value name="size" value="536px 656px" />
+        <Value name="listItemSpacing" value="2px" />
+        <Value name="isHorizontalList" value="false" />
+    </Profile>
+    <Profile name="tfSelectDialog_listItem" extends="listItem" with="tfGui_alternating">
+        <Value name="size" value="440px 64px" />
+
+        <Value name="imageColor" value="$preset_colorListRowBackground" />
+        <Value name="imageFocusedColor" value="$preset_colorMainUI_60" />
+        <Value name="imageSelectedColor" value="$preset_colorMainUI_60" />
+    </Profile>
+    <Profile name="tfSelectDialog_listItemImage" extends="baseReference" with="anchorMiddleLeft">
+        <Value name="size" value="48px 48px" />
+        <Value name="position" value="8px 0" />
+
+        <Value name="imageColor" value="1 1 1 1" />
+        <Value name="imageUVs" value="0 0 1 1" />
+    </Profile>
+    <Profile name="tfSelectDialog_listItemText" extends="textDefault" with="anchorMiddleLeft">
+        <Value name="size" value="300px 32px" />
+        <Value name="position" value="72px 0" />
+        <Value name="textAutoWidth" value="true" />
+
+        <Value name="textSize" value="16px" />
+        <Value name="textDisabledColor" value="1 1 1 0.5" />
+    </Profile>
+
+    <Profile name="tfSelectDialog_listVerticalSlider" extends="verticalListSliderRightDocked" with="anchorMiddleRight">
+        <Value name="size" value="12px 656px" />
+        <Value name="position" value="24px 0" />
+    </Profile>
+    <Profile name="tfSelectDialog_listVerticalSliderBar" extends="verticalListSliderBar">
+        <Value name="size" value="6px 648px" />
+    </Profile>
+
+    <Profile name="tfSelectDialog_actionBox" extends="buttonBoxDialog"></Profile>
+    <Profile name="tfSelectDialog_actionButtonBack" extends="buttonBack"></Profile>
+    <Profile name="tfSelectDialog_actionButtonApply" extends="buttonOK"></Profile>
+    <Profile name="tfSelectDialog_actionButtonSettings" extends="buttonExtra2"></Profile>
+
+
+    <Profile name="tfSelectMachineDialog_listItemName" extends="tfSelectDialog_listItemText">
+        <Value name="position" value="72px 7px" />' <Value name="textSize" value="14px" />
+        <Value name="textSize" value="18px" />
+    </Profile>
+
+    <Profile name="tfSelectMachineDialog_listItemImage" extends="tfSelectDialog_listItemImage">
+        <Value name="size" value="48px 48px" />
+        <Value name="position" value="8px 0" />
+    </Profile>
+    <Profile name="tfSelectMachineDialog_listItemText" extends="tfSelectDialog_listItemText">
+        <Value name="position" value="72px -10px" />
+        <Value name="textSize" value="14px" />
+        <Value name="textColor" value="1 1 1 0.6" />
+    </Profile>
+
+    <Profile name="tfSelectMachineDialog_listItemStatus" extends="tfSelectDialog_listItemText" with="anchorMiddleRight">
+        <Value name="position" value="-12px 0" />
+        <Value name="textSize" value="14px" />
+        <Value name="textAlignment" value="right" />
+    </Profile>
+
+
+    <Profile name="tfSettingsDialog_dialog" extends="infoDialogBg">
+        <Value name="imageColor" value="$preset_tfGui_colorDialogBackground" />
+        <Value name="imageFocusedColor" value="$preset_tfGui_colorDialogBackground" />
+        <Value name="imageSelectedColor" value="$preset_tfGui_colorDialogBackground" />
+    </Profile>
+    <Profile name="tfSettingsDialog_dialogHeader" extends="dialogHeaderDocked"></Profile>
+    <Profile name="tfSettingsDialog_dialogHeaderTitle" extends="dialogHeaderText"></Profile>
+    <Profile name="tfSettingsDialog_content" extends="emptyPanel" with="anchorMiddleCenter">
+        <Value name="size" value="560px 560px" />
+    </Profile>
+    <Profile name="tfSettingsDialog_layout" extends="baseReference" with="anchorMiddleCenter">
+        <Value name="size" value="560px 560px" />
+
+        <Value name="imageColor" value="0 0 0 0" />
+        <Value name="fitFlowToElements" value="true" />
+        <Value name="flowDirection" value="vertical" />
+        <Value name="autoValidateLayout" value="true" />
+    </Profile>
+
+    <Profile name="tfSettingsDialog_multiTextOption" extends="multiTextOptionSettings">
+        <Value name="size" value="500px 48px" />
+    </Profile>
+    <Profile name="tfSettingsDialog_multiTextOptionLeft" extends="multiTextOptionSettingsLeft">
+        <!-- <Value name="position" value="400px 0px" /> -->
+        <Value name="position" value="300px 0px" />
+
+        <!-- <Value name="imageDisabledColor" value="$preset_colorGlass"/> -->
+        <Value name="imageDisabledColor" value="0.0036 0.0056 0.0065 0.25" />
+        <Value name="iconDisabledColor" value="0.5 0.5 0.5 0.25" />
+    </Profile>
+    <Profile name="tfSettingsDialog_multiTextOptionRight" extends="tfSettingsDialog_multiTextOptionLeft" with="anchorBottomRight">
+        <Value name="position" value="60px 0" />
+        <Value name="iconUVRotation" value="0" />
+    </Profile>
+    <Profile name="tfSettingsDialog_multiTextOptionText" extends="multiTextOptionSettingsText">
+        <!-- <Value name="position" value="558px 0" /> -->
+        <Value name="position" value="430px 0" />
+        <Value name="textDisabledColor" value="0.5 0.5 0.5 0.25" />
+    </Profile>
+    <Profile name="tfSettingsDialog_multiTextOptionTitle" extends="multiTextOptionSettingsTitle">
+        <Value name="textSize" value="14px" />
+    </Profile>
+    <Profile name="tfSettingsDialog_multiTextOptionBackground" extends="multiTextOptionSettingsBg">
+        <Value name="size" value="162px 48px" />
+        <Value name="position" value="349px 0" />
+        <Value name="imageDisabledColor" value="0.0036 0.0056 0.0065 0.1" />
+    </Profile>
+    <Profile name="tfSettingsDialog_multiTextOptionTooltip" extends="multiTextOptionSettingsTooltip" with="anchorBottomLeft"></Profile>
+
+    <Profile name="tfMaterialsDialog_dialogFullScreenBg" extends="dialogFullscreenBg">
+        <Value name="imageColor" value="$preset_tfGui_colorDialogBackdrop" />
+    </Profile>
+
+    <Profile name="tfMaterialsDialog_dialog" extends="infoDialogBg">
+        <Value name="size" value="920px 720px" />
+
+        <Value name="imageColor" value="$preset_tfGui_colorDialogBackground" />
+        <Value name="imageFocusedColor" value="$preset_tfGui_colorDialogBackground" />
+        <Value name="imageSelectedColor" value="$preset_tfGui_colorDialogBackground" />
+    </Profile>
+    <Profile name="tfMaterialsDialog_content">
+        <Value name="size" value="764px 560px" />
+    </Profile>
+    <Profile name="tfMaterialsDialog_listBoxLeft" with="anchorMiddleLeft">
+        <Value name="size" value="362px 560px" />
+        <Value name="position" value="32px 0" />
+    </Profile>
+    <Profile name="tfMaterialsDialog_listBoxRight" extends="tfMaterialsDialog_listBoxLeft" with="anchorMiddleRight">
+        <Value name="position" value="-32px 0" />
+    </Profile>
+    <Profile name="tfSelectDialog_listHeaderText" extends="textDefault" with="anchorTopCenter">
+        <Value name="size" value="120px 20px" />
+        <Value name="position" value="-9px 48px" />
+
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+    <Profile name="tfMaterialsDialog_list" extends="list" with="anchorMiddleCenter">
+        <Value name="size" value="350px 560px" />
+        <Value name="isHorizontalList" value="false" />
+    </Profile>
+    <Profile name="tfMaterialsDialog_listItem" extends="listItem" with="tfGui_alternating">
+        <Value name="size" value="350px 48px" />
+
+        <Value name="imageColor" value="$preset_colorListRowBackground" />
+        <Value name="imageFocusedColor" value="$preset_colorMainUI_80" />
+        <Value name="imageSelectedColor" value="$preset_colorMainUI_80" />
+    </Profile>
+    <Profile name="tfMaterialsDialog_listItemImage" extends="baseReference" with="anchorMiddleLeft">
+        <Value name="size" value="32px 32px" />
+        <Value name="position" value="6px 0" />
+
+        <Value name="imageColor" value="1 1 1 1" />
+        <Value name="imageUVs" value="0 0 1 1" />
+    </Profile>
+    <Profile name="tfMaterialsDialog_listItemText" extends="textDefault" with="anchorMiddleLeft">
+        <Value name="size" value="200px 32px" />
+        <Value name="position" value="48px 0" />
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+
+    <Profile name="tfMaterialsDialog_listVerticalSliderLeft" extends="verticalListSliderRightDocked" with="anchorTopLeft">
+        <Value name="size" value="12px 560px" />
+        <Value name="position" value="-64px 0" />
+    </Profile>
+    <Profile name="tfMaterialsDialog_listVerticalSliderRight" extends="tfMaterialsDialog_listVerticalSliderLeft" with="anchorTopRight">
+        <Value name="position" value="64px 0" />
+    </Profile>
+    <Profile name="tfMaterialsDialog_listVerticalSliderBar" extends="verticalListSliderBar">
+        <Value name="size" value="6px 552px" />
+    </Profile>
+
+    <Profile name="tfMaterialsDialog_topScrollClipper" extends="topScrollClipper"></Profile>
+    <Profile name="tfMaterialsDialog_bottomScrollClipper" extends="tfMaterialsDialog_topScrollClipper">
+        <Value name="anchors" value="0 1 0 0" />
+        <Value name="position" value="0 -2dp" />
+    </Profile>
+
+    <Profile name="tfMaterialsDialog_topScrollClipperRight" extends="tfMaterialsDialog_topScrollClipper"></Profile>
+    <Profile name="tfMaterialsDialog_bottomScrollClipperRight" extends="tfMaterialsDialog_bottomScrollClipper"></Profile>
+
+
+    <Profile name="tfSelectDialog_dialogFullScreenBg" extends="dialogFullscreenBg">
+        <Value name="imageColor" value="$preset_tfGui_colorDialogBackdrop" />
+    </Profile>
+
+
+    <Profile name="tfMachineDialog_button" extends="ingameMenuSettingsNativeHelpButton">
+        <Value name="size" value="220px 48px" />
+        <Value name="margin" value="0 0 0 10px" />
+        <Value name="position" value="320px 0" />
+
+        <Value name="fitToContent" value="false" />
+        <Value name="handleFocus" value="true" />
+        <Value name="iconSize" value="0 0" />
+        <Value name="iconTextOffset" value="0 0" />
+        <Value name="textColor" value="1 1 1 0.7" />
+    </Profile>
+    <Profile name="tfMachineDialog_ingameMenuSettingsLayout" extends="ingameMenuSettingsLayout">
+        <Value name="size" value="1200px 692px" />
+        <Value name="position" value="0 -32px" />
+        <Value name="flowMargin" value="80px -5px" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_topScrollClipper" extends="topScrollClipper">
+        <Value name="position" value="0 -32px" />
+    </Profile>
+    <Profile name="tfMachineDialog_topScrollClipperWrapper" extends="topScrollClipper">
+        <Value name="size" value="1200px 64px" />
+    </Profile>
+    <Profile name="tfMachineDialog_bottomScrollClipperWrapper" extends="bottomScrollClipper">
+        <Value name="size" value="1200px 64px" />
+    </Profile>
+    <Profile name="tfMachineDialog_bottomScrollClipper" extends="bottomScrollClipper">
+        <Value name="position" value="0 32px" />
+    </Profile>
+    <Profile name="tfMachineDialog_uiInGameMenuHeader" extends="uiInGameMenuHeader" with="anchorMiddleCenter">
+        <Value name="size" value="115px 756px" />
+        <Value name="position" value="-608px 0" />
+
+        <Value name="imageColor" value="$preset_tfGui_colorDialogBackground" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_uiTabbedMenuPageTabButton" extends="uiTabbedMenuPageTabButton">
+        <Value name="imageColor" value="0 0 0 0" />
+    </Profile>
+
+    <Profile name="tfMachineDialiog_tabListShadow" with="anchorTopCenter">
+        <Value name="size" value="115px 16px" />
+        <Value name="position" value="0 -218px" />
+
+        <Value name="imageUVs" value="82px 936px 860px 56px" />
+        <Value name="imageColor" value="0 0 0 0.35" />
+        <Value name="imageFilename" value="g_machineUIFilename" />
+    </Profile>
+    <Profile name="tfMachineDialiog_tabListShadowBottom" extends="tfMachineDialiog_tabListShadow">
+        <Value name="position" value="0 -522px" />
+        <Value name="imageUVRotation" value="180" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_topScrollShadow" extends="tfMachineDialiog_tabListShadow">
+        <Value name="size" value="1200px 24px" />
+        <Value name="position" value="0 -34px" />
+        <Value name="imageColor" value="0 0 0 0.5" />
+    </Profile>
+    <Profile name="tfMachineDialog_bottomScrollShadow" extends="tfMachineDialog_topScrollShadow">
+        <Value name="position" value="0 -9px" />
+        <Value name="imageUVRotation" value="180" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_uiInGameMenuPagingTabListBg" extends="baseReference" with="anchorMiddleRight">
+        <Value name="size" value="115px 320px" />
+
+        <Value name="imageColor" value="0 0 0 0.5" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_uiInGameMenuPagingTabList" extends="uiInGameMenuPagingTabList">
+        <Value name="size" value="115px 320px" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_buttonBox" extends="buttonBoxDockedOnScreenWithTabBar" with="anchorBottomCenter">
+        <Value name="position" value="200px 40px" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_uiInGameMenuFrame" extends="uiInGameMenuFrame">
+        <Value name="size" value="1200px 756px" />
+    </Profile>
+    <Profile name="tfMachineDialog_ingameMenuSettingsBox" extends="ingameMenuSettingsBox">
+        <Value name="size" value="1200px 756px" />
+
+        <Value name="imageColor" value="$preset_tfGui_colorDialogBackground" />
+        <Value name="imageFilename" value="g_baseUIFilename" />
+        <Value name="imageSize" value="1024 1024" />
+        <Value name="imageUVs" value="$preset_colorUVs" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_ingameMenuFrameHeaderText" extends="ingameMenuFrameHeaderText">
+        <Value name="position" value="16px 0" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_listVerticalSlider" extends="verticalListSliderRightDocked">
+        <Value name="size" value="12px 756px" />
+        <Value name="position" value="24px 0" />
+    </Profile>
+    <Profile name="tfMachineDialog_listVerticalSliderBar" extends="verticalListSliderBar">
+        <Value name="size" value="6px 748px" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_sectionHeader" extends="textDefault" with="anchorTopLeft">
+        <Value name="size" value="1000px 40px" />
+        <Value name="textOffset" value="8px 0" />
+        <Value name="margin" value="0 16px" />
+        <Value name="textUpperCase" value="true" />
+        <Value name="textSize" value="14px" />
+        <Value name="textBold" value="true" />
+        <Value name="textColor" value="0.0227 0.5346 0.8519 0.75" />
+
+        <Value name="hasFrame" value="true" />
+        <Value name="frameThickness" value="0dp 0dp 0dp 2dp" />
+        <Value name="frameBottomColor" value="$preset_colorMainUI_20" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_multiTextOption" extends="tfSettingsDialog_multiTextOption">
+        <Value name="size" value="1000px 48px" />
+        <Value name="margin" value="0 8px" />
+    </Profile>
+    <Profile name="tfMachineDialog_multiTextOptionRight" extends="tfSettingsDialog_multiTextOptionRight">
+        <Value name="position" value="-440px 0" />
+    </Profile>
+    <Profile name="tfMachineDialog_multiTextOptionTitle" extends="tfSettingsDialog_multiTextOptionTitle">
+        <Value name="position" value="8px 0" />
+    </Profile>
+    <Profile name="tfMachineDialog_multiTextOptionFocusBg" extends="tfSettingsDialog_multiTextOption" with="anchorTopLeft">
+        <Value name="size" value="1000px 48px" />
+        <Value name="imageColor" value="0 0 0 0" />
+        <Value name="imageHighlightedColor" value="0.3140 0.8069 1.0000 0.03" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_multiTextOptionTooltip" extends="tfSettingsDialog_multiTextOptionTooltip">
+        <Value name="position" value="600px 0" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_multiTextOptionImage" extends="baseReference" with="anchorMiddleLeft">
+        <Value name="size" value="48px 48px" />
+        <Value name="position" value="8px 0" />
+        <Value name="imageUVs" value="0 0 1 1" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_multiTextOptionImageText" extends="textDefault" with="anchorMiddleLeft">
+        <Value name="size" value="200px 48px" />
+        <Value name="position" value="72px 0" />
+        <Value name="textSize" value="14px" />
+        <Value name="textBold" value="true" />
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_inputWrapper" with="anchorTopLeft">
+        <Value name="size" value="1000px 48px" />
+        <Value name="margin" value="0 8px" />
+        <Value name="focusFallthrough" value="true" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_textInput" extends="textInput">
+        <Value name="position" value="300px 0" />
+        <Value name="size" value="260px 48px" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_descriptionText" extends="textDefault" with="anchorTopLeft">
+        <Value name="size" value="600px 64px" />
+
+        <Value name="textSize" value="14px" />
+        <Value name="textVerticalAlignment" value="middle" />
+    </Profile>
+    <Profile name="tfMachineDialog_statusWrapper" extends="baseReference" with="anchorTopLeft">
+        <Value name="size" value="1000px 96px" />
+        <Value name="margin" value="0 0 0 32px" />
+
+        <Value name="imageColor" value="0 0 0 0.8" />
+
+        <Value name="hasFrame" value="true" />
+        <Value name="frameThickness" value="0dp 2dp 0dp 2dp" />
+        <Value name="frameBottomColor" value="$preset_colorMainUI_60" />
+        <Value name="frameTopColor" value="$preset_colorMainUI_60" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_statusLayout" extends="baseReference" with="anchorTopLeft">
+        <Value name="size" value="1000px 96px" />
+
+        <Value name="imageColor" value="0 0 0 0" />
+        <Value name="alignmentY" value="middle" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_statusImage" extends="baseReference" with="anchorMiddleLeft">
+        <Value name="size" value="64px 64px" />
+        <Value name="position" value="16px 0" />
+
+        <Value name="imageUVs" value="0 0 1 1" />
+        <Value name="imageColor" value="1 1 1 1" />
+        <Value name="imageDisabledUVs" value="0.75 0.5 0.25 0.25" />
+        <Value name="imageDisabledColor" value="0.4 0.4 0.4 1" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_statusText" extends="textDefault" with="anchorTopLeft">
+        <Value name="size" value="600px 20px" />
+        <Value name="margin" value="96px 0 0 0" />
+
+        <Value name="textColor" value="1 1 1 1" />
+        <Value name="textSize" value="14px" />
+        <Value name="textDisabledColor" value="0.4 0.4 0.4 1" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_statusTitle" extends="textDefault" with="anchorTopLeft">
+        <Value name="size" value="600px 20px" />
+        <Value name="margin" value="96px 0 0 0" />
+
+        <Value name="textSize" value="16px" />
+        <Value name="textBold" value="true" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_statusTopShadow" extends="tfMachineDialog_topScrollShadow" with="anchorTopCenter">
+        <Value name="size" value="1000px 32px" />
+        <Value name="position" value="0 0" />
+    </Profile>
+    <Profile name="tfMachineDialog_statusBottomShadow" extends="tfMachineDialog_bottomScrollShadow" with="anchorBottomCenter">
+        <Value name="size" value="1000px 32px" />
+        <Value name="position" value="0 0" />
+
+    </Profile>
+
+    <Profile name="tfMachineDialog_infoBoxWrapper" extends="baseReference" with="anchorMiddleCenter">
+        <Value name="size" value="1315px 64px" />
+        <Value name="position" value="0 420px" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_infoBox" extends="baseReference" with="anchorMiddleRight">
+        <Value name="size" value="256px 64px" />
+
+        <Value name="imageColor" value="0 0 0 0" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_infoBoxImageWrapper" extends="baseReference" with="anchorMiddleRight">
+        <Value name="size" value="64px 64px" />
+        <!-- <Value name="imageColor" value="$preset_tfGui_colorDialogBackground_30" /> -->
+        <Value name="imageColor" value="0 0 0 0" />
+
+    </Profile>
+    <Profile name="tfMachineDialog_infoBoxImage" extends="baseReference" with="anchorMiddleCenter">
+        <Value name="size" value="48px 48px" />
+
+        <Value name="imageUVs" value="0 0 1 1" />
+        <Value name="imageColor" value="1 1 1 1" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_infoBoxName" extends="textDefault" with="anchorMiddleRight">
+        <Value name="position" value="-72px 8px" />
+        <Value name="size" value="128px 20px" />
+
+        <Value name="textColor" value="0.7 0.7 0.7 0.8" />
+        <Value name="textSize" value="18px" />
+        <Value name="textAlignment" value="right" />
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_infoBoxBrand" extends="tfMachineDialog_infoBoxName" with="anchorTopRight">
+        <Value name="textSize" value="12px" />
+        <Value name="position" value="-72px 0" />
+    </Profile>
+
+    <Profile name="tfMachineDialog_infoBoxTypeName" extends="tfMachineDialog_infoBoxName" with="anchorBottomRight">
+        <Value name="textSize" value="12px" />
+        <Value name="position" value="-72px 0" />
+    </Profile>
+
+    <Profile name="tfSelectDialog_topScrollShadow" extends="tfMachineDialog_topScrollShadow" with="anchorTopCenter">
+        <Value name="size" value="600px 32px" />
+        <Value name="position" value="0 0" />
+    </Profile>
+    <Profile name="tfSelectDialog_bottomScrollShadow" extends="tfMachineDialog_bottomScrollShadow" with="anchorBottomCenter">
+        <Value name="size" value="600px 32px" />
+        <Value name="position" value="0 0" />
+    </Profile>
+</GUIProfiles>

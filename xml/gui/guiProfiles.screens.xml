@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUIProfiles>
+    <Profile name="tfSurveyorScreen_menuBox" extends="constructionMenuBox">
+        <Value name="imageColor" value="$preset_tfGui_colorDialogBackground_90" />
+    </Profile>
+
+    <Profile name="tfSurveyorScreen_contentBox" with="anchorMiddleCenter">
+        <Value name="size" value="1920px 305px" />
+    </Profile>
+
+    <Profile name="tfSurveyorScreen_button" extends="ingameMenuSettingsNativeHelpButton">
+        <Value name="size" value="220px 48px" />
+        <Value name="margin" value="0 0 0 10px" />
+        <Value name="position" value="0 0" />
+
+        <Value name="textColor" value="1 1 1 0.7" />
+        <Value name="imageDisabledColor" value="$preset_colorGlass_50" />
+        <Value name="fitToContent" value="false" />
+        <Value name="handleFocus" value="true" />
+        <Value name="iconSize" value="0 0" />
+        <Value name="iconTextOffset" value="0 0" />
+    </Profile>
+    <Profile name="tfSurveyorScreen_buttonApply" extends="tfSurveyorScreen_button" with="anchorTopLeft" />
+    <Profile name="tfSurveyorScreen_buttonCancel" extends="tfSurveyorScreen_button" with="anchorTopRight">
+        <Value name="textColor" value="1 1 1 1" />
+        <Value name="imageColor" value="$preset_colorRed_50" />
+        <Value name="imageFocusedColor" value="$preset_colorRed_75" />
+        <Value name="imageHighlightedColor" value="$preset_colorRed" />
+    </Profile>
+    <Profile name="tfSurveyorScreen_buttonExit" extends="tfSurveyorScreen_button" with="anchorTopLeft">
+        <Value name="margin" value="180px 48px 0 0" />
+    </Profile>
+
+    <Profile name="tfSurveyorScreen_layoutLeft" extends="baseReference" with="anchorTopLeft">
+        <Value name="size" value="1120px 305px" />
+
+        <Value name="imageColor" value="$preset_colorTransparent" />
+    </Profile>
+
+    <Profile name="tfSurveyorScreen_layoutCenter" with="anchorTopCenter">
+        <Value name="size" value="480px 80px" />
+        <Value name="position" value="0 -13px" />
+    </Profile>
+
+    <Profile name="tfSurveyorScreen_layoutRight" extends="baseReference" with="anchorTopRight">
+        <Value name="size" value="400px 305px" />
+
+        <Value name="imageColor" value="$preset_colorTransparent" />
+    </Profile>
+
+    <Profile name="tfSurveyorScreen_calibrationText" extends="textDefault" with="anchorMiddleCenter">
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+
+    <Profile name="tfSurveyorScreen_infoBox" extends="baseReference" with="anchorMiddleLeft">
+        <Value name="size" value="281px 281px" />
+
+        <Value name="imageColor" value="1 1 1 0.01" />
+    </Profile>
+    <Profile name="tfSurveyorScreen_infoBoxTitle" extends="textDefault" with="anchorTopCenter">
+        <Value name="size" value="120px 20px" />
+        <Value name="position" value="0 -16px" />
+
+        <Value name="textAlignment" value="center" />
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+    <Profile name="tfSurveyorScreen_infoBoxImage" extends="baseReference" with="anchorMiddleCenter">
+        <Value name="size" value="180px 180px" />
+
+        <Value name="imageUVs" value="0 0 1 1" />
+        <Value name="imageColor" value="1 1 1 1" />
+    </Profile>
+    <Profile name="tfSurveyorScreen_infoBoxText" extends="textDefault" with="anchorBottomCenter">
+        <Value name="size" value="120px 20px" />
+        <Value name="position" value="0 16px" />
+
+        <Value name="textAlignment" value="center" />
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+
+    <Profile name="tfSurveyorScreen_layoutLeftButtonsBox" extends="baseReference" with="anchorTopLeft">
+        <Value name="size" value="400px 305px" />
+        <Value name="position" value="305px 0" />
+
+        <Value name="imageColor" value="$preset_colorTransparent" />
+        <Value name="flowMargin" value="0 0 0 13px" />
+    </Profile>
+
+    <Profile name="tfSurveyorScreen_multiTextOption" extends="multiTextOptionSettings">
+        <Value name="size" value="500px 48px" />
+    </Profile>
+    <Profile name="tfSurveyorScreen_multiTextOptionButtonLeft" extends="multiTextOptionSettingsLeft">
+        <Value name="position" value="180px 0px" />
+    </Profile>
+    <Profile name="tfSurveyorScreen_multiTextOptionButtonRight" extends="tfSurveyorScreen_multiTextOptionButtonLeft" with="anchorBottomRight">
+        <Value name="position" value="-100px 0" />
+        <Value name="iconUVRotation" value="0" />
+    </Profile>
+    <Profile name="tfSurveyorScreen_multiTextOptionText" extends="multiTextOptionSettingsText">
+        <Value name="position" value="288px 0" />
+    </Profile>
+    <Profile name="tfSurveyorScreen_multiTextOptionTitle" extends="multiTextOptionSettingsTitle">
+        <Value name="textSize" value="14px" />
+    </Profile>
+    <Profile name="tfSurveyorScreen_multiTextOptionBackground" extends="multiTextOptionSettingsBg">
+        <Value name="size" value="122px 48px" />
+        <Value name="position" value="229px 0" />
+    </Profile>
+    <Profile name="tfSurveyorScreen_multiTextOptionTooltip" extends="multiTextOptionSettingsTooltip" with="anchorBottomLeft"></Profile>
+</GUIProfiles>

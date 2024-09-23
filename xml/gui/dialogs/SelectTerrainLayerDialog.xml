@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="tfSelectDialog_dialogFullScreenBg" />
+    <GuiElement type="bitmap" profile="bgVignette" />
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="bitmap" id="dialogElement" profile="tfSelectDialog_dialog">
+        <GuiElement type="empty" profile="tfSelectDialog_dialogHeader">
+            <GuiElement type="text" profile="tfSelectDialog_dialogHeaderTitle" text="$l10n_ui_changeTexture" />
+        </GuiElement>
+
+        <GuiElement type="empty" profile="tfSelectDialog_listWrapper">
+            <GuiElement type="smoothList" profile="tfSelectDialog_list" id="list" focusInit="onOpen" onDoubleClick="onItemDoubleClick">
+                <GuiElement type="listItem" profile="tfSelectDialog_listItem">
+                    <GuiElement type="terrainLayer" name="image" profile="tfSelectDialog_listItemImage" />
+                    <GuiElement type="text" name="name" profile="tfSelectDialog_listItemText" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="threePartBitmap" profile="tfSelectDialog_listVerticalSlider">
+                <GuiElement type="slider" profile="tfSelectDialog_listVerticalSliderBar" dataElementId="list" handleFocus="false" />
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="tfSelectDialog_topScrollClipper" name="topClipper">
+                <GuiElement type="bitmap" profile="tfSelectDialog_topScrollShadow" />
+            </GuiElement>
+            <GuiElement type="bitmap" profile="tfSelectDialog_bottomScrollClipper" name="bottomClipper">
+                <GuiElement type="bitmap" profile="tfSelectDialog_bottomScrollShadow" />
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="tfSelectDialog_actionBox">
+            <GuiElement type="button" profile="tfSelectDialog_actionButtonBack" text="$l10n_button_back" onClick="onClickBack" id="backButton" />
+            <GuiElement type="button" profile="tfSelectDialog_actionButtonApply" text="$l10n_button_apply" onClick="onClickApply" id="applyButton" />
+        </GuiElement>
+    </GuiElement>
+</GUI>

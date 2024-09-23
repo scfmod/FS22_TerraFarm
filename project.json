@@ -1,0 +1,28 @@
+{
+    "archive": {
+        "targetFile": "build/FS22_0_TerraFarm.zip",
+        "extensions": [
+            "i3d",
+            "shapes",
+            "xml",
+            "dds",
+            "lua"
+        ],
+        "exclude": [
+            ".git/",
+            ".vscode/",
+            "build/",
+            "docs/",
+            "scripts/types.lua"
+        ],
+        "debug": {
+            "exclude": []
+        },
+        "release": {
+            "exclude": [
+                "scripts/debug.lua",
+                "scripts/schema.lua"
+            ]
+        }
+    }
+}

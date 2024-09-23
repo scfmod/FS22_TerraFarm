@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="tfSelectDialog_dialogFullScreenBg" />
+    <GuiElement type="bitmap" profile="bgVignette" />
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="bitmap" id="dialogElement" profile="tfSelectDialog_dialog">
+        <GuiElement type="empty" profile="tfSelectDialog_dialogHeader">
+            <GuiElement type="text" profile="tfSelectDialog_dialogHeaderTitle" text="$l10n_ui_globalSettings" />
+        </GuiElement>
+
+        <GuiElement type="bitmap" profile="tfSettingsDialog_content">
+            <GuiElement type="bitmap" profile="tfSelectDialog_topScrollClipper" name="topClipper" />
+            <GuiElement type="bitmap" profile="tfSelectDialog_bottomScrollClipper" name="bottomClipper" />
+
+            <GuiElement type="scrollingLayout" profile="tfSettingsDialog_layout" id="boxLayout" topClipperElementName="topClipper" bottomClipperElementName="bottomClipper">
+
+                <GuiElement type="machineCheckedOption" profile="tfSettingsDialog_multiTextOption" onClick="onClickEnabledOption" id="enabledOption">
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionLeft" />
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionRight" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionText" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionTitle" text="$l10n_ui_globalEnabled" />
+                    <GuiElement type="bitmap" profile="tfSettingsDialog_multiTextOptionBackground" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionTooltip" />
+                </GuiElement>
+
+                <GuiElement type="machineCheckedOption" profile="tfSettingsDialog_multiTextOption" onClick="onClickDefaultEnabledOption" id="defaultEnabledOption">
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionLeft" />
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionRight" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionText" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionTitle" text="$l10n_ui_globalDefaultEnabled" />
+                    <GuiElement type="bitmap" profile="tfSettingsDialog_multiTextOptionBackground" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionTooltip" />
+                </GuiElement>
+
+                <GuiElement type="machineCheckedOption" profile="tfSettingsDialog_multiTextOption" onClick="onClickResourcesEnabledOption" id="resourcesEnabledOption">
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionLeft" />
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionRight" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionText" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionTitle" text="$l10n_ui_globalResourcesEnabled" />
+                    <GuiElement type="bitmap" profile="tfSettingsDialog_multiTextOptionBackground" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionTooltip" />
+                </GuiElement>
+
+                <GuiElement type="machineCheckedOption" profile="tfSettingsDialog_multiTextOption" onClick="onClickHudEnabledOption" id="hudEnabledOption">
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionLeft" />
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionRight" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionText" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionTitle" text="$l10n_ui_enableHud" />
+                    <GuiElement type="bitmap" profile="tfSettingsDialog_multiTextOptionBackground" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionTooltip" />
+                </GuiElement>
+
+                <GuiElement type="machineCheckedOption" profile="tfSettingsDialog_multiTextOption" onClick="onClickDebugNodesOption" id="debugNodesOption">
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionLeft" />
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionRight" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionText" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionTitle" text="$l10n_ui_debugNodes" />
+                    <GuiElement type="bitmap" profile="tfSettingsDialog_multiTextOptionBackground" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionTooltip" />
+                </GuiElement>
+
+                <GuiElement type="machineCheckedOption" profile="tfSettingsDialog_multiTextOption" onClick="onClickDebugCalibrationOption" id="debugCalibrationOption">
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionLeft" />
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionRight" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionText" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionTitle" text="$l10n_ui_debugCalibration" />
+                    <GuiElement type="bitmap" profile="tfSettingsDialog_multiTextOptionBackground" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionTooltip" />
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="tfSelectDialog_actionBox">
+            <GuiElement type="button" profile="tfSelectDialog_actionButtonBack" text="$l10n_button_back" onClick="onClickBack" id="backButton" />
+            <GuiElement type="button" profile="tfSelectDialog_actionButtonSettings" text="$l10n_ui_materialSettings" onClick="onClickMaterialSettings" id="settingsButton" />
+        </GuiElement>
+    </GuiElement>
+</GUI>

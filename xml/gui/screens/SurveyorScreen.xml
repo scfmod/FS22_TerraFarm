@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="bitmap" profile="tfSurveyorScreen_menuBox" id="menuBox">
+        <GuiElement type="empty" profile="tfSurveyorScreen_contentBox">
+            <!-- Layout: left -->
+            <GuiElement type="empty" profile="tfSurveyorScreen_layoutLeft">
+                <GuiElement type="bitmap" profile="tfSurveyorScreen_infoBox">
+                    <GuiElement type="text" profile="tfSurveyorScreen_infoBoxTitle" id="vehicleText" />
+                    <GuiElement type="bitmap" profile="tfSurveyorScreen_infoBoxImage" id="vehicleImage" />
+                    <GuiElement type="text" profile="tfSurveyorScreen_infoBoxText" id="statusText" />
+                </GuiElement>
+
+                <GuiElement type="boxLayout" profile="tfSurveyorScreen_layoutLeftButtonsBox">
+                    <GuiElement type="button" profile="tfSurveyorScreen_button" id="calibrateButton" onClick="onClickCalibrate" text="$l10n_ui_calibrate" />
+                    <GuiElement type="button" profile="tfSurveyorScreen_button" id="setAngleButton" onClick="onClickSetAngle" text="$l10n_ui_setAngle" />
+                    <GuiElement type="button" profile="tfSurveyorScreen_button" id="setLevelButton" onClick="onClickSetLevel" text="$l10n_ui_setLevel" />
+                    <GuiElement type="button" profile="tfSurveyorScreen_button" id="resetButton" onClick="onClickReset" text="$l10n_button_reset" />
+                    <GuiElement type="button" profile="tfSurveyorScreen_button" id="renameButton" onClick="onClickRename" text="$l10n_button_changeName" />
+                </GuiElement>
+            </GuiElement>
+
+            <!-- Layout: center -->
+            <GuiElement type="empty" profile="tfSurveyorScreen_layoutCenter">
+                <GuiElement type="button" profile="tfSurveyorScreen_buttonApply" id="applyButton" onClick="onClickApply" text="$l10n_button_apply" />
+                <GuiElement type="button" profile="tfSurveyorScreen_buttonCancel" id="cancelButton" onClick="onClickCancel" text="$l10n_button_cancel" />
+            </GuiElement>
+
+            <GuiElement type="text" profile="tfSurveyorScreen_calibrationText" id="calibrationText" text="" />
+
+            <!-- Layout: right -->
+            <GuiElement type="boxLayout" profile="tfSurveyorScreen_layoutRight">
+                <GuiElement type="checkedOption" profile="tfSurveyorScreen_multiTextOption" id="useTerrainOption" onClick="onClickUseTerrainOption">
+                    <GuiElement type="button" profile="tfSurveyorScreen_multiTextOptionButtonLeft" />
+                    <GuiElement type="button" profile="tfSurveyorScreen_multiTextOptionButtonRight" />
+                    <GuiElement type="text" profile="tfSurveyorScreen_multiTextOptionText" />
+                    <GuiElement type="text" profile="tfSurveyorScreen_multiTextOptionTitle" text="$l10n_ui_useTerrain" />
+                    <GuiElement type="bitmap" profile="tfSurveyorScreen_multiTextOptionBackground" />
+                    <GuiElement type="text" profile="tfSurveyorScreen_multiTextOptionTooltip" text="$l10n_ui_useTerrainTooltip" />
+                </GuiElement>
+
+                <GuiElement type="button" profile="tfSurveyorScreen_buttonExit" id="exitButton" onClick="onClickExit" text="$l10n_input_CONSTRUCTION_EXIT" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+</GUI>

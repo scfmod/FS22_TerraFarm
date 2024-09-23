@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="tfMaterialsDialog_dialogFullScreenBg" />
+    <GuiElement type="bitmap" profile="bgVignette" />
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="bitmap" id="dialogElement" profile="tfMaterialsDialog_dialog">
+        <GuiElement type="empty" profile="tfSelectDialog_dialogHeader">
+            <GuiElement type="text" profile="tfSelectDialog_dialogHeaderTitle" text="$l10n_ui_materialSettings" />
+        </GuiElement>
+
+        <GuiElement type="bitmap" profile="tfMaterialsDialog_content">
+
+            <GuiElement type="empty" profile="tfMaterialsDialog_listBoxLeft">
+                <GuiElement type="text" profile="tfSelectDialog_listHeaderText" text="$l10n_ui_enabled" />
+                <GuiElement type="bitmap" profile="tfSelectDialog_topScrollClipper" name="topClipper" />
+                <GuiElement type="bitmap" profile="tfSelectDialog_bottomScrollClipper" name="bottomClipper" />
+
+                <GuiElement
+                    type="smoothList"
+                    profile="tfMaterialsDialog_list"
+                    id="enabledList"
+                    focusInit="onOpen"
+                    focusId="enabledList"
+                    focusChangeRight="disabledList"
+                    focusChangeLeft="nil"
+                    focusChangeBottom="nil"
+                    focusChangeTop="nil"
+                    onClick="onItemClick"
+                    onDoubleClick="onItemDoubleClick"
+                    selectedWithoutFocus="false"
+                >
+                    <GuiElement type="listItem" profile="tfMaterialsDialog_listItem">
+                        <GuiElement type="bitmap" name="icon" profile="tfMaterialsDialog_listItemImage" />
+                        <GuiElement type="text" name="name" profile="tfMaterialsDialog_listItemText" />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="tfMaterialsDialog_listVerticalSliderLeft">
+                    <GuiElement type="slider" profile="tfMaterialsDialog_listVerticalSliderBar" dataElementId="enabledList" handleFocus="false" />
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="tfSelectDialog_topScrollClipper" name="topClipper">
+                    <GuiElement type="bitmap" profile="tfSelectDialog_topScrollShadow" size="350px 24px" />
+                </GuiElement>
+                <GuiElement type="bitmap" profile="tfSelectDialog_bottomScrollClipper" name="bottomClipper">
+                    <GuiElement type="bitmap" profile="tfSelectDialog_bottomScrollShadow" size="350px 24px" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="empty" profile="tfMaterialsDialog_listBoxRight">
+                <GuiElement type="text" profile="tfSelectDialog_listHeaderText" text="$l10n_ui_disabled" />
+                <!-- <GuiElement type="bitmap" profile="tfSelectDialog_topScrollClipper" name="topClipper" />
+                <GuiElement type="bitmap" profile="tfSelectDialog_bottomScrollClipper" name="bottomClipper" /> -->
+
+                <GuiElement
+                    type="smoothList"
+                    profile="tfMaterialsDialog_list"
+                    id="disabledList"
+                    focusInit="onOpen"
+                    focusId="disabledList"
+                    focusChangeRight="nil"
+                    focusChangeLeft="enabledList"
+                    focusChangeBottom="nil"
+                    focusChangeTop="nil"
+                    onClick="onItemClick"
+                    onDoubleClick="onItemDoubleClick"
+                    selectedWithoutFocus="false"
+                >
+                    <GuiElement type="listItem" profile="tfMaterialsDialog_listItem">
+                        <GuiElement type="bitmap" name="icon" profile="tfMaterialsDialog_listItemImage" />
+                        <GuiElement type="text" name="name" profile="tfMaterialsDialog_listItemText" />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="tfMaterialsDialog_listVerticalSliderRight">
+                    <GuiElement type="slider" profile="tfMaterialsDialog_listVerticalSliderBar" dataElementId="disabledList" handleFocus="false" />
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="tfSelectDialog_topScrollClipper" name="topClipper">
+                    <GuiElement type="bitmap" profile="tfSelectDialog_topScrollShadow" size="350px 24px" />
+                </GuiElement>
+                <GuiElement type="bitmap" profile="tfSelectDialog_bottomScrollClipper" name="bottomClipper">
+                    <GuiElement type="bitmap" profile="tfSelectDialog_bottomScrollShadow" size="350px 24px" />
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="tfSelectDialog_actionBox" id="buttonBox">
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" id="backButton" />
+            <GuiElement type="button" profile="buttonActivate" text="$l10n_ui_disable" onClick="onClickAction" id="actionButton" />
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_apply" onClick="onClickApply" id="applyButton" />
+        </GuiElement>
+    </GuiElement>
+</GUI>

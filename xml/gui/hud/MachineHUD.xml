@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<HUD animateDuration="200">
+    <HudElement type="boxLayout" profile="machineHud_boxLayout" id="boxLayout">
+        <HudElement type="bitmap" profile="machineHud_item" id="vehicleItem">
+            <HudElement type="bitmap" profile="machineHud_itemBar" />
+            <HudElement type="bitmap" profile="machineHud_itemImage" id="vehicleImage" />
+            <HudElement type="text" profile="machineHud_itemText" id="vehicleText" />
+        </HudElement>
+
+        <HudElement type="bitmap" profile="machineHud_item" id="modeItem">
+            <HudElement type="bitmap" profile="machineHud_itemBar" />
+            <HudElement type="bitmap" profile="machineHud_itemImageMode" id="modeImage" />
+            <HudElement type="text" profile="machineHud_itemText" id="modeText" />
+        </HudElement>
+
+        <HudElement type="bitmap" profile="machineHud_item" id="materialItem">
+            <HudElement type="bitmap" profile="machineHud_itemBar" />
+            <HudElement type="bitmap" profile="machineHud_itemImage" id="materialImage" />
+            <HudElement type="text" profile="machineHud_itemText" id="materialText" />
+        </HudElement>
+
+        <HudElement type="bitmap" profile="machineHud_item" id="textureItem">
+            <HudElement type="bitmap" profile="machineHud_itemBar" />
+            <HudElement type="terrainLayer" profile="machineHud_itemImage" id="textureImage" />
+            <HudElement type="text" profile="machineHud_itemText" id="textureText" />
+        </HudElement>
+
+        <HudElement type="bitmap" profile="machineHud_item" id="surveyorItem">
+            <HudElement type="bitmap" profile="machineHud_itemBar" />
+            <HudElement type="bitmap" profile="machineHud_itemImage" id="surveyorImage" />
+            <HudElement type="text" profile="machineHud_itemTitle" id="surveyorTitle" />
+            <HudElement type="text" profile="machineHud_itemDescription" id="surveyorText" />
+        </HudElement>
+    </HudElement>
+</HUD>

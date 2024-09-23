@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<configurations>
+
+    <!-- Base game -->
+
+    <configuration
+        vehicle="data/vehicles/albutt/frontloaderShovel/frontloaderShovel.xml"
+        file="xml/machines/giants/Albutt_frontloaderShovel.xml" />
+    <configuration
+        vehicle="data/vehicles/magsi/telehandlerShovel/telehandlerShovel.xml"
+        file="xml/machines/giants/Magsi_telehandlerShovel.xml" />
+    <configuration
+        vehicle="data/vehicles/magsi/wheelLoaderShovel/wheelLoaderShovel.xml"
+        file="xml/machines/giants/Magsi_wheelLoaderShovel.xml" />
+    <configuration
+        vehicle="data/vehicles/mcCormack/overtippingBucket/overtippingBucket.xml"
+        file="xml/machines/giants/mcCormack_overtippingBucket.xml" />
+    <configuration
+        vehicle="data/vehicles/paladin/highDumpBucket/highDumpBucket.xml"
+        file="xml/machines/giants/Paladin_highDumpBucket.xml" />
+    <configuration
+        vehicle="data/vehicles/holaras/mes400/mes400.xml"
+        file="xml/machines/giants/holaras_mes400.xml" />
+    <configuration
+        vehicle="data/vehicles/holaras/mes500/mes500.xml"
+        file="xml/machines/giants/holaras_mes500.xml" />
+    <configuration
+        vehicle="data/vehicles/duevelsdorf/mss3700/mss3000.xml"
+        file="xml/machines/giants/duevelsdorf_mss3000.xml" />
+    <configuration
+        vehicle="data/vehicles/duevelsdorf/mss3700/mss3700.xml"
+        file="xml/machines/giants/duevelsdorf_mss3700.xml" />
+    <configuration
+        vehicle="data/vehicles/samasz/city180/city180.xml"
+        file="xml/machines/giants/samasz_city180.xml" />
+    <configuration
+        vehicle="data/vehicles/samasz/jump320/jump320.xml"
+        file="xml/machines/giants/samasz_jump320.xml" />
+    <configuration
+        vehicle="data/vehicles/samasz/olimp330/olimp330.xml"
+        file="xml/machines/giants/samasz_olimp330.xml" />
+
+    <!-- Platinum expansion -->
+
+    <configuration
+        vehicle="pdlc_forestryPack/vehicles/volvo/l120HHighTipShovel/l120HHighTipShovel.xml"
+        file="xml/machines/forestryDlc/l120H_highTipShovel.xml" />
+    <configuration
+        vehicle="pdlc_forestryPack/vehicles/volvo/l120HRockShovel/l120HRockShovel.xml"
+        file="xml/machines/forestryDlc/l120H_rockShovel.xml" />
+    <configuration
+        vehicle="pdlc_forestryPack/vehicles/volvo/l120HShovel/l120HShovel.xml"
+        file="xml/machines/forestryDlc/l120H_shovel.xml" />
+    <configuration
+        vehicle="pdlc_forestryPack/vehicles/volvo/l180HHighTipShovel/l180HHighTipShovel.xml"
+        file="xml/machines/forestryDlc/l180H_highTipShovel.xml" />
+    <configuration
+        vehicle="pdlc_forestryPack/vehicles/volvo/l180HRockShovel/l180HRockShovel.xml"
+        file="xml/machines/forestryDlc/l180H_rockShovel.xml" />
+    <configuration
+        vehicle="pdlc_forestryPack/vehicles/volvo/l180HShovel/l180HShovel.xml"
+        file="xml/machines/forestryDlc/l180H_shovel.xml" />
+    <configuration
+        vehicle="pdlc_forestryPack/vehicles/volvo/lm841RockShovel/lm841RockShovel.xml"
+        file="xml/machines/forestryDlc/lm841_rockShovel.xml" />
+    <configuration
+        vehicle="pdlc_forestryPack/vehicles/volvo/lm841Shovel/lm841Shovel.xml"
+        file="xml/machines/forestryDlc/lm841_shovel.xml" />
+
+    <!-- Premium expansion -->
+
+    <configuration
+        vehicle="pdlc_premiumExpansion/vehicles/wifo/hodV275/hodV275.xml"
+        file="xml/machines/premiumExpansion/hodv275_shovel.xml" />
+
+</configurations>

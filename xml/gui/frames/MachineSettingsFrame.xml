@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUI name="machineSettings">
+    <GuiElement type="empty" profile="tfMachineDialog_uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="bitmap" profile="ingameMenuGeneralSettingsHeaderIcon" />
+            <GuiElement type="text" profile="tfMachineDialog_ingameMenuFrameHeaderText" text="$l10n_ui_machineSettings" />
+        </GuiElement>
+
+        <!-- Layout content box -->
+        <GuiElement type="bitmap" profile="tfMachineDialog_ingameMenuSettingsBox" id="settingsContainer">
+            <GuiElement type="empty" profile="tfMachineDialog_topScrollClipperWrapper" name="topClipper">
+                <GuiElement type="bitmap" profile="tfMachineDialog_topScrollClipper" />
+                <GuiElement type="bitmap" profile="tfMachineDialog_topScrollShadow" />
+            </GuiElement>
+
+            <GuiElement type="empty" profile="tfMachineDialog_bottomScrollClipperWrapper" name="bottomClipper">
+                <GuiElement type="bitmap" profile="tfMachineDialog_bottomScrollClipper" />
+                <GuiElement type="bitmap" profile="tfMachineDialog_bottomScrollShadow" />
+            </GuiElement>
+
+            <GuiElement type="scrollingLayout" profile="tfMachineDialog_ingameMenuSettingsLayout" id="boxLayout" topClipperElementName="topClipper" bottomClipperElementName="bottomClipper">
+                <GuiElement type="text" profile="tfMachineDialog_sectionHeader" text="$l10n_ui_settingsGeneral" />
+
+                <GuiElement type="machineCheckedOption" profile="tfMachineDialog_multiTextOption" margin="0 16px 0 8px" onClick="onClickEnabledOption" id="enabledOption">
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionLeft" />
+                    <GuiElement type="button" profile="tfMachineDialog_multiTextOptionRight" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionText" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTitle" text="$l10n_ui_enableMachine" />
+                    <GuiElement type="bitmap" profile="tfSettingsDialog_multiTextOptionBackground" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTooltip" />
+                    <GuiElement type="bitmap" profile="tfMachineDialog_multiTextOptionFocusBg" />
+                </GuiElement>
+                <GuiElement type="machineCheckedOption" profile="tfMachineDialog_multiTextOption" onClick="onClickResourcesEnabledOption" id="resourcesEnabledOption">
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionLeft" />
+                    <GuiElement type="button" profile="tfMachineDialog_multiTextOptionRight" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionText" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTitle" text="$l10n_ui_enableMapResources" />
+                    <GuiElement type="bitmap" profile="tfSettingsDialog_multiTextOptionBackground" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTooltip" text="$l10n_ui_enableMapResourcesTooltip" />
+                    <GuiElement type="bitmap" profile="tfMachineDialog_multiTextOptionFocusBg" />
+                </GuiElement>
+
+                <!-- Material -->
+                <GuiElement type="text" profile="tfMachineDialog_sectionHeader" text="$l10n_ui_material" />
+
+                <GuiElement type="empty" profile="tfMachineDialog_inputWrapper">
+                    <GuiElement type="button" profile="tfMachineDialog_button" text="$l10n_ui_changeMaterial" id="materialButton" onClick="onClickSelectMaterial" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTitle" text="" />
+                    <GuiElement type="bitmap" profile="tfMachineDialog_multiTextOptionImage" id="materialImage" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionImageText" id="materialText" />
+                </GuiElement>
+
+                <GuiElement type="machineCheckedOption" profile="tfMachineDialog_multiTextOption" onClick="onClickStateCheckedOption" name="enableInputMaterial" id="enableInputMaterialOption">
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionLeft" />
+                    <GuiElement type="button" profile="tfMachineDialog_multiTextOptionRight" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionText" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTitle" text="$l10n_ui_stateEnableInputMaterial" />
+                    <GuiElement type="bitmap" profile="tfSettingsDialog_multiTextOptionBackground" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTooltip" text="$l10n_ui_stateEnableInputMaterialTooltip" />
+                    <GuiElement type="bitmap" profile="tfMachineDialog_multiTextOptionFocusBg" />
+                </GuiElement>
+
+                <GuiElement type="machineCheckedOption" profile="tfMachineDialog_multiTextOption" onClick="onClickStateCheckedOption" name="enableOutputMaterial" id="enableOutputMaterialOption">
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionLeft" />
+                    <GuiElement type="button" profile="tfMachineDialog_multiTextOptionRight" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionText" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTitle" text="$l10n_ui_stateEnableOutputMaterial" />
+                    <GuiElement type="bitmap" profile="tfSettingsDialog_multiTextOptionBackground" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTooltip" text="$l10n_ui_stateEnableOutputMaterialTooltip" />
+                    <GuiElement type="bitmap" profile="tfMachineDialog_multiTextOptionFocusBg" />
+                </GuiElement>
+
+                <!-- Ground texture -->
+                <GuiElement type="text" profile="tfMachineDialog_sectionHeader" text="$l10n_ui_texture" />
+
+                <GuiElement type="empty" profile="tfMachineDialog_inputWrapper">
+                    <GuiElement type="button" profile="tfMachineDialog_button" text="$l10n_ui_changeTexture" id="terrainLayerButton" onClick="onClickSelectTerrainLayer" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTitle" text="" />
+                    <GuiElement type="terrainLayer" profile="tfMachineDialog_multiTextOptionImage" id="terrainLayerImage" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionImageText" id="terrainLayerText" />
+                </GuiElement>
+
+                <GuiElement type="machineCheckedOption" profile="tfMachineDialog_multiTextOption" onClick="onClickStateCheckedOption" name="enablePaintGroundTexture" id="enablePaintGroundTextureOption">
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionLeft" />
+                    <GuiElement type="button" profile="tfMachineDialog_multiTextOptionRight" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionText" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTitle" text="$l10n_ui_stateEnablePaintGroundTexture" />
+                    <GuiElement type="bitmap" profile="tfSettingsDialog_multiTextOptionBackground" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTooltip" text="$l10n_ui_stateEnablePaintGroundTextureTooltip" />
+                    <GuiElement type="bitmap" profile="tfMachineDialog_multiTextOptionFocusBg" />
+                </GuiElement>
+
+                <!-- Terrain deformation -->
+                <GuiElement type="text" profile="tfMachineDialog_sectionHeader" text="$l10n_ui_terrainDeformation" />
+
+                <GuiElement type="empty" profile="tfMachineDialog_inputWrapper">
+                    <GuiElement type="machineTextInput" profile="tfMachineDialog_textInput" id="radiusOption" onEnterPressed="onEnterPressedInput" name="radius" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTitle" text="$l10n_ui_stateRadius" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTooltip" text="$l10n_ui_stateRadiusTooltip" />
+                </GuiElement>
+
+                <GuiElement type="empty" profile="tfMachineDialog_inputWrapper">
+                    <GuiElement type="machineTextInput" profile="tfMachineDialog_textInput" id="strengthOption" onEnterPressed="onEnterPressedInput" name="strength" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTitle" text="$l10n_ui_stateStrength" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTooltip" text="$l10n_ui_stateStrengthTooltip" />
+                </GuiElement>
+
+                <GuiElement type="empty" profile="tfMachineDialog_inputWrapper">
+                    <GuiElement type="machineTextInput" profile="tfMachineDialog_textInput" id="hardnessOption" onEnterPressed="onEnterPressedInput" name="hardness" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTitle" text="$l10n_ui_stateHardness" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTooltip" text="$l10n_ui_stateHardnessTooltip" />
+                </GuiElement>
+
+                <GuiElement type="machineCheckedOption" profile="tfMachineDialog_multiTextOption" onClick="onClickBrushShapeOption" id="brushShapeOption">
+                    <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionLeft" />
+                    <GuiElement type="button" profile="tfMachineDialog_multiTextOptionRight" />
+                    <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionText" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTitle" text="$l10n_ui_stateBrushShape" />
+                    <GuiElement type="bitmap" profile="tfSettingsDialog_multiTextOptionBackground" />
+                    <GuiElement type="text" profile="tfMachineDialog_multiTextOptionTooltip" text="$l10n_ui_stateBrushShapeTooltip" />
+                    <GuiElement type="bitmap" profile="tfMachineDialog_multiTextOptionFocusBg" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="threePartBitmap" profile="tfMachineDialog_listVerticalSlider">
+                <GuiElement type="slider" profile="tfMachineDialog_listVerticalSliderBar" dataElementId="boxLayout" handleFocus="false" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+</GUI>
