@@ -305,7 +305,7 @@ function ResourceManager:getDefaultTerrainLayer()
         end
     end
 
-    return self.nameToTerrainLayer[1]
+    return self.terrainLayers[1]
 end
 
 ---@return number
