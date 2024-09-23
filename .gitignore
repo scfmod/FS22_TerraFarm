@@ -1,4 +1,9 @@
-/.idea
-.settings/
-.vscode/*
+# build
+build/
+
+# editor
+.vscode
+
+# misc
 .DS_Store
+.env
