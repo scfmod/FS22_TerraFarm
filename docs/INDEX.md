@@ -130,6 +130,6 @@ This will clear all registered configuration file entries (internal and external
 
 Useful when creating and editing machine configurations mods. This will not reload any loaded vehicles.
 
-For vehicles that implements the Machine specialization you can use the regular ```gsVehicleReload``` command.
+For vehicles that implements the Machine specialization you can use the regular ```gsVehicleReload``` command. Also works for hot-reloading when modifying external configuration files.
 
 **NOTE**: Only available in single player mode.

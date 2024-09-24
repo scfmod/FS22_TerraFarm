@@ -41,7 +41,7 @@ vehicle.machine
 |------|------|----------|---------|-------------|
 | type               | string | Yes |         | Machine type identifier |
 | requireTurnedOn    | boolean | No | ```true``` | If set to true then the machine will not be activated unless vehicle is turned on as long as vehicle has implemented specialization. Will be ignored otherwise. |
-| requirePoweredOn   | boolean | No | ```true``` | If set to true then the machine will not be activated unless vehicle is powered on as long as vehicle has implemented specialization. Will be ignores otherwise. |
+| requirePoweredOn   | boolean | No | ```true``` | If set to true then the machine will not be activated unless vehicle is powered on as long as vehicle has implemented specialization. Will be ignored otherwise. |
 | fillUnitIndex      | integer | No |         | Defaults to using fillUnit from shovelNode |
 | shovelNodeIndex    | integer | No | ```1``` | Override if vehicle has multiple shovelNodes |
 | levelerNodeIndex   | integer | No | ```1``` | Override if vehicle has multiple levelerNodes |
