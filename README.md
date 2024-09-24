@@ -112,7 +112,7 @@ If you want to create your own surveyor equipment, read more [here](./docs/SURVE
 
 Download the latest [```FS22_0_TerraFarm.zip```](https://github.com/scfmod/FS22_TerraFarm/releases/latest/download/FS22_0_TerraFarm.zip) and copy/move it into your FS22 mods folder.
 
-## Creating machine configurations
+## Documentation
 
 For implementing vehicle configurations and creating configuration mods see [``INDEX.md``](/docs/INDEX.md)
 
@@ -157,7 +157,7 @@ This is because the game does not sync tire tracks in multiplayer. I may be able
 
 ## Credits
 
-Huge thanks to PeteyJ for creating the PSV2 Surveyor shiped with this mod.
+Huge thanks to PeteyJ for creating the PSV2 Surveyor shipped with this mod.
 
 Also a big thanks to the fellow modders from **Jeremy Brown Modeling and Simulation** and **WZL Modding** discord servers for all the testing and feedback.
 
