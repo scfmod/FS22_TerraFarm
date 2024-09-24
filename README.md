@@ -77,6 +77,10 @@ Long story short; there's no longer needed for modders to edit TerraFarm to add 
 ### Base game
 ```
 - Albutt front loader bucket
+- Düvelsdorf MSS 3000 leveler
+- Düvelsdorf MSS 3700 leveler
+- Holaras MES 400 leveler
+- Holaras MES 500 leveler
 - Magsi telehandler bucket
 - Magsi wheel loader bucket
 - mcCormack overtipping bucket

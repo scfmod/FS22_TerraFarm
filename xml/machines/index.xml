@@ -25,20 +25,11 @@
         vehicle="data/vehicles/holaras/mes500/mes500.xml"
         file="xml/machines/giants/holaras_mes500.xml" />
     <configuration
-        vehicle="data/vehicles/duevelsdorf/mss3700/mss3000.xml"
+        vehicle="data/vehicles/duevelsdorf/mss3000/mss3000.xml"
         file="xml/machines/giants/duevelsdorf_mss3000.xml" />
     <configuration
         vehicle="data/vehicles/duevelsdorf/mss3700/mss3700.xml"
         file="xml/machines/giants/duevelsdorf_mss3700.xml" />
-    <configuration
-        vehicle="data/vehicles/samasz/city180/city180.xml"
-        file="xml/machines/giants/samasz_city180.xml" />
-    <configuration
-        vehicle="data/vehicles/samasz/jump320/jump320.xml"
-        file="xml/machines/giants/samasz_jump320.xml" />
-    <configuration
-        vehicle="data/vehicles/samasz/olimp330/olimp330.xml"
-        file="xml/machines/giants/samasz_olimp330.xml" />
 
     <!-- Platinum expansion -->
 
