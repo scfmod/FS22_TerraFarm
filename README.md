@@ -30,6 +30,7 @@ IT TO LEARN, FORK AND SPREAD THE KNOWLEDGE.
 - [How to report bugs](#how-to-report-bugs)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
+- [Translations](#translations)
 - [Credits](#credits)
 
 ## What's new
@@ -158,6 +159,10 @@ Yes, work on FS25 version will start when FS25 is released.
 
 On client side in multiplayer tire tracks doesn't disappear when terraforming the landscape.
 This is because the game does not sync tire tracks in multiplayer. I may be able to fix this in a later version, but for now this is a very low prioritized visual bug.
+
+## Translations
+
+If anyone is interested in adding more translations to the mod, [create a new issue](https://github.com/scfmod/FS22_TerraFarm/issues/) with translation file(s) and I will add them :-)
 
 ## Credits
 
