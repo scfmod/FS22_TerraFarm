@@ -57,6 +57,9 @@
         <text name="ui_modePaint" text="Paint" />
         <text name="ui_raise" text="Raise" />
 
+        <text name="ui_terraform" text="Terraform" />
+        <text name="ui_discharge" text="Discharge" />
+
         <!-- Map resources texts -->
         <text name="ui_mapResourcesAvailable" text="Feature is available for this map." />
         <text name="ui_mapResourcesNotAvailable" text="Feature is not available for this map." />
