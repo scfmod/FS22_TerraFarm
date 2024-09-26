@@ -5,6 +5,7 @@
         <text name="input_MACHINE_SETTINGS" text="Makine ayarları iletişim kutusunu aç" />
         <text name="input_MACHINE_TOGGLE_ACTIVE" text="Makineyi etkinleştirmeyi aç / kapat" />
         <text name="input_MACHINE_TOGGLE_INPUT" text="Giriş modunu değiştir" />
+        <text name="input_MACHINE_TOGGLE_OUTPUT" text="Çıkış modunu değiştir" />
         <text name="input_MACHINE_SELECT_MATERIAL" text="Materyal diyaloğunu aç" />
         <text name="input_MACHINE_SELECT_TEXTURE" text="Zemin dokusu iletişim kutusunu aç" />
         <text name="input_MACHINE_SELECT_SURVEYOR" text="Haritacı diyaloğunu aç" />
@@ -44,6 +45,7 @@
         <text name="ui_machineActivate" text="Makineyi etkinleştir" />
         <text name="ui_machineDeactivate" text="Makineyi devre dışı bırak" />
         <text name="ui_machineToggleInput" text="Giriş modunu değiştir" />
+        <text name="ui_machineToggleOutput" text="Çıkış modunu değiştir" />
         <text name="ui_enableMachine" text="Makineyi etkinleştir" />
         <text name="ui_enableMapResources" text="Harita kaynaklarını kullanın" />
         <text name="ui_enableMapResourcesTooltip" text="" />

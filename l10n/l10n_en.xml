@@ -5,6 +5,7 @@
         <text name="input_MACHINE_SETTINGS" text="Open machine settings dialog" />
         <text name="input_MACHINE_TOGGLE_ACTIVE" text="Toggle activate machine" />
         <text name="input_MACHINE_TOGGLE_INPUT" text="Toggle input mode" />
+        <text name="input_MACHINE_TOGGLE_OUTPUT" text="Toggle output mode" />
         <text name="input_MACHINE_SELECT_MATERIAL" text="Open material dialog" />
         <text name="input_MACHINE_SELECT_TEXTURE" text="Open ground texture dialog" />
         <text name="input_MACHINE_SELECT_SURVEYOR" text="Open surveyor dialog" />
@@ -44,6 +45,7 @@
         <text name="ui_machineActivate" text="Activate machine" />
         <text name="ui_machineDeactivate" text="Deactivate machine" />
         <text name="ui_machineToggleInput" text="Toggle input mode" />
+        <text name="ui_machineToggleOutput" text="Toggle output mode" />
         <text name="ui_enableMachine" text="Enable machine" />
         <text name="ui_enableMapResources" text="Use map resources" />
         <text name="ui_enableMapResourcesTooltip" text="" />
