@@ -52,7 +52,7 @@ function MachineDebug:draw()
             end
         end
 
-        if spec.inputMode == Machine.MODE.FLATTEN and g_settings:getDebugCalibration() then
+        if g_settings:getDebugCalibration() and (spec.inputMode == Machine.MODE.FLATTEN or spec.outputMode == Machine.MODE.FLATTEN) then
             self:drawMachineCalibration(vehicle)
         end
     end

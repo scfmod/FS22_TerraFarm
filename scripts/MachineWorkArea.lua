@@ -14,6 +14,7 @@
 ---@field nodeTerrainY table<number, number>
 ---
 ---@field density number
+---@field raycastHitTerrain boolean
 MachineWorkArea = {}
 
 local MachineWorkArea_mt = Class(MachineWorkArea)
@@ -44,6 +45,8 @@ function MachineWorkArea.new(vehicle)
     self.nodeActive = {}
     self.nodePosition = {}
     self.nodeTerrainY = {}
+
+    self.raycastHitTerrain = false
 
     return self
 end
@@ -193,9 +196,34 @@ function MachineWorkArea:flatten()
     op:apply()
 end
 
+---@param litersToDrop number
+---@param fillTypeIndex number
+---@return number
+---@nodiscard
+function MachineWorkArea:flattenDischarge(litersToDrop, fillTypeIndex)
+    local targetWorldPosY = self:getTargetTerrainHeight()
+    local op = LandscapingFlattenDischarge.new(self, targetWorldPosY, litersToDrop, fillTypeIndex)
+
+    op:apply()
+
+    return op.droppedLiters
+end
+
 function MachineWorkArea:smooth()
     local op = LandscapingSmooth.new(self)
     op:apply()
+end
+
+---@param litersToDrop number
+---@param fillTypeIndex number
+---@return number
+---@nodiscard
+function MachineWorkArea:smoothDischarge(litersToDrop, fillTypeIndex)
+    local op = LandscapingSmoothDischarge.new(self, litersToDrop, fillTypeIndex)
+
+    op:apply()
+
+    return op.droppedLiters
 end
 
 function MachineWorkArea:lower()
@@ -203,8 +231,16 @@ function MachineWorkArea:lower()
     op:apply()
 end
 
-function MachineWorkArea:raise()
-    -- TODO .. if/when needed
+---@param litersToDrop number
+---@param fillTypeIndex number
+---@return number
+---@nodiscard
+function MachineWorkArea:raise(litersToDrop, fillTypeIndex)
+    local op = LandscapingRaise.new(self, litersToDrop, fillTypeIndex)
+
+    op:apply()
+
+    return op.droppedLiters
 end
 
 -- Get current calibration angle
@@ -253,4 +289,40 @@ end
 ---@return number worldPosZ
 function MachineWorkArea:getPosition()
     return getWorldTranslation(self.rootNode)
+end
+
+---@return boolean
+function MachineWorkArea:getCanOutput()
+    -- local maxDistance = 0.5
+    local maxDistance = 0.4
+
+    self.raycastHitTerrain = false
+
+    local nodePosX, nodePosY, nodePosZ = self:getPosition()
+
+    raycastClosest(nodePosX, nodePosY, nodePosZ, 0, -1, 0, 'terrainRaycastCallback', maxDistance, self, CollisionMask.TERRAIN_DETAIL_HEIGHT)
+
+    if not self.raycastHitTerrain and #self.nodes > 2 then
+        local firstPosX, firstPosY, firstPosZ = getWorldTranslation(self.nodes[1])
+
+        raycastClosest(firstPosX, firstPosY, firstPosZ, 0, -1, 0, 'terrainRaycastCallback', maxDistance, self, CollisionMask.TERRAIN_DETAIL_HEIGHT)
+
+        if not self.raycastHitTerrain then
+            local lastPosX, lastPosY, lastPosZ = getWorldTranslation(self.nodes[#self.nodes])
+
+            raycastClosest(lastPosX, lastPosY, lastPosZ, 0, -1, 0, 'terrainRaycastCallback', maxDistance, self, CollisionMask.TERRAIN_DETAIL_HEIGHT)
+        end
+    end
+
+    return self.raycastHitTerrain ~= true
+end
+
+function MachineWorkArea:terrainRaycastCallback(hitObjectId)
+    if hitObjectId == g_currentMission.terrainRootNode then
+        self.raycastHitTerrain = true
+
+        return false
+    end
+
+    return true
 end

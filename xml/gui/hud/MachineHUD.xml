@@ -7,10 +7,18 @@
             <HudElement type="text" profile="machineHud_itemText" id="vehicleText" />
         </HudElement>
 
-        <HudElement type="bitmap" profile="machineHud_item" id="modeItem">
+        <HudElement type="bitmap" profile="machineHud_item" id="inputItem">
             <HudElement type="bitmap" profile="machineHud_itemBar" />
-            <HudElement type="bitmap" profile="machineHud_itemImageMode" id="modeImage" />
-            <HudElement type="text" profile="machineHud_itemText" id="modeText" />
+            <HudElement type="bitmap" profile="machineHud_itemImageMode" id="inputImage" />
+            <HudElement type="text" profile="machineHud_itemTitle" id="inputTitle" text="$l10n_ui_terraform" />
+            <HudElement type="text" profile="machineHud_itemText" id="inputText" />
+        </HudElement>
+
+        <HudElement type="bitmap" profile="machineHud_item" id="outputItem">
+            <HudElement type="bitmap" profile="machineHud_itemBar" />
+            <HudElement type="bitmap" profile="machineHud_itemImageMode" id="outputImage" />
+            <HudElement type="text" profile="machineHud_itemTitle" id="outputTitle" text="$l10n_ui_discharge" />
+            <HudElement type="text" profile="machineHud_itemDescription" id="outputText" />
         </HudElement>
 
         <HudElement type="bitmap" profile="machineHud_item" id="materialItem">

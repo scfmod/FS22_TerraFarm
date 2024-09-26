@@ -16,10 +16,12 @@ source(g_currentModDirectory .. 'scripts/events/SetGlobalResourcesEvent.lua')
 
 source(g_currentModDirectory .. 'scripts/landscaping/BaseLandscaping.lua')
 source(g_currentModDirectory .. 'scripts/landscaping/LandscapingFlatten.lua')
+source(g_currentModDirectory .. 'scripts/landscaping/LandscapingFlattenDischarge.lua')
 source(g_currentModDirectory .. 'scripts/landscaping/LandscapingLower.lua')
 source(g_currentModDirectory .. 'scripts/landscaping/LandscapingPaint.lua')
--- source(g_currentModDirectory .. 'scripts/landscaping/LandscapingRaise.lua')
+source(g_currentModDirectory .. 'scripts/landscaping/LandscapingRaise.lua')
 source(g_currentModDirectory .. 'scripts/landscaping/LandscapingSmooth.lua')
+source(g_currentModDirectory .. 'scripts/landscaping/LandscapingSmoothDischarge.lua')
 
 source(g_currentModDirectory .. 'scripts/MachineDebug.lua')
 source(g_currentModDirectory .. 'scripts/MachineGUI.lua')

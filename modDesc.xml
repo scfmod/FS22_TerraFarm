@@ -51,6 +51,7 @@
     <actions>
         <action name="MACHINE_TOGGLE_ACTIVE" />
         <action name="MACHINE_TOGGLE_INPUT" />
+        <action name="MACHINE_TOGGLE_OUTPUT" />
         <action name="MACHINE_SETTINGS" />
         <action name="MACHINE_SELECT_MATERIAL" />
         <action name="MACHINE_SELECT_TEXTURE" />
@@ -71,6 +72,10 @@
         <actionBinding action="MACHINE_TOGGLE_INPUT">
             <binding device="KB_MOUSE_DEFAULT" input="KEY_comma" index="1" />
             <binding device="0_XINPUT_GAMEPAD" input="BUTTON_5 BUTTON_4" index="1" />
+        </actionBinding>
+        <actionBinding action="MACHINE_TOGGLE_OUTPUT">
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_minus" index="1" />
+            <binding device="0_XINPUT_GAMEPAD" input="BUTTON_5 BUTTON_1" index="1" />
         </actionBinding>
         <actionBinding action="MACHINE_SELECT_MATERIAL">
             <binding device="KB_MOUSE_DEFAULT" input="KEY_KP_0" index="1" />

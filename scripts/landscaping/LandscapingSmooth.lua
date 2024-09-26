@@ -4,12 +4,13 @@ LandscapingSmooth = {}
 local LandscapingSmooth_mt = Class(LandscapingSmooth, BaseLandscaping)
 
 ---@param workArea MachineWorkArea
+---@param customMt table | nil
 ---@return LandscapingSmooth
 ---@nodiscard
-function LandscapingSmooth.new(workArea)
+function LandscapingSmooth.new(workArea, customMt)
     ---@type LandscapingSmooth
     ---@diagnostic disable-next-line: assign-type-mismatch
-    local self = BaseLandscaping.new(LandscapingOperation.SMOOTH, workArea, LandscapingSmooth_mt)
+    local self = BaseLandscaping.new(LandscapingOperation.SMOOTH, workArea, customMt or LandscapingSmooth_mt)
 
     self.heightChangeAmount = 0.05
 

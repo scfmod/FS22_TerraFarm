@@ -122,6 +122,7 @@
 
 
 ---@class DischargeableSpecialization
+---@field currentDischargeState number
 ---@field dischargeNodes DischargeNode[]
 ---@field fillUnitDischargeNodeMapping table<number, DischargeNode>
 ---@field dischargNodeMapping table<number, DischargeNode>

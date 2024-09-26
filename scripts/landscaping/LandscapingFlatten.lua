@@ -6,12 +6,13 @@ local LandscapingFlatten_mt = Class(LandscapingFlatten, BaseLandscaping)
 
 ---@param workArea MachineWorkArea
 ---@param targetY number
+---@param customMt table | nil
 ---@return LandscapingFlatten
 ---@nodiscard
-function LandscapingFlatten.new(workArea, targetY)
+function LandscapingFlatten.new(workArea, targetY, customMt)
     ---@type LandscapingFlatten
     ---@diagnostic disable-next-line: assign-type-mismatch
-    local self = BaseLandscaping.new(LandscapingOperation.FLATTEN, workArea, LandscapingFlatten_mt)
+    local self = BaseLandscaping.new(LandscapingOperation.FLATTEN, workArea, customMt or LandscapingFlatten_mt)
 
     self.targetY = targetY
     self.heightChangeAmount = 0.75

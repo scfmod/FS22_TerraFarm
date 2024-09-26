@@ -1,6 +1,15 @@
 ---@class MachineUtils
 MachineUtils = {}
 
+---@param vehicle Machine
+function MachineUtils.getIsShovel(vehicle)
+    local spec = vehicle.spec_machine
+
+    if spec ~= nil then
+        return spec.machineType.id == 'shovel' or spec.machineType.id == 'excavatorShovel'
+    end
+end
+
 ---@param targetVehicle Machine
 ---@return Machine | nil
 function MachineUtils.getActiveVehicle(targetVehicle)

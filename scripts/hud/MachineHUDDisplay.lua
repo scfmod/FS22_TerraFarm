@@ -5,9 +5,13 @@
 ---@field animateDuration number
 ---@field boxLayout BoxLayoutElement
 ---
----@field modeItem BitmapElement
----@field modeImage BitmapElement
----@field modeText TextElement
+---@field inputItem BitmapElement
+---@field inputTitle TextElement
+---@field inputImage BitmapElement
+---@field inputText TextElement
+---@field outputItem BitmapElement
+---@field outputImage BitmapElement
+---@field outputText TextElement
 ---@field materialItem BitmapElement
 ---@field materialImage BitmapElement
 ---@field materialText TextElement
@@ -31,9 +35,14 @@ MachineHUDDisplay.CONTROLS = {
     'vehicleItem',
     'vehicleImage',
     'vehicleText',
-    'modeItem',
-    'modeImage',
-    'modeText',
+    'inputItem',
+    'inputImage',
+    'inputTitle',
+    'inputText',
+    'outputItem',
+    'outputImage',
+    'outputTitle',
+    'outputText',
     'materialItem',
     'materialImage',
     'materialText',
@@ -102,7 +111,8 @@ function MachineHUDDisplay:loadFromXMLFile(xmlFile, key)
         end
     end
 
-    self.modeImage:setImageFilename(g_machineUIFilename)
+    self.inputImage:setImageFilename(g_machineUIFilename)
+    self.outputImage:setImageFilename(g_machineUIFilename)
 
     self.elements = {}
 end
@@ -281,11 +291,29 @@ function MachineHUDDisplay:updateModeDisplay()
     local spec = g_machineHUD.vehicle.spec_machine
 
     if #spec.modesInput > 0 then
-        self.modeItem:setVisible(true)
-        self.modeImage:setImageUVs(nil, unpack(Machine.MODE_ICON_UVS[spec.inputMode]))
-        self.modeText:setText(Machine.L10N_MODE[spec.inputMode])
+        self.inputItem:setVisible(true)
+        self.inputImage:setImageUVs(nil, unpack(Machine.MODE_ICON_UVS[spec.inputMode]))
+        self.inputText:setText(Machine.L10N_MODE[spec.inputMode])
     else
-        self.modeItem:setVisible(false)
+        self.inputItem:setVisible(false)
+    end
+
+    if #spec.modesOutput > 0 then
+        self.outputItem:setVisible(true)
+        self.outputImage:setImageUVs(nil, unpack(Machine.MODE_ICON_UVS[spec.outputMode]))
+        self.outputText:setText(Machine.L10N_MODE[spec.outputMode])
+
+        self.inputTitle:setVisible(true)
+        if self.inputText.profile ~= 'machineHud_itemDescription' then
+            self.inputText:applyProfile('machineHud_itemDescription') -- TODO
+        end
+    else
+        self.outputItem:setVisible(false)
+        self.inputTitle:setVisible(false)
+
+        if self.inputText.profile ~= 'machineHud_itemText' then
+            self.inputText:applyProfile('machineHud_itemText') -- TODO
+        end
     end
 end
 
@@ -331,7 +359,7 @@ function MachineHUDDisplay:updateSurveyorDisplay()
     local vehicle = g_machineHUD.vehicle
 
     if vehicle ~= nil then
-        if vehicle:getInputMode() == Machine.MODE.FLATTEN then
+        if vehicle:getInputMode() == Machine.MODE.FLATTEN or vehicle:getOutputMode() == Machine.MODE.FLATTEN then
             local surveyor = vehicle:getSurveyor()
 
             if surveyor ~= nil then

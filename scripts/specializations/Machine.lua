@@ -8,7 +8,7 @@ source(g_currentModDirectory .. 'scripts/specializations/events/SetResourcesEnab
 source(g_currentModDirectory .. 'scripts/specializations/events/SetSurveyorEvent.lua')
 source(g_currentModDirectory .. 'scripts/specializations/events/SetTerrainLayerEvent.lua')
 
----@class Machine : Vehicle, FillUnit, TurnOnVehicle, Cylindered, Enterable
+---@class Machine : Vehicle, FillUnit, FillVolume, TurnOnVehicle, Cylindered, Enterable, Dischargeable, Shovel
 ---@field spec_dischargeable DischargeableSpecialization
 ---@field spec_fillUnit FillUnitSpecialization
 ---@field spec_leveler LevelerSpecialization
@@ -53,6 +53,7 @@ Machine.FILLUNIT_SOURCE = {
 Machine.L10N_ACTION_ACTIVATE = g_i18n:getText('ui_machineActivate')
 Machine.L10N_ACTION_DEACTIVATE = g_i18n:getText('ui_machineDeactivate')
 Machine.L10N_ACTION_TOGGLE_INPUT = g_i18n:getText('ui_machineToggleInput')
+Machine.L10N_ACTION_TOGGLE_OUTPUT = g_i18n:getText('ui_machineToggleOutput')
 Machine.L10N_ACTION_MACHINE_SETTINGS = g_i18n:getText('ui_machineSettings')
 Machine.L10N_ACTION_SELECT_MATERIAL = g_i18n:getText('ui_changeMaterial')
 Machine.L10N_ACTION_SELECT_GROUND_TEXTURE = g_i18n:getText('ui_changeTexture')
@@ -62,6 +63,7 @@ Machine.L10N_ACTION_TOGGLE_HUD = g_i18n:getText('ui_toggleHud')
 
 Machine.ACTION_TOGGLE_ACTIVE = 'MACHINE_TOGGLE_ACTIVE'
 Machine.ACTION_TOGGLE_INPUT = 'MACHINE_TOGGLE_INPUT'
+Machine.ACTION_TOGGLE_OUTPUT = 'MACHINE_TOGGLE_OUTPUT'
 Machine.ACTION_SETTINGS = 'MACHINE_SETTINGS'
 Machine.ACTION_SELECT_MATERIAL = 'MACHINE_SELECT_MATERIAL'
 Machine.ACTION_SELECT_TEXTURE = 'MACHINE_SELECT_TEXTURE'
@@ -327,10 +329,11 @@ function Machine:onLoad()
     end
 
     if spec.hasDischargeable and #self.spec_dischargeable.dischargeNodes > 0 then
-        -- self.getIsDischargeNodeActive = Utils.overwrittenFunction(self.getIsDischargeNodeActive, Machine.getIsDischargeNodeActive)
-        -- self.handleDischarge = Utils.overwrittenFunction(self.handleDischarge, Machine.handleDischarge)
-        -- self.handleDischargeRaycast = Utils.overwrittenFunction(self.handleDischargeRaycast, Machine.handleDischargeRaycast)
         self.getCanDischargeToGround = Utils.overwrittenFunction(self.getCanDischargeToGround, Machine.getCanDischargeToGround)
+
+        if MachineUtils.getIsShovel(self) then
+            self.discharge = Utils.overwrittenFunction(self.discharge, Machine.discharge)
+        end
 
         if spec.machineType.useDischargeable and xmlFile:hasProperty('vehicle.machine#dischargeNodeIndex') then
             local index = xmlFile:getValue('vehicle.machine#dischargeNodeIndex')
@@ -403,7 +406,18 @@ function Machine:onLoad()
     spec.requireTurnedOn = xmlFile:getValue('vehicle.machine#requireTurnedOn', true) and spec.hasTurnOnVehicle
 
     spec.modesInput = MachineUtils.loadMachineModesFromXML(xmlFile, 'vehicle.machine.input#modes')
-    spec.modesOutput = MachineUtils.loadMachineModesFromXML(xmlFile, 'vehicle.machine.output#modes')
+    spec.modesOutput = {}
+
+    if MachineUtils.getIsShovel(self) then
+        table.insert(spec.modesOutput, Machine.MODE.MATERIAL)
+        table.insert(spec.modesOutput, Machine.MODE.RAISE)
+        table.insert(spec.modesOutput, Machine.MODE.FLATTEN)
+        table.insert(spec.modesOutput, Machine.MODE.SMOOTH)
+
+        if not MachineUtils.getHasInputMode(self, Machine.MODE.MATERIAL) then
+            table.insert(spec.modesInput, Machine.MODE.MATERIAL)
+        end
+    end
 
     spec.effectTurnOffThreshold = xmlFile:getValue('vehicle.machine.effects#effectTurnOffThreshold', 0.25)
     spec.effects = g_effectManager:loadEffect(xmlFile, 'vehicle.machine.effects', self.components, self, self.i3dMappings)
@@ -791,9 +805,7 @@ function Machine:updateMachineSound(dt)
     local isEffectActive = spec.isEffectActive
     local lastEffectVisible = spec.lastEffect == nil or spec.lastEffect:getIsVisible()
     local effectsStillActive = spec.lastEffect ~= nil and spec.lastEffect:getIsVisible()
-    -- local machineIsActive = spec.active and spec.workArea.isActive
 
-    -- if machineIsActive and (isEffectActive or effectsStillActive) and lastEffectVisible then
     if (isEffectActive or effectsStillActive) and lastEffectVisible then
         if spec.playSound and not g_soundManager:getIsSamplePlaying(spec.sample) then
             g_soundManager:playSample(spec.sample)
@@ -840,6 +852,51 @@ function Machine:workAreaInput(liters, fillTypeIndex)
             0.5, 2, 0, false
         )
     end
+end
+
+---@param emptyLiters number
+---@return number dischargedLiters
+---@return boolean minDropReached
+---@return boolean hasMinDropFillLevel
+function Machine:dischargeToGround(emptyLiters)
+    local spec = self.spec_machine
+
+    local fillTypeIndex, factor = self:getDischargeFillType(spec.dischargeNode)
+    local fillLevel = self:getFillUnitFillLevel(spec.dischargeNode.fillUnitIndex)
+    local minLiterToDrop = g_densityMapHeightManager:getMinValidLiterValue(fillTypeIndex)
+
+    spec.dischargeNode.litersToDrop = math.min(spec.dischargeNode.litersToDrop + emptyLiters, math.max(spec.dischargeNode.emptySpeed * 250, minLiterToDrop))
+
+    local minDropReached = minLiterToDrop < spec.dischargeNode.litersToDrop
+    local hasMinDropFillLevel = minLiterToDrop < fillLevel
+    local dischargedLiters = 0
+
+    local dropped = 0
+
+    if spec.outputMode == Machine.MODE.RAISE then
+        dropped = spec.workArea:raise(spec.dischargeNode.litersToDrop * factor, fillTypeIndex)
+    elseif spec.outputMode == Machine.MODE.FLATTEN then
+        dropped = spec.workArea:flattenDischarge(spec.dischargeNode.litersToDrop * factor, fillTypeIndex)
+    elseif spec.outputMode == Machine.MODE.SMOOTH then
+        dropped = spec.workArea:smoothDischarge(spec.dischargeNode.litersToDrop * factor, fillTypeIndex)
+    end
+
+    dropped = dropped / factor
+    spec.dischargeNode.litersToDrop = math.max(0, spec.dischargeNode.litersToDrop - dropped)
+
+    if dropped > 0 then
+        local unloadInfo = self:getFillVolumeUnloadInfo(spec.dischargeNode.unloadInfoIndex)
+
+        dischargedLiters = self:addFillUnitFillLevel(self:getOwnerFarmId(), spec.dischargeNode.fillUnitIndex, -dropped, self:getFillUnitFillType(spec.dischargeNode.fillUnitIndex), ToolType.UNDEFINED, unloadInfo)
+    end
+
+    fillLevel = self:getFillUnitFillLevel(spec.dischargeNode.fillUnitIndex)
+
+    if fillLevel > 0 and fillLevel <= minLiterToDrop then
+        spec.dischargeNode.litersToDrop = minLiterToDrop
+    end
+
+    return dischargedLiters, minDropReached, hasMinDropFillLevel
 end
 
 --
@@ -961,13 +1018,9 @@ function Machine:onUpdateTick(dt, isActiveForInput, isActiveForInputIgnoreSelect
     end
 
     if self.isServer then
-        if spec.stopEffectTime ~= nil then
-            if spec.stopEffectTime < g_time then
-                self:setMachineEffectActive(false, true)
-                self.stopEffectTime = nil
-            end
-            -- elseif spec.active then
-            --     self:setMachineEffectActive(spec.workArea.isActive)
+        if spec.stopEffectTime ~= nil and spec.stopEffectTime < g_time then
+            self:setMachineEffectActive(false, true)
+            self.stopEffectTime = nil
         end
     end
 end
@@ -1144,17 +1197,10 @@ end
 function Machine:onRegisterActionEvents(isActiveForInput, isActiveForInputIgnoreSelection)
     if self.isClient then
         local spec = self.spec_machine
-
-        -- local addActionEvents = isActiveForInputIgnoreSelection
         local canActivate = self:getCanActivateMachine()
+        local addActionEvents = isActiveForInput
 
         self:clearActionEventsTable(spec.actionEvents)
-
-        -- if spec.hasAttachable and #MachineUtils.getAvailableVehicles(self) > 1 then
-        --     addActionEvents = isActiveForInput
-        -- end
-
-        local addActionEvents = isActiveForInput
 
         if not addActionEvents then
             return
@@ -1185,16 +1231,16 @@ function Machine:onRegisterActionEvents(isActiveForInput, isActiveForInputIgnore
             end
         end
 
-        -- if #spec.modesOutput > 1 then
-        --     action = InputAction[Machine.ACTION_TOGGLE_OUTPUT]
+        if #spec.modesOutput > 1 then
+            action = InputAction[Machine.ACTION_TOGGLE_OUTPUT]
 
-        --     if action ~= nil then
-        --         local _, eventId = self:addActionEvent(spec.actionEvents, action, self, Machine.actionEventToggleOutput, false, true, false, true)
+            if action ~= nil then
+                local _, eventId = self:addActionEvent(spec.actionEvents, action, self, Machine.actionEventToggleOutput, false, true, false, true)
 
-        --         g_inputBinding:setActionEventText(eventId, Machine.L10N_ACTION_TOGGLE_OUTPUT)
-        --         g_inputBinding:setActionEventTextPriority(eventId, GS_PRIO_NORMAL)
-        --     end
-        -- end
+                g_inputBinding:setActionEventText(eventId, Machine.L10N_ACTION_TOGGLE_OUTPUT)
+                g_inputBinding:setActionEventTextPriority(eventId, GS_PRIO_NORMAL)
+            end
+        end
 
         action = InputAction[Machine.ACTION_SETTINGS]
 
@@ -1257,17 +1303,8 @@ end
 function Machine:updateActionEvents()
     if self.isClient then
         local spec = self.spec_machine
-
-        -- local isActiveForInputIgnoreSelection = self:getIsActiveForInput(true)
-        -- local isActiveForInput = self:getIsActiveForInput()
-        -- local isActive = isActiveForInputIgnoreSelection
         local canActivate = self:getCanActivateMachine()
         local hasAccess = self:getCanAccessMachine()
-
-        -- if spec.hasAttachable and #MachineUtils.getAvailableVehicles(self) > 1 then
-        --     isActive = isActiveForInput
-        -- end
-
         local isActive = self:getIsActiveForInput()
 
         local action = InputAction[Machine.ACTION_TOGGLE_ACTIVE]
@@ -1300,15 +1337,15 @@ function Machine:updateActionEvents()
             end
         end
 
-        -- action = InputAction[Machine.ACTION_TOGGLE_OUTPUT]
+        action = InputAction[Machine.ACTION_TOGGLE_OUTPUT]
 
-        -- if action ~= nil then
-        --     local event = spec.actionEvents[action]
+        if action ~= nil then
+            local event = spec.actionEvents[action]
 
-        --     if event ~= nil then
-        --         g_inputBinding:setActionEventActive(event.actionEventId, isActive and (canActivate or hasAccess))
-        --     end
-        -- end
+            if event ~= nil then
+                g_inputBinding:setActionEventActive(event.actionEventId, isActive and (canActivate or hasAccess))
+            end
+        end
 
         action = InputAction[Machine.ACTION_SETTINGS]
 
@@ -1457,38 +1494,30 @@ end
 function Machine:getCanDischargeToGround(superFunc, dischargeNode)
     local spec = self.spec_machine
 
-    if spec.dischargeNode ~= nil and dischargeNode == spec.dischargeNode and not spec.state.enableOutputMaterial then
-        return false
+    if dischargeNode == spec.dischargeNode then
+        if spec.outputMode == Machine.MODE.MATERIAL and not spec.state.enableOutputMaterial then
+            return false
+        elseif spec.outputMode ~= Machine.MODE.MATERIAL and g_settings:getIsEnabled() and self:getMachineActive() and MachineUtils.getIsShovel(self) then
+            return spec.workArea:getCanOutput()
+        end
     end
 
     return superFunc(self, dischargeNode)
 end
 
----@param superFunc function
----@param dischargeNode number
----@return boolean
-function Machine:getIsDischargeNodeActive(superFunc, dischargeNode)
-    return superFunc(self, dischargeNode)
-end
+---@return number dischargedLiters
+---@return boolean minDropReached
+---@return boolean hasMinDropFillLevel
+function Machine:discharge(superFunc, dischargeNode, emptyLiters)
+    local spec = self.spec_machine
 
----@param superFunc function
----@param dischargeNode number
----@param dischargedLiters number
----@param minDropReached boolean
----@param hasMinDropFillLevel boolean
-function Machine:handleDischarge(superFunc, dischargeNode, dischargedLiters, minDropReached, hasMinDropFillLevel)
-    superFunc(self, dischargeNode, dischargedLiters, minDropReached, hasMinDropFillLevel)
-end
+    if dischargeNode == spec.dischargeNode and self.spec_dischargeable.currentDischargeState == Dischargeable.DISCHARGE_STATE_GROUND then
+        if g_settings:getIsEnabled() and self:getMachineActive() and spec.outputMode ~= Machine.MODE.MATERIAL then
+            return Machine.dischargeToGround(self, emptyLiters)
+        end
+    end
 
----@param superFunc function
----@param dischargeNode number
----@param object any
----@param shape any
----@param distance any
----@param fillUnitIndex any
----@param hitTerrain any
-function Machine:handleDischargeRaycast(superFunc, dischargeNode, object, shape, distance, fillUnitIndex, hitTerrain)
-    superFunc(self, dischargeNode, object, shape, distance, fillUnitIndex, hitTerrain)
+    return superFunc(self, dischargeNode, emptyLiters)
 end
 
 ---@param id string | nil
