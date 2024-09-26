@@ -26,7 +26,7 @@ IT TO LEARN, FORK AND SPREAD THE KNOWLEDGE.
   - [Premium expansion](#premium-expansion)
 - [Surveyor](#surveyor)
 - [How to download and install](#how-to-download-and-install)
-- [Documentation](#creating-machine-configurations)
+- [Documentation](#documentation)
 - [How to report bugs](#how-to-report-bugs)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
