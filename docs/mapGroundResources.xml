@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--
     Template for map resource mappings
-    This file (terraFarm.xml) must be placed in same folder as the map xml file
+    This file (mapGroundResources.xml) must be placed in same folder as the map xml file
 
     LAYERS:
     - value: should map to map.i3d InfoLayer Options [REQUIRED]

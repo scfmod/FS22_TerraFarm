@@ -33,7 +33,7 @@ This file must be located in same folder as your map .xml file.
 </groundResources>
 ```
 
-[Example file](./mapResources.xml)
+[Example file](./mapGroundResources.xml)
 
 ```groundResources```
 
