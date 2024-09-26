@@ -27,6 +27,7 @@ IT TO LEARN, FORK AND SPREAD THE KNOWLEDGE.
 - [Surveyor](#surveyor)
 - [How to download and install](#how-to-download-and-install)
 - [Documentation](#documentation)
+- [Map resources extension](#map-resources-extension)
 - [How to report bugs](#how-to-report-bugs)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
