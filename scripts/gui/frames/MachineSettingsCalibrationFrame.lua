@@ -57,9 +57,9 @@ function MachineSettingsCalibrationFrame:onFrameOpen()
 
     local focusedElement = FocusManager:getFocusedElement()
 
-    if focusedElement == nil or focusedElement.name == MachineSettingsCalibrationFrame.CLASS_NAME then
+    if focusedElement == nil or focusedElement.name == MachineSettingsCalibrationFrame.CLASS_NAME or focusedElement.id == 'buttonsPanel' then
         self:setSoundSuppressed(true)
-        FocusManager:setFocus(self.boxLayout)
+        FocusManager:setFocus(self.selectSurveyorButton)
         self:setSoundSuppressed(false)
     end
 
