@@ -148,7 +148,7 @@ function InteractiveControlExtension:registerToggleInputFunction(icf)
             local vehicle = g_machineManager.activeVehicle
 
             if vehicle ~= nil then
-                return MachineUtils.getHasInputs(vehicle)
+                return vehicle:getCanAccessMachine() and MachineUtils.getHasInputs(vehicle)
             end
 
             return false
@@ -243,7 +243,7 @@ function InteractiveControlExtension:registerSelectSurveyorFunction(icf)
             local vehicle = g_machineManager.activeVehicle
 
             if vehicle ~= nil and vehicle:getCanAccessMachine() then
-                return MachineUtils.getHasInputMode(vehicle, Machine.MODE.FLATTEN)
+                return MachineUtils.getHasInputMode(vehicle, Machine.MODE.FLATTEN) or MachineUtils.getHasOutputMode(vehicle, Machine.MODE.FLATTEN)
             end
 
             return false

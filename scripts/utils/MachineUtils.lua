@@ -495,10 +495,29 @@ function MachineUtils.getHasInputMode(vehicle, mode)
 end
 
 ---@param vehicle Machine
+---@param mode MachineMode
+---@return boolean
+---@nodiscard
+function MachineUtils.getHasOutputMode(vehicle, mode)
+    local spec = vehicle.spec_machine
+
+    return table.hasElement(spec.modesOutput, mode)
+end
+
+---@param vehicle Machine
 ---@return boolean
 ---@nodiscard
 function MachineUtils.getHasInputs(vehicle)
     local spec = vehicle.spec_machine
 
     return #spec.modesInput > 0
+end
+
+---@param vehicle Machine
+---@return boolean
+---@nodiscard
+function MachineUtils.getHasOutputs(vehicle)
+    local spec = vehicle.spec_machine
+
+    return #spec.modesOutput > 0
 end
