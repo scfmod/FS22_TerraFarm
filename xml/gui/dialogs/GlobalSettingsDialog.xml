@@ -34,6 +34,12 @@
                     <GuiElement type="text" profile="tfSettingsDialog_multiTextOptionTooltip" />
                 </GuiElement>
 
+                <GuiElement type="boxLayout" profile="tfSettingsDialog_extensionLayout">
+                    <GuiElement type="text" profile="tfSettingsDialog_extensionHeader" text="$l10n_ui_enableMapResources" />
+                    <GuiElement type="text" profile="tfSettingsDialog_extensionText" text="$l10n_ui_mapResourcesDescription" />
+                    <GuiElement type="text" profile="tfSettingsDialog_extensionStatus" text="$l10n_ui_mapResourcesNotAvailable" id="extensionStatus" />
+                </GuiElement>
+
                 <GuiElement type="machineCheckedOption" profile="tfSettingsDialog_multiTextOption" onClick="onClickResourcesEnabledOption" id="resourcesEnabledOption">
                     <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionLeft" />
                     <GuiElement type="button" profile="tfSettingsDialog_multiTextOptionRight" />

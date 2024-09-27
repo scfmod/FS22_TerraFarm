@@ -140,6 +140,38 @@
     </Profile>
     <Profile name="tfSettingsDialog_multiTextOptionTooltip" extends="multiTextOptionSettingsTooltip" with="anchorBottomLeft"></Profile>
 
+    <Profile name="tfSettingsDialog_extensionLayout" with="anchorTopLeft">
+        <Value name="size" value="560px 96px" />
+
+        <Value name="handleFocus" value="false" />
+        <Value name="alignmentY" value="middle" />
+        <Value name="autoValidateLayout" value="true" />
+    </Profile>
+
+    <Profile name="tfSettingsDialog_extensionHeader" extends="textDefault" with="anchorTopLeft">
+        <Value name="size" value="560px 18px" />
+
+        <Value name="textBold" value="true" />
+        <Value name="textSize" value="14px" />
+        <Value name="textUpperCase" value="true" />
+    </Profile>
+
+    <Profile name="tfSettingsDialog_extensionText" extends="textDefault" with="anchorTopLeft">
+        <Value name="size" value="500px 32px" />
+        <Value name="margin" value="0 8px" />
+
+        <Value name="textSize" value="12px" />
+        <Value name="textAutoWidth" value="false" />
+        <Value name="textMaxNumLines" value="3" />
+    </Profile>
+
+    <Profile name="tfSettingsDialog_extensionStatus" extends="textDefault" with="anchorTopLeft">
+        <Value name="size" value="560px 16px" />
+
+        <Value name="textSize" value="14px" />
+        <Value name="textColor" value="$preset_tfGui_colorTextGreen" />
+    </Profile>
+
     <Profile name="tfMaterialsDialog_dialogFullScreenBg" extends="dialogFullscreenBg">
         <Value name="imageColor" value="$preset_tfGui_colorDialogBackdrop" />
     </Profile>

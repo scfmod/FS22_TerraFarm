@@ -7,6 +7,7 @@
 ---@field debugNodesOption CheckedOptionElement
 ---@field debugCalibrationOption CheckedOptionElement
 ---@field resourcesEnabledOption CheckedOptionElement
+---@field extensionStatus TextElement
 ---@field superClass fun(): MessageDialog
 GlobalSettingsDialog = {}
 
@@ -22,6 +23,7 @@ GlobalSettingsDialog.CONTROLS = {
     'debugNodesOption',
     'debugCalibrationOption',
     'resourcesEnabledOption',
+    'extensionStatus'
 }
 
 GlobalSettingsDialog.L10N_FEATURE_AVAILABLE = g_i18n:getText('ui_mapResourcesAvailable')
@@ -107,9 +109,13 @@ function GlobalSettingsDialog:updateSettings()
 
     self.hudEnabledOption:setIsChecked(g_machineHUD.display.isVisible)
 
-    -- TODO
-    -- self.resourceStatusText:setDisabled(not resourcesAvailable)
-    -- self.resourceStatusText:setText(resourcesAvailable and GlobalSettingsDialog.L10N_FEATURE_AVAILABLE or GlobalSettingsDialog.L10N_FEATURE_NOT_AVAILABLE)
+    if resourcesAvailable then
+        self.extensionStatus:setText(g_i18n:getText('ui_mapResourcesAvailable'))
+        self.extensionStatus:setDisabled(false)
+    else
+        self.extensionStatus:setText(g_i18n:getText('ui_mapResourcesNotAvailable'))
+        self.extensionStatus:setDisabled(true)
+    end
 end
 
 function GlobalSettingsDialog:updateMenuButtons()
