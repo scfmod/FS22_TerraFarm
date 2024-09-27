@@ -141,16 +141,18 @@ function MachineUtils.getVehicleModFilename(vehicle)
     end
 end
 
----@param xmlFilename string
-function MachineUtils.getStoreItemModFilename(xmlFilename)
-    local modName, baseDirectory = Utils.getModNameAndBaseDirectory(xmlFilename)
+---@param storeItem StoreItem
+function MachineUtils.getStoreItemModFilename(storeItem)
+    if storeItem ~= nil and storeItem.xmlFilename ~= nil then
+        local modName, baseDirectory = Utils.getModNameAndBaseDirectory(storeItem.xmlFilename)
 
-    if baseDirectory == '' then
-        return xmlFilename
-    elseif modName ~= nil and modName:startsWith('pdlc') then
-        return modName .. xmlFilename:sub(baseDirectory:len())
-    else
-        return xmlFilename:sub(g_modsDirectory:len() + 1)
+        if baseDirectory == '' then
+            return storeItem.xmlFilename
+        elseif modName ~= nil and modName:startsWith('pdlc') then
+            return modName .. storeItem.xmlFilename:sub(baseDirectory:len())
+        else
+            return storeItem.xmlFilename:sub(g_modsDirectory:len() + 1)
+        end
     end
 end
 

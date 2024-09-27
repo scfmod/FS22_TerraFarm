@@ -10,12 +10,15 @@ local function inj_ShopController_makeDisplayItem(self, superFunc, storeItem, re
     local displayItem = superFunc(self, storeItem, realItem, configurations, saleItem)
 
     if storeItem.species == 'vehicle' and (storeItem.specs == nil or storeItem.specs.machine == nil) then
-        local xmlFilename = MachineUtils.getStoreItemModFilename(storeItem.xmlFilename)
-        local xmlFilenameConfig = g_machineManager:getConfigurationXMLFilename(xmlFilename)
+        local xmlFilename = MachineUtils.getStoreItemModFilename(storeItem)
 
-        if xmlFilenameConfig ~= nil then
-            table.insert(displayItem.attributeIconProfiles, 'tfGui_shopListAttributeIconMachine')
-            table.insert(displayItem.attributeValues, g_i18n:getText('displayItem_machine'))
+        if xmlFilename ~= nil then
+            local xmlFilenameConfig = g_machineManager:getConfigurationXMLFilename(xmlFilename)
+
+            if xmlFilenameConfig ~= nil then
+                table.insert(displayItem.attributeIconProfiles, 'tfGui_shopListAttributeIconMachine')
+                table.insert(displayItem.attributeValues, g_i18n:getText('displayItem_machine'))
+            end
         end
     end
 
