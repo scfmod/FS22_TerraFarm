@@ -54,7 +54,7 @@
                 </GuiElement>
 
                 <GuiElement type="bitmap" profile="tfMenuMachines_infoBoxSection">
-                    <GuiElement type="text" profile="tfMenuMachines_infoBoxSectionTitle" text="$l10n_ui_groundTexture" />
+                    <GuiElement type="text" profile="tfMenuMachines_infoBoxSectionTitle" text="$l10n_ui_texture" />
                     <GuiElement type="text" profile="tfMenuMachines_infoBoxSectionText" id="infoStateTerrainLayerName" />
                     <GuiElement type="terrainLayer" profile="tfMenuMachines_infoBoxSectionImage" id="infoStateTerrainLayer" />
                 </GuiElement>
