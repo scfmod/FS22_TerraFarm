@@ -1,8 +1,8 @@
-![Logo](./icon_terraFarm.png)
+![Header](./docs/images/header.webp)
+
+Tired of using the landscaping tool to carve out your land? Not satisfied with using fill types on the ground to supply your mining team? No worries, with TerraFarm you can shape your own land using the equipment of your choice.
 
 # TerraFarm 0.9 BETA
-
-Beta version of TerraFarm. Please report bugs [here](https://github.com/scfmod/FS22_TerraFarm/issues/).
 
 ```
 author: scfmod
@@ -33,6 +33,7 @@ IT TO LEARN, FORK AND SPREAD THE KNOWLEDGE.
 - [Known issues](#known-issues)
 - [Translations](#translations)
 - [Credits](#credits)
+- [Screenshots](#screenshots)
 
 ## What's new
 
@@ -174,3 +175,14 @@ Also a big thanks to the fellow modders from **Jeremy Brown Modeling and Simulat
 [![oma](https://avatars.githubusercontent.com/u/159189143?s=200&v=4)](https://github.com/open-modding-alliance)
 
 Also be sure to follow and support the [Open Modding Alliance](https://github.com/open-modding-alliance) if you're a modder or interested in creating mods for FS22/FS25.
+
+## Screenshots
+
+Ingame menu
+![Ingame menu](./docs/images/menu.webp)
+
+Machine settings
+![Machine settings](./docs/images/machine_settings.webp)
+
+Global settings
+![Global settings](./docs/images/global_settings.webp)
