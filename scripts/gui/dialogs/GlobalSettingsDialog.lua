@@ -130,6 +130,8 @@ end
 ---@param state number
 function GlobalSettingsDialog:onClickHudEnabledOption(state)
     g_machineHUD.display:setVisible(state == CheckedOptionElement.STATE_CHECKED, false)
+
+    g_settings:saveUserSettings()
 end
 
 ---@param state number

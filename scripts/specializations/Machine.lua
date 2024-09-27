@@ -1411,6 +1411,8 @@ end
 
 function Machine:actionEventToggleHUD()
     g_machineHUD.display:setVisible(not g_machineHUD.display.isVisible, true)
+
+    g_settings:saveUserSettings()
 end
 
 function Machine:actionEventToggleActive()

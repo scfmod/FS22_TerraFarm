@@ -119,6 +119,8 @@ end
 ---@param enabled boolean
 function Settings:setDebugNodes(enabled)
     self.debugMachineNodes = enabled
+
+    self:saveUserSettings()
 end
 
 ---@return boolean
@@ -130,6 +132,8 @@ end
 ---@param enabled boolean
 function Settings:setDebugCalibration(enabled)
     self.debugMachineCalibration = enabled
+
+    self:saveUserSettings()
 end
 
 ---@return boolean
