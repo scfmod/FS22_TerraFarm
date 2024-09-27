@@ -76,7 +76,7 @@ function MachineSettingsDialog:setupPages()
     ---@return boolean
     local function calibrationPredicateFunction()
         if self.vehicle ~= nil and self.vehicle.spec_machine ~= nil then
-            return MachineUtils.getHasInputMode(self.vehicle, Machine.MODE.FLATTEN)
+            return MachineUtils.getHasInputMode(self.vehicle, Machine.MODE.FLATTEN) or MachineUtils.getHasOutputMode(self.vehicle, Machine.MODE.FLATTEN)
         end
 
         return false
