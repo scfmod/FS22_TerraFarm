@@ -521,3 +521,21 @@ function MachineUtils.getHasOutputs(vehicle)
 
     return #spec.modesOutput > 0
 end
+
+---@param vehicle Machine
+---@return number
+---@nodiscard
+function MachineUtils.getNumInputs(vehicle)
+    local spec = vehicle.spec_machine
+
+    return #spec.modesInput
+end
+
+---@param vehicle Machine
+---@return number
+---@nodiscard
+function MachineUtils.getNumOutputs(vehicle)
+    local spec = vehicle.spec_machine
+
+    return #spec.modesOutput
+end

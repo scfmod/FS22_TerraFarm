@@ -110,11 +110,12 @@ When [FS22_interactiveControl](https://www.farming-simulator.com/mod.php?mod_id=
 | MACHINE_TOGGLE_ENABLED | Toggle whether machine is enabled or not. |
 | MACHINE_TOGGLE_ACTIVE | Toggle whether machine is active or not. |
 | MACHINE_TOGGLE_INPUT | Toggle input mode if applicable. |
+| MACHINE_TOGGLE_OUTPUT | Toggle output mode if applicable. |
 | MACHINE_TOGGLE_HUD | Toggle HUD visibility. |
 | MACHINE_SETTINGS | Open machine settings dialog. |
 | MACHINE_SELECT_MATERIAL | Open select material dialog. |
 | MACHINE_SELECT_TEXTURE | Open select ground texture dialog. |
-| MACHINE_SELECT_SURVEYOR | Open select surveyor dialog for calibration. Only available if machine has FLATTEN mode. |
+| MACHINE_SELECT_SURVEYOR | Open select surveyor dialog for calibration. Only available if machine has FLATTEN mode for input and/or output. |
 
 **NOTE**: Outside triggers are not supported.
 

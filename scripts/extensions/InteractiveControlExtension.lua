@@ -36,6 +36,7 @@ function InteractiveControlExtension:registerFunctions()
             self:registerToggleActiveFunction(InteractiveFunctions)
             self:registerToggleHudFunction(InteractiveFunctions)
             self:registerToggleInputFunction(InteractiveFunctions)
+            self:registerToggleOutputFunction(InteractiveFunctions)
             self:registerSettingsFunction(InteractiveFunctions)
             self:registerMaterialFunction(InteractiveFunctions)
             self:registerTextureFunction(InteractiveFunctions)
@@ -148,7 +149,7 @@ function InteractiveControlExtension:registerToggleInputFunction(icf)
             local vehicle = g_machineManager.activeVehicle
 
             if vehicle ~= nil then
-                return vehicle:getCanAccessMachine() and MachineUtils.getHasInputs(vehicle)
+                return vehicle:getCanAccessMachine() and MachineUtils.getNumInputs(vehicle) > 1
             end
 
             return false
@@ -156,6 +157,30 @@ function InteractiveControlExtension:registerToggleInputFunction(icf)
     })
 
     g_machineDebug:debug('Registered interactiveControl function "MACHINE_TOGGLE_INPUT"')
+end
+
+---@param icf InteractiveFunctions
+function InteractiveControlExtension:registerToggleOutputFunction(icf)
+    icf.addFunction('MACHINE_TOGGLE_OUTPUT', {
+        posFunc = function()
+            local vehicle = g_machineManager.activeVehicle
+
+            if vehicle ~= nil then
+                Machine.actionEventToggleOutput(vehicle)
+            end
+        end,
+        isEnabledFunc = function()
+            local vehicle = g_machineManager.activeVehicle
+
+            if vehicle ~= nil then
+                return vehicle:getCanAccessMachine() and MachineUtils.getNumOutputs(vehicle) > 1
+            end
+
+            return false
+        end
+    })
+
+    g_machineDebug:debug('Registered interactiveControl function "MACHINE_TOGGLE_OUTPUT"')
 end
 
 ---@param icf InteractiveFunctions
