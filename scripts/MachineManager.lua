@@ -160,8 +160,14 @@ function MachineManager:loadConfigurationsFromXMLFile(xmlFilename, modEnv)
             local configFile = xmlFile:getString(key .. '#file')
 
             if vehicleFile ~= nil and configFile ~= nil then
-                self:registerConfiguration(baseDirectory .. configFile, vehicleFile)
-                numEntries = numEntries + 1
+                local modXMLFilename = baseDirectory .. configFile
+
+                if fileExists(modXMLFilename) then
+                    self:registerConfiguration(modXMLFilename, vehicleFile)
+                    numEntries = numEntries + 1
+                else
+                    Logging.warning('Machine configuration file not found: %s', modXMLFilename)
+                end
             end
         end)
 
