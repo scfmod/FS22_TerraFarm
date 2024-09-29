@@ -121,14 +121,19 @@ end
 
 ---@param xmlFilename string
 ---@param vehicleFile string
+---@return boolean
 function MachineManager:registerConfiguration(xmlFilename, vehicleFile)
+    local wasAdded = false
+
     if self.configurations[vehicleFile] ~= nil then
         g_machineDebug:debug('Replaced existing machine configuration: %s', vehicleFile)
     else
-        g_machineDebug:debug('Registered machine configuration: %s', vehicleFile)
+        wasAdded = true
     end
 
     self.configurations[vehicleFile] = xmlFilename
+
+    return wasAdded
 end
 
 ---@param vehicleFile string
@@ -146,8 +151,9 @@ function MachineManager:loadConfigurationsFromXMLFile(xmlFilename, modEnv)
 
     if xmlFile ~= nil then
         local baseDirectory = g_modNameToDirectory[modEnv]
+        local numEntries = 0
 
-        g_machineDebug:debug('Loading machine configuration entries from "%s"', xmlFilename)
+        Logging.info('Loading machine configuration entries from "%s"', xmlFilename)
 
         xmlFile:iterate('configurations.configuration', function(_, key)
             local vehicleFile = xmlFile:getString(key .. '#vehicle')
@@ -155,10 +161,15 @@ function MachineManager:loadConfigurationsFromXMLFile(xmlFilename, modEnv)
 
             if vehicleFile ~= nil and configFile ~= nil then
                 self:registerConfiguration(baseDirectory .. configFile, vehicleFile)
+                numEntries = numEntries + 1
             end
         end)
 
         xmlFile:delete()
+
+        if numEntries > 0 then
+            Logging.info('  Registered %i new machine configurations', numEntries)
+        end
     else
         Logging.warning('Failed to load configurations file: %s', tostring(xmlFilename))
     end
