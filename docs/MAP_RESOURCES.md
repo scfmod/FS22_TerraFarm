@@ -6,7 +6,7 @@ Map resources feature available for mappers to designate areas on map with speci
 
 ```xml
 <InfoLayer name="mapGroundResources" ...>
-    <Group name="Ground resources" firstChannel="..." numChannels="...">
+    <Group name="Ground resources" firstChannel="..." numChannels="..." runtime="true">
         <Option value="0" name="None" />
         <Option value="1" name="Soil" />
         <Option value="2" name="Stone" />
