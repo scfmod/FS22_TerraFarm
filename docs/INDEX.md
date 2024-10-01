@@ -134,3 +134,20 @@ Useful when creating and editing machine configurations mods. This will not relo
 For vehicles that implements the Machine specialization you can use the regular ```gsVehicleReload``` command. Also works for hot-reloading when modifying external configuration files.
 
 **NOTE**: Only available in single player mode.
+
+---
+
+### Verify loaded mod configurations
+Command: ```tfVerifyModConfigurations <modName>```
+
+Verify that vehicle .xml files exists for configuration entries for given loaded mod.
+
+**NOTE**: modName is case sensitive.
+
+---
+
+### Verify all loaded mods configurations
+
+Command: ```tfVerifyAllModsConfigurations```
+
+Verify vehicle .xml files exists for all configuration entries for all loaded mods.

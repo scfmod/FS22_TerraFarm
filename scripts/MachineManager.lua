@@ -21,6 +21,8 @@ function MachineManager.new()
 
     if g_server ~= nil then
         addConsoleCommand('tfReloadConfigurations', '', 'consoleReloadConfigurations', self)
+        addConsoleCommand('tfVerifyModConfigurations', '', 'consoleVerifyModConfigurations', self)
+        addConsoleCommand('tfVerifyAllModsConfigurations', '', 'consoleVerifyAllModsConfigurations', self)
     end
 
     return self
@@ -240,6 +242,98 @@ function MachineManager:consoleReloadConfigurations()
     end
 
     return 'Only available in single player'
+end
+
+---@param name string | nil
+function MachineManager:consoleVerifyModConfigurations(name)
+    if name ~= nil then
+        if g_modIsLoaded[name] then
+            local found, notFound = self:verifyModConfigurations(name)
+
+            Logging.info('%i config entries verified', #found)
+
+            for _, file in ipairs(notFound) do
+                Logging.warning('File not found: %s', file)
+            end
+
+            return
+        else
+            return string.format('Mod "%s" is not loaded', name)
+        end
+    end
+
+    return 'Usage: tfVerifyModConfigurations <modName>'
+end
+
+function MachineManager:consoleVerifyAllModsConfigurations()
+    ---@type table<string, string[]>
+    local modConfigs = {}
+
+    for vehicleFilename, _ in pairs(self.configurations) do
+        ---@type string
+        local modName = vehicleFilename:split('/')[1]
+
+        if modName ~= 'data' and not modName:startsWith('pdlc') and g_modIsLoaded[modName] then
+            if modConfigs[modName] == nil then
+                modConfigs[modName] = {}
+            end
+
+            table.insert(modConfigs[modName], g_modsDirectory .. vehicleFilename)
+        end
+    end
+
+    for modName, files in pairs(modConfigs) do
+        Logging.info('Verifying configuration entries for mod "%s"', modName)
+
+        ---@type string[]
+        local found = {}
+        ---@type string[]
+        local notFound = {}
+
+        for _, file in ipairs(files) do
+            if fileExists(file) then
+                table.insert(found, file)
+            else
+                table.insert(notFound, file)
+            end
+        end
+
+        if #found > 0 then
+            Logging.info('%i config entries verified', #found)
+        end
+
+        for _, file in ipairs(notFound) do
+            Logging.warning('File not found: %s', file)
+        end
+    end
+
+    return 'Done.'
+end
+
+---@param modName string
+---@return string[] found
+---@return string[] notFound
+function MachineManager:verifyModConfigurations(modName)
+    ---@type string[]
+    local found = {}
+    ---@type string[]
+    local notFound = {}
+
+    local cmp = modName .. '/'
+
+    for vehicleFile, _ in pairs(self.configurations) do
+        if vehicleFile:startsWith(cmp) then
+            local file = g_modsDirectory .. vehicleFile
+
+            if fileExists(file) then
+                table.insert(found, g_modsDirectory .. vehicleFile)
+            else
+                table.insert(notFound, g_modsDirectory .. vehicleFile)
+            end
+        end
+    end
+
+    return found, notFound
 end
 
 --
