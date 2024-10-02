@@ -26,6 +26,7 @@ IT TO LEARN, FORK AND SPREAD THE KNOWLEDGE.
   - [Premium expansion](#premium-expansion)
 - [Surveyor](#surveyor)
 - [How to download and install](#how-to-download-and-install)
+- [Download machine addons](#download-machine-addons)
 - [Documentation](#documentation)
 - [Map resources extension](#map-resources-extension)
 - [How to report bugs](#how-to-report-bugs)
@@ -73,7 +74,7 @@ There is also a material settings dialog where you can control which materials p
 
 TerraFarm integrates support for base game, platinum expansion and premium expansion equipment.
 
-TerraFarm now supports vehicle specialization for modders to integrate configuration(s) directly into their mods. In order to provide support for 3rd. party equipment during this transition I have created a mod which adds configurations for some various mods: [TerraFarm - Machines Addon](https://github.com/scfmod/FS22_TerraFarmMachines). The number of supported mods are limited as I myself don't have time to setup configuration for every mod, but creating configurations now are much simpler than older versions.
+TerraFarm now supports vehicle specialization for modders to integrate configuration(s) directly into their mods as well as addon mods with configurations.
 
 Long story short; there's no longer needed for modders to edit TerraFarm to add support for equipment.
 
@@ -118,6 +119,16 @@ If you want to create your own surveyor equipment, read more [here](./docs/SURVE
 ## How to download and install
 
 Download the latest [```FS22_0_TerraFarm.zip```](https://github.com/scfmod/FS22_TerraFarm/releases/latest/download/FS22_0_TerraFarm.zip) and copy/move it into your FS22 mods folder.
+
+## Download machine addons
+
+For supporting 3rd. party machine configurations
+
+### [Official machines addon mod](https://github.com/scfmod/FS22_TerraFarmMachines)
+
+Download the latest [```FS22_0_TerraFarmMachines.zip```](https://github.com/scfmod/FS22_TerraFarmMachines/releases/latest/download/FS22_0_TerraFarmMachines.zip) and copy/move it into your FS22 mods folder.
+
+Thanks to Fallingblood for setting up and adding over 1000 new configuration entries for various mods.
 
 ## Documentation
 
