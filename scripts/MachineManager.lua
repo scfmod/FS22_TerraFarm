@@ -123,19 +123,8 @@ end
 
 ---@param xmlFilename string
 ---@param vehicleFile string
----@return boolean
 function MachineManager:registerConfiguration(xmlFilename, vehicleFile)
-    local wasAdded = false
-
-    if self.configurations[vehicleFile] ~= nil then
-        g_machineDebug:debug('Replaced existing machine configuration: %s', vehicleFile)
-    else
-        wasAdded = true
-    end
-
     self.configurations[vehicleFile] = xmlFilename
-
-    return wasAdded
 end
 
 ---@param vehicleFile string
@@ -176,7 +165,7 @@ function MachineManager:loadConfigurationsFromXMLFile(xmlFilename, modEnv)
         xmlFile:delete()
 
         if numEntries > 0 then
-            Logging.info('  Registered %i new machine configurations', numEntries)
+            Logging.info('  Registered %i machine configurations', numEntries)
         end
     else
         Logging.warning('Failed to load configurations file: %s', tostring(xmlFilename))
