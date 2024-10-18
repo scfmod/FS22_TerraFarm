@@ -4,6 +4,7 @@
 ---@field vehicles Machine[]
 ---@field surveyors Surveyor[]
 ---@field configurations table<string, string> -- <vehicleFile, xmlFilename>
+---@field displayWarning boolean
 MachineManager = {}
 
 local MachineManager_mt = Class(MachineManager)
@@ -19,6 +20,8 @@ function MachineManager.new()
     self.surveyors = {}
     self.configurations = {}
 
+    self.displayWarning = false
+
     if g_server ~= nil then
         addConsoleCommand('tfReloadConfigurations', '', 'consoleReloadConfigurations', self)
         addConsoleCommand('tfVerifyModConfigurations', '', 'consoleVerifyModConfigurations', self)
@@ -26,6 +29,20 @@ function MachineManager.new()
     end
 
     return self
+end
+
+function MachineManager:checkDisplayWarning()
+    if self.displayWarning then
+        local warningText = 'TerraFarm mod filename has been altered, this may cause issues with mods dependencies.\n\n' ..
+            'Please rename to "FS22_0_TerraFarm.zip"\n\n' ..
+            'Always download latest official version from: https://github.com/scfmod/FS22_TerraFarm'
+
+        g_gui:showInfoDialog({
+            text = warningText
+        })
+
+        self.displayWarning = false
+    end
 end
 
 ---@param vehicle Machine | nil
@@ -216,6 +233,8 @@ function MachineManager:onModsLoaded()
 
     self:loadInternalConfigurations()
     self:loadModsConfigurations()
+
+    self.displayWarning = g_client ~= nil and Machine.MOD_NAME ~= 'FS22_0_TerraFarm'
 end
 
 function MachineManager:consoleReloadConfigurations()

@@ -122,6 +122,8 @@ function InGameMenuMachinesFrame:onFrameOpen()
     g_messageCenter:subscribe(MessageType.MASTERUSER_ADDED, self.onMasterUserAdded, self)
     g_messageCenter:subscribe(MessageType.PLAYER_FARM_CHANGED, self.onPlayerFarmChanged, self)
     g_messageCenter:subscribe(PlayerPermissionsEvent, self.onPlayerPermissionsChanged, self)
+
+    g_machineManager:checkDisplayWarning()
 end
 
 function InGameMenuMachinesFrame:onFrameClose()
