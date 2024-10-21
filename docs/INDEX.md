@@ -96,6 +96,7 @@ Uses the same format as vehicle specialization configuration.
 | [```compactor```](./MACHINE_COMPACTOR.md) | For compactors and some generic equipment. |
 | [```excavatorRipper```](./MACHINE_EXCAVATOR_RIPPER.md) | For excavator ground rippers. |
 | [```excavatorShovel```](./MACHINE_EXCAVATOR_SHOVEL.md) | For excavators and excavator shovels. |
+| [```discharger```](./MACHINE_DISCHARGER.md) | For trailers, trucks and generic discharge only vehicles. |
 | [```leveler```](./MACHINE_LEVELER.md) | For bulldozers, bulldozer blades, graders and similar levelers. |
 | [```ripper```](./MACHINE_RIPPER.md) | For ground rippers. |
 | [```shovel``` ](./MACHINE_SHOVEL.md) | For wheel loaders, generic shovels etc. |
