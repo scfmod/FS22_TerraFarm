@@ -9,11 +9,12 @@ source(g_currentModDirectory .. 'scripts/specializations/events/SetSurveyorEvent
 source(g_currentModDirectory .. 'scripts/specializations/events/SetTerrainLayerEvent.lua')
 
 ---@class Machine : Vehicle, FillUnit, FillVolume, TurnOnVehicle, Cylindered, Enterable, Dischargeable, Shovel
+---@field spec_attachable AttachableSpecialization
 ---@field spec_dischargeable DischargeableSpecialization
 ---@field spec_fillUnit FillUnitSpecialization
 ---@field spec_leveler LevelerSpecialization
 ---@field spec_shovel ShovelSpecialization
----@field spec_attachable AttachableSpecialization
+---@field spec_trailer TrailerSpecialization
 ---@field spec_machine SpecializationProperties
 Machine = {}
 
@@ -317,6 +318,7 @@ function Machine:onLoad()
     spec.hasMotorized = SpecializationUtil.hasSpecialization(Motorized, self.specializations)
     spec.hasShovel = SpecializationUtil.hasSpecialization(Shovel, self.specializations)
     spec.hasTurnOnVehicle = SpecializationUtil.hasSpecialization(TurnOnVehicle, self.specializations)
+    spec.hasTrailer = SpecializationUtil.hasSpecialization(Trailer, self.specializations)
 
     if spec.machineType.useFillUnit then
         spec.fillUnitSource = Machine.FILLUNIT_SOURCE[xmlFile:getValue('vehicle.machine#fillUnitSource')] or Machine.FILLUNIT_SOURCE.VEHICLE
@@ -331,14 +333,28 @@ function Machine:onLoad()
     if spec.hasDischargeable and #self.spec_dischargeable.dischargeNodes > 0 then
         self.getCanDischargeToGround = Utils.overwrittenFunction(self.getCanDischargeToGround, Machine.getCanDischargeToGround)
 
-        if MachineUtils.getIsShovel(self) then
+        if MachineUtils.getIsDischargeable(self) then
             self.discharge = Utils.overwrittenFunction(self.discharge, Machine.discharge)
         end
 
-        if spec.machineType.useDischargeable and xmlFile:hasProperty('vehicle.machine#dischargeNodeIndex') then
-            local index = xmlFile:getValue('vehicle.machine#dischargeNodeIndex')
+        if spec.machineType.useDischargeable then
+            local dischargeNodeIndex = xmlFile:getValue('vehicle.machine#dischargeNodeIndex')
 
-            spec.dischargeNode = self.spec_dischargeable.dischargeNodes[index]
+            if dischargeNodeIndex == nil and not spec.hasShovel and spec.hasTrailer then
+                local tipSide = self.spec_trailer.tipSides[1]
+
+                if tipSide ~= nil then
+                    spec.dischargeNode = self.spec_dischargeable.dischargeNodes[tipSide.dischargeNodeIndex]
+                else
+                    spec.dischargeNode = self.spec_dischargeable.dischargeNodes[1]
+                end
+
+                if spec.dischargeNode ~= nil then
+                    spec.fillUnitIndex = spec.dischargeNode.fillUnitIndex
+                end
+            else
+                spec.dischargeNode = self.spec_dischargeable.dischargeNodes[dischargeNodeIndex]
+            end
         end
     end
 
@@ -408,13 +424,13 @@ function Machine:onLoad()
     spec.modesInput = MachineUtils.loadMachineModesFromXML(xmlFile, 'vehicle.machine.input#modes')
     spec.modesOutput = {}
 
-    if MachineUtils.getIsShovel(self) then
+    if MachineUtils.getIsDischargeable(self) then
         table.insert(spec.modesOutput, Machine.MODE.MATERIAL)
         table.insert(spec.modesOutput, Machine.MODE.RAISE)
         table.insert(spec.modesOutput, Machine.MODE.FLATTEN)
         table.insert(spec.modesOutput, Machine.MODE.SMOOTH)
 
-        if not MachineUtils.getHasInputMode(self, Machine.MODE.MATERIAL) then
+        if MachineUtils.getIsShovel(self) and not MachineUtils.getHasInputMode(self, Machine.MODE.MATERIAL) then
             table.insert(spec.modesInput, Machine.MODE.MATERIAL)
         end
     end
@@ -861,6 +877,15 @@ end
 function Machine:dischargeToGround(emptyLiters)
     local spec = self.spec_machine
 
+    if spec.machineTypeId == 'discharger' then
+        if spec.outputMode == Machine.MODE.FLATTEN then
+            emptyLiters = math.min(25, emptyLiters)
+        else
+            emptyLiters = math.min(15, emptyLiters)
+        end
+    end
+
+    ---@type number, number
     local fillTypeIndex, factor = self:getDischargeFillType(spec.dischargeNode)
     local fillLevel = self:getFillUnitFillLevel(spec.dischargeNode.fillUnitIndex)
     local minLiterToDrop = g_densityMapHeightManager:getMinValidLiterValue(fillTypeIndex)
@@ -1064,35 +1089,11 @@ function Machine:onLeaveRootVehicle()
 end
 
 function Machine:onPostAttach()
-    local spec = self.spec_machine
-
-    if spec.machineType.useFillUnit and spec.fillUnitSource == Machine.FILLUNIT_SOURCE.ROOT_VEHICLE then
-        if spec.fillUnitIndex ~= nil then
-            ---@type FillUnitVehicle
-            ---@diagnostic disable-next-line: assign-type-mismatch
-            local rootVehicle = self:findRootVehicle()
-
-            if rootVehicle.getFillUnitByIndex ~= nil then
-                spec.fillUnit = rootVehicle:getFillUnitByIndex(spec.fillUnitIndex)
-            end
-        else
-            -- TODO: When needed
-            -- get fillUnit from root vehicle automatically
-        end
-    end
 end
 
 function Machine:onPostDetach()
     if self.isServer then
         self:setMachineActive(false)
-    end
-
-    -- TODO: When needed
-
-    local spec = self.spec_machine
-
-    if spec.fillUnitSource == Machine.FILLUNIT_SOURCE.ROOT_VEHICLE then
-        spec.fillUnit = nil
     end
 end
 
@@ -1491,16 +1492,22 @@ function Machine:selectSurveyorCallback(vehicle)
     end
 end
 
----@param dischargeNode number
+---@param dischargeNode DischargeNode
 ---@return boolean
 function Machine:getCanDischargeToGround(superFunc, dischargeNode)
     local spec = self.spec_machine
 
     if dischargeNode == spec.dischargeNode then
-        if spec.outputMode == Machine.MODE.MATERIAL and not spec.state.enableOutputMaterial then
-            return false
-        elseif spec.outputMode ~= Machine.MODE.MATERIAL and g_settings:getIsEnabled() and self:getMachineActive() and MachineUtils.getIsShovel(self) then
-            return spec.workArea:getCanOutput()
+        if spec.outputMode == Machine.MODE.MATERIAL then
+            if not spec.state.enableOutputMaterial then
+                return false
+            end
+        elseif MachineUtils.getIsDischargeable(self) and g_settings:getIsEnabled() and self:getMachineEnabled() then
+            if self:getMachineActive() then
+                return spec.workArea:getCanOutput()
+            elseif not spec.state.enableOutputMaterial then
+                return false
+            end
         end
     end
 

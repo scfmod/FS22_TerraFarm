@@ -69,6 +69,7 @@
 ---@field hasMotorized boolean
 ---@field hasShovel boolean
 ---@field hasTurnOnVehicle boolean
+---@field hasTrailer boolean
 ---@field enabled boolean
 ---@field resourcesEnabled boolean
 ---@field active boolean
@@ -123,6 +124,7 @@
 
 ---@class DischargeableSpecialization
 ---@field currentDischargeState number
+---@field currentDischargeNode DischargeNode | nil
 ---@field dischargeNodes DischargeNode[]
 ---@field fillUnitDischargeNodeMapping table<number, DischargeNode>
 ---@field dischargNodeMapping table<number, DischargeNode>
@@ -329,3 +331,27 @@
 ---@field posDirectionText string
 ---@field foldingParts table
 ---@field foldMoveDirection number
+
+---@class TrailerSpecialization
+---@field fillLevelDependentTipSides boolean
+---@field tipSideCount number
+---@field preferedTipSideIndex number
+---@field currentTipSideIndex number | nil
+---@field tipState number
+---@field remainingFillDelta number
+---@field tipSides TipSide[]
+---@field dischargeNodeIndexToTipSide table<number, TipSide>
+
+---@class TipSide
+---@field name string
+---@field dischargeNodeIndex number
+---@field canTipIfEmpty boolean
+---@field manualTipToggle boolean
+---@field manualDoorToggle boolean
+---@field currentEmptyFactor number
+---@field fillLevel table -- TODO
+
+---@class TipSideFillLevel
+---@field fillUnitIndex number | nil
+---@field minFillLevelPct number
+---@field maxFillLevelPct number

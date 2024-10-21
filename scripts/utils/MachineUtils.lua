@@ -2,12 +2,29 @@
 MachineUtils = {}
 
 ---@param vehicle Machine
+---@return boolean
+---@nodiscard
 function MachineUtils.getIsShovel(vehicle)
     local spec = vehicle.spec_machine
 
     if spec ~= nil then
         return spec.machineType.id == 'shovel' or spec.machineType.id == 'excavatorShovel'
     end
+
+    return false
+end
+
+---@param vehicle Machine
+---@return boolean
+---@nodiscard
+function MachineUtils.getIsDischargeable(vehicle)
+    local spec = vehicle.spec_machine
+
+    if spec ~= nil then
+        return spec.machineType.useDischargeable
+    end
+
+    return false
 end
 
 ---@param targetVehicle Machine

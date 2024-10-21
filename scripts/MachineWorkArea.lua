@@ -15,6 +15,7 @@
 ---
 ---@field density number
 ---@field raycastHitTerrain boolean
+---@field raycastDistance number
 MachineWorkArea = {}
 
 local MachineWorkArea_mt = Class(MachineWorkArea)
@@ -23,6 +24,7 @@ local MachineWorkArea_mt = Class(MachineWorkArea)
 ---@param key string
 function MachineWorkArea.registerXMLPaths(schema, key)
     schema:register(XMLValueType.NODE_INDEX, key .. '#referenceNode')
+    schema:register(XMLValueType.FLOAT, key .. '#raycastDistance')
     schema:register(XMLValueType.FLOAT, key .. '#width')
     schema:register(XMLValueType.FLOAT, key .. '#density', 'Node density', 0.75)
     schema:register(XMLValueType.VECTOR_3, key .. '#offset', 'Offset position from reference node', '0 0 0')
@@ -47,6 +49,7 @@ function MachineWorkArea.new(vehicle)
     self.nodeTerrainY = {}
 
     self.raycastHitTerrain = false
+    self.raycastDistance = 0.4
 
     return self
 end
@@ -65,6 +68,7 @@ function MachineWorkArea:loadFromXMLFile(xmlFile, key)
     self.density = MathUtil.clamp(xmlFile:getValue(key .. '#density', self.density), 0.25, 4)
     self.offset = xmlFile:getValue(key .. '#offset', '0 0 0', true)
     self.rotation = xmlFile:getValue(key .. '#rotation', '0 0 0', true)
+    self.raycastDistance = xmlFile:getValue(key .. '#raycastDistance', self.raycastDistance)
 end
 
 function MachineWorkArea:rebuild()
@@ -115,11 +119,14 @@ function MachineWorkArea:initialize()
         return
     end
 
-    if self.referenceNode == nil and self.machineType.useShovel and self.vehicle.spec_machine.hasShovel then
-        local shovelNode = self.vehicle.spec_machine.shovelNode
+    local spec = self.vehicle.spec_machine
+
+    if self.referenceNode == nil and self.machineType.useShovel and spec.hasShovel then
+        local shovelNode = spec.shovelNode
 
         if shovelNode ~= nil then
             self.referenceNode = shovelNode.node
+
             self.offset[2] = self.offset[2] + shovelNode.yOffset
             self.offset[3] = self.offset[3] + shovelNode.zOffset
 
@@ -129,12 +136,12 @@ function MachineWorkArea:initialize()
         end
     end
 
-    if self.referenceNode == nil and self.machineType.useLeveler and self.vehicle.spec_machine.hasLeveler then
-        local levelerNode = self.vehicle.spec_machine.levelerNode
+    if self.referenceNode == nil and self.machineType.useLeveler and spec.hasLeveler then
+        local levelerNode = spec.levelerNode
 
         if levelerNode ~= nil then
             self.referenceNode = levelerNode.node
-            -- self.referenceNode = levelerNode.referenceFrame
+
             self.offset[2] = self.offset[2] + levelerNode.yOffset
             self.offset[3] = self.offset[3] + levelerNode.zOffset
 
@@ -144,9 +151,25 @@ function MachineWorkArea:initialize()
         end
     end
 
+    if self.referenceNode == nil and self.machineType.useDischargeable and spec.hasDischargeable then
+        local dischargeNode = spec.dischargeNode
+
+        if dischargeNode ~= nil then
+            self.referenceNode = dischargeNode.node
+
+            -- self.offset[2] = self.offset[2] + dischargeNode.info.yOffset
+            -- self.offset[3] = self.offset[3] + dischargeNode.info.zOffset
+
+            if self.width == nil then
+                self.width = dischargeNode.info.width
+            end
+        end
+    end
+
     assert(self.referenceNode ~= nil, 'No referenceNode found ...')
 
     self.rootNode = createTransformGroup('root')
+
     link(self.referenceNode, self.rootNode)
     setTranslation(self.rootNode, self.offset[1], self.offset[2], self.offset[3])
     setRotation(self.rootNode, self.rotation[1], self.rotation[2], self.rotation[3])
@@ -293,8 +316,7 @@ end
 
 ---@return boolean
 function MachineWorkArea:getCanOutput()
-    -- local maxDistance = 0.5
-    local maxDistance = 0.4
+    local maxDistance = self.raycastDistance
 
     self.raycastHitTerrain = false
 

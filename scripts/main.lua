@@ -33,6 +33,7 @@ source(g_currentModDirectory .. 'scripts/ResourceManager.lua')
 source(g_currentModDirectory .. 'scripts/Settings.lua')
 
 source(g_currentModDirectory .. 'scripts/machines/Compactor.lua')
+source(g_currentModDirectory .. 'scripts/machines/Discharger.lua')
 source(g_currentModDirectory .. 'scripts/machines/ExcavatorShovel.lua')
 source(g_currentModDirectory .. 'scripts/machines/ExcavatorRipper.lua')
 source(g_currentModDirectory .. 'scripts/machines/Leveler.lua')
