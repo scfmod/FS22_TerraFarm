@@ -101,6 +101,7 @@ Long story short; there's no longer needed for modders to edit TerraFarm to add 
 - Volvo L180H rock bucket
 - Volvo LM841 general purpose bucket
 - Volvo LM841 rock bucket
+- Volvo DR 631
 ```
 
 ### Premium expansion
