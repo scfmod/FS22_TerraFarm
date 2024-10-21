@@ -57,6 +57,9 @@
     <configuration
         vehicle="pdlc_forestryPack/vehicles/volvo/lm841Shovel/lm841Shovel.xml"
         file="xml/machines/forestryDlc/lm841_shovel.xml" />
+    <configuration
+        vehicle="pdlc_forestryPack/vehicles/volvo/dr631/dr631.xml"
+        file="xml/machines/forestryDlc/volvo_dr631.xml" />
 
     <!-- Premium expansion -->
 
