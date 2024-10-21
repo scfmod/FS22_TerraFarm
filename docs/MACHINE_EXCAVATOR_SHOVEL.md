@@ -98,6 +98,7 @@ Machine work area adjustments.
 | density       | float   | No | ```0.75```  | Work area density |
 | offset        | vector3 | No | ```0 0 0``` | Offset position |
 | rotation      | vector3 | No | ```0 0 0``` | Rotation in degrees |
+| raycastDistance | float | No | ```0.4```   | Raycast distance for preventing discharge. |
 
 ## Effects
 

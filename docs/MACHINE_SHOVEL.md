@@ -44,7 +44,7 @@ vehicle.machine
 | shovelNodeIndex    | integer | No | ```1``` | Override if vehicle has multiple shovelNodes |
 | levelerNodeIndex   | integer | No | ```1``` | Override if vehicle has multiple levelerNodes |
 | dischargeNodeIndex | integer | No |         | Defaults to using dischargeNode from shovelNode |
-
+| raycastDistance    | float   | No | ```0.4```   | Raycast distance for preventing discharge. |
 
 ## Input
 
