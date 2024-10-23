@@ -1272,7 +1272,7 @@ function Machine:onRegisterActionEvents(isActiveForInput, isActiveForInputIgnore
 
         action = InputAction[Machine.ACTION_SELECT_SURVEYOR]
 
-        if action ~= nil and table.hasElement(spec.modesInput, Machine.MODE.FLATTEN) then
+        if action ~= nil and (MachineUtils.getHasInputMode(self, Machine.MODE.FLATTEN) or MachineUtils.getHasOutputMode(self, Machine.MODE.FLATTEN)) then
             local _, eventId = self:addActionEvent(spec.actionEvents, action, self, Machine.actionEventSelectSurveyor, false, true, false, true)
 
             g_inputBinding:setActionEventText(eventId, Machine.L10N_ACTION_SELECT_SURVEYOR)
