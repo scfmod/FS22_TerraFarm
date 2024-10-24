@@ -13,6 +13,9 @@ Suitable for generic vehicles with discharge only such as trailers and trucks.
 |----------------|----------|
 | fillUnit       | Yes      |
 | dischargeable  | Yes      |
+| trailer        | Optional |
+
+**NOTE**: If the vehicle doesn't have trailer specialization, you need to set dischargeNodeIndex attribute value.
 
 ## Machine
 
