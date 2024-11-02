@@ -1134,39 +1134,49 @@ end
 function Machine:onWriteStream(streamId, connection)
     local spec = self.spec_machine
 
-    streamWriteBool(streamId, spec.isEffectActiveSent)
+    if not connection:getIsServer() then
+        streamWriteBool(streamId, spec.isEffectActiveSent)
 
-    if streamWriteBool(streamId, spec.surveyorId ~= nil) then
-        streamWriteString(streamId, spec.surveyorId)
+        if streamWriteBool(streamId, spec.surveyorId ~= nil) then
+            streamWriteString(streamId, spec.surveyorId)
+        end
+
+        streamWriteBool(streamId, spec.enabled)
+        streamWriteBool(streamId, spec.resourcesEnabled)
+        streamWriteBool(streamId, spec.active)
+        streamWriteUIntN(streamId, spec.inputMode, Machine.NUM_BITS_MODE)
+        streamWriteUIntN(streamId, spec.outputMode, Machine.NUM_BITS_MODE)
+        streamWriteUIntN(streamId, spec.fillTypeIndex or 0, FillTypeManager.SEND_NUM_BITS)
+        streamWriteUIntN(streamId, spec.terrainLayerId or 0, TerrainDeformation.LAYER_SEND_NUM_BITS)
+
+        spec.state:writeStream(streamId, connection)
     end
-
-    streamWriteBool(streamId, spec.enabled)
-    streamWriteBool(streamId, spec.resourcesEnabled)
-    streamWriteBool(streamId, spec.active)
-    streamWriteUIntN(streamId, spec.inputMode, Machine.NUM_BITS_MODE)
-    streamWriteUIntN(streamId, spec.outputMode, Machine.NUM_BITS_MODE)
-    streamWriteUIntN(streamId, spec.fillTypeIndex or 0, FillTypeManager.SEND_NUM_BITS)
-    streamWriteUIntN(streamId, spec.terrainLayerId or 0, TerrainDeformation.LAYER_SEND_NUM_BITS)
 end
 
 ---@param streamId number
 ---@param connection Connection
 function Machine:onReadStream(streamId, connection)
-    self:setMachineEffectActive(streamReadBool(streamId), true, true)
+    local spec = self.spec_machine
 
-    if streamReadBool(streamId) then
-        self:setSurveyorId(streamReadString(streamId), true)
-    else
-        self:setSurveyorId(nil, true)
+    if connection:getIsServer() then
+        self:setMachineEffectActive(streamReadBool(streamId), true, true)
+
+        if streamReadBool(streamId) then
+            self:setSurveyorId(streamReadString(streamId), true)
+        else
+            self:setSurveyorId(nil, true)
+        end
+
+        self:setMachineEnabled(streamReadBool(streamId), true)
+        self:setResourcesEnabled(streamReadBool(streamId), true)
+        self:setMachineActive(streamReadBool(streamId), true)
+        self:setInputMode(streamReadUIntN(streamId, Machine.NUM_BITS_MODE), true)
+        self:setOutputMode(streamReadUIntN(streamId, Machine.NUM_BITS_MODE), true)
+        self:setMachineFillTypeIndex(streamReadUIntN(streamId, FillTypeManager.SEND_NUM_BITS), true)
+        self:setMachineTerrainLayerId(streamReadUIntN(streamId, TerrainDeformation.LAYER_SEND_NUM_BITS), true)
+
+        spec.state:readStream(streamId, connection)
     end
-
-    self:setMachineEnabled(streamReadBool(streamId), true)
-    self:setResourcesEnabled(streamReadBool(streamId), true)
-    self:setMachineActive(streamReadBool(streamId), true)
-    self:setInputMode(streamReadUIntN(streamId, Machine.NUM_BITS_MODE), true)
-    self:setOutputMode(streamReadUIntN(streamId, Machine.NUM_BITS_MODE), true)
-    self:setMachineFillTypeIndex(streamReadUIntN(streamId, FillTypeManager.SEND_NUM_BITS), true)
-    self:setMachineTerrainLayerId(streamReadUIntN(streamId, TerrainDeformation.LAYER_SEND_NUM_BITS), true)
 end
 
 ---@param streamId number
