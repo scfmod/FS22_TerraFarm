@@ -4,12 +4,13 @@ LandscapingPaint = {}
 local LandscapingPaint_mt = Class(LandscapingPaint, BaseLandscaping)
 
 ---@param workArea MachineWorkArea
+---@param customMt table | nil
 ---@return LandscapingPaint
 ---@nodiscard
-function LandscapingPaint.new(workArea)
+function LandscapingPaint.new(workArea, customMt)
     ---@type LandscapingPaint
     ---@diagnostic disable-next-line: assign-type-mismatch
-    local self = BaseLandscaping.new(LandscapingOperation.PAINT, workArea, LandscapingPaint_mt)
+    local self = BaseLandscaping.new(LandscapingOperation.PAINT, workArea, customMt or LandscapingPaint_mt)
 
     self.strength = 0.5
     self.hardness = 0.2
@@ -83,19 +84,11 @@ function LandscapingPaint:applyDeformationChanges()
         end
     end
 
-    for _, area in ipairs(self.modifiedAreas) do
-        local x, z, x1, z1, x2, z2 = unpack(area)
+    if self.state.eraseTireTracks then
+        for _, area in ipairs(self.modifiedAreas) do
+            local x, z, x1, z1, x2, z2 = unpack(area)
 
-        if self.state.eraseTireTracks then
             FSDensityMapUtil.eraseTireTrack(x, z, x1, z1, x2, z2)
         end
-
-        local minX = math.min(x, x1, x2, x2 + x1 - x)
-        local maxX = math.max(x, x1, x2, x2 + x1 - x)
-        local minZ = math.min(z, z1, z2, z2 + z1 - z)
-        local maxZ = math.max(z, z1, z2, z2 + z1 - z)
-
-        ---@diagnostic disable-next-line: undefined-field
-        g_currentMission.aiSystem:setAreaDirty(minX, maxX, minZ, maxZ)
     end
 end

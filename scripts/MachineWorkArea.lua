@@ -212,6 +212,14 @@ function MachineWorkArea:paint()
     op:apply()
 end
 
+function MachineWorkArea:paintDischarge()
+    local op = LandscapingPaintDischarge.new(self)
+
+    op:apply()
+
+    return op.droppedLiters
+end
+
 function MachineWorkArea:flatten()
     local targetWorldPosY = self:getTargetTerrainHeight()
     local op = LandscapingFlatten.new(self, targetWorldPosY)

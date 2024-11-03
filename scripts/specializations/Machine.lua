@@ -429,6 +429,7 @@ function Machine:onLoad()
         table.insert(spec.modesOutput, Machine.MODE.RAISE)
         table.insert(spec.modesOutput, Machine.MODE.FLATTEN)
         table.insert(spec.modesOutput, Machine.MODE.SMOOTH)
+        table.insert(spec.modesOutput, Machine.MODE.PAINT)
 
         if MachineUtils.getIsShovel(self) and not MachineUtils.getHasInputMode(self, Machine.MODE.MATERIAL) then
             table.insert(spec.modesInput, Machine.MODE.MATERIAL)
@@ -904,6 +905,8 @@ function Machine:dischargeToGround(emptyLiters)
         dropped = spec.workArea:flattenDischarge(spec.dischargeNode.litersToDrop * factor, fillTypeIndex)
     elseif spec.outputMode == Machine.MODE.SMOOTH then
         dropped = spec.workArea:smoothDischarge(spec.dischargeNode.litersToDrop * factor, fillTypeIndex)
+    elseif spec.outputMode == Machine.MODE.PAINT then
+        dropped = spec.workArea:paintDischarge()
     end
 
     dropped = dropped / factor
@@ -1514,6 +1517,10 @@ function Machine:getCanDischargeToGround(superFunc, dischargeNode)
             end
         elseif MachineUtils.getIsDischargeable(self) and g_settings:getIsEnabled() and self:getMachineEnabled() then
             if self:getMachineActive() then
+                if spec.outputMode == Machine.MODE.PAINT then
+                    return true
+                end
+
                 return spec.workArea:getCanOutput()
             elseif not spec.state.enableOutputMaterial then
                 return false
