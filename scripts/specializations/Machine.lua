@@ -877,12 +877,12 @@ end
 function Machine:dischargeToGround(emptyLiters)
     local spec = self.spec_machine
 
-    if spec.machineTypeId == 'discharger' then
-        if spec.outputMode == Machine.MODE.FLATTEN then
-            emptyLiters = math.min(25, emptyLiters)
-        else
-            emptyLiters = math.min(15, emptyLiters)
-        end
+    if emptyLiters == 0 then
+        return 0, false, false
+    end
+
+    if spec.machineTypeId == 'discharger' and spec.outputMode ~= Machine.MODE.FLATTEN then
+        emptyLiters = math.max(12, emptyLiters)
     end
 
     ---@type number, number
