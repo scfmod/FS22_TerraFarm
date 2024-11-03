@@ -335,7 +335,7 @@ end
 function MachineHUDDisplay:updateTextureDisplay()
     local spec = g_machineHUD.vehicle.spec_machine
 
-    if #spec.modesInput > 0 then
+    if #spec.modesInput > 0 or #spec.modesOutput > 0 then
         local terrainLayer = g_resources:getTerrainLayerById(spec.terrainLayerId)
 
         self.textureItem:setVisible(true)
