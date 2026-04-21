@@ -57,6 +57,8 @@ local function registerMachineFunctions(vehicle)
     vehicle['getSurveyorId'] = Machine.getSurveyorId
     vehicle['getSurveyor'] = Machine.getSurveyor
     vehicle['getSurveyorCalibration'] = Machine.getSurveyorCalibration
+
+    vehicle['raycastCallbackShovelFillVolume'] = Machine.raycastCallbackShovelFillVolume
 end
 
 ---@param vehicle Vehicle
